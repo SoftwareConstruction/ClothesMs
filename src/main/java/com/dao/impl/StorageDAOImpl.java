@@ -32,9 +32,9 @@ public class StorageDAOImpl implements StorageDAO{
 	 * @see com.dao.StorageDAO#add(com.entity.Storage)
 	 */
 	@Override
-	public void add(Storage storage) {
+	public void addOrUpdate(Storage storage) {
 		// TODO Auto-generated method stub
-		hibernateTemplate.save(storage);
+		hibernateTemplate.saveOrUpdate(storage);
 	}
 
 	/* (non-Javadoc)

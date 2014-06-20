@@ -13,7 +13,7 @@ import com.entity.Storage;
  *@Version 1.0
  */
 public interface StorageDAO {
-	public void add(Storage storage);
+	public void addOrUpdate(Storage storage);
 	public void update(Storage storage);
 	public void updateFlag(Storage storage);
 	public List<Storage> findByPaging(final int firstIndex ,final int size);

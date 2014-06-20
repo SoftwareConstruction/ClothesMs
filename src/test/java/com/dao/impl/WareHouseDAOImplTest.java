@@ -43,7 +43,6 @@ public class WareHouseDAOImplTest {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-	//	assertEquals(result.size(),1);
 		assertThat(result.size(),is(1));
 	}
 	
@@ -81,5 +80,12 @@ public class WareHouseDAOImplTest {
 	public void findAllByPaging(){
 		List<WareHouse> result = wareHouseDAOImpl.findAllByPaging(0, 10);
 		assertThat(result.size(), is(10));
+	}
+	
+	@Test
+	public void findByName(){
+		String name = "name1";
+		List<WareHouse> result = wareHouseDAOImpl.findByName(name);
+		assertThat(result.size(),is(1));
 	}
 }

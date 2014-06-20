@@ -26,8 +26,8 @@ public class WareHouseDAOImpl implements WareHouseDAO{
 	}
 
 	@Override
-	public List findByDocu_number(String docu_number) {
-
+	public List findByDocu_number(String docu_number){
+		
 		List<WareHouse> list = (List<WareHouse>) hibernateTemplate.find("from WareHouse as wh where wh.docu_number=?",docu_number);
 		return list;
 	}
@@ -55,5 +55,14 @@ public class WareHouseDAOImpl implements WareHouseDAO{
 		});
 		return list;
 	}
+
+	
+	@Override
+	public List<WareHouse> findByName(String name) {
+		List<WareHouse> result = (List<WareHouse>) hibernateTemplate.find("from WareHouse as wh where wh.name=?",name);
+		return result;
+	}
+	
+	
 	
 }

@@ -68,8 +68,8 @@ public class StorageDAOImplTest {
 	
 	
 	@Test
-	public void add(){
-		storageDAOImpl.add(storage);
+	public void addOrUpdate(){
+		storageDAOImpl.addOrUpdate(storage);
 	}
 	
 	@Test

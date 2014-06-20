@@ -22,7 +22,7 @@ public class StorageServiceImpl implements StorageService {
 	 */
 	@Override
 	public String save(Storage storage) {
-		storageDAOImpl.add(storage);
+		storageDAOImpl.addOrUpdate(storage);
 		return null;
 	}
 
