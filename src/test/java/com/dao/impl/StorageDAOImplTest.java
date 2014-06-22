@@ -106,6 +106,11 @@ public class StorageDAOImplTest {
 		assertThat(result.getStorage_Number(),is(99999));
 	}
 	
+	@Test
+	public void findBywareHouseIdAndClothesId(){
+		List<Storage> result = storageDAOImpl.findByWareHouseIdAndClothesId(1, 2);
+		assertThat(result.size(),is(1));
+	}
 	
 	
 }

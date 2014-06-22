@@ -18,12 +18,13 @@ public class OrderIn {
 	private Admin manager;
 	private String source;
 	private int flag;
+	private int number;
+	private int clothesId;
 	
 	public OrderIn(){
 		this.in_time = new Date();
 		in_time.getTime();
 	}
-	
 	
 	public int getOrderId() {
 		return orderId;
@@ -68,5 +69,16 @@ public class OrderIn {
 	public void setFlag(int flag) {
 		this.flag = flag;
 	}
-	
+	public int getNumber() {
+		return number;
+	}
+	public void setNumber(int number) {
+		this.number = number;
+	}
+	public int getClothesId() {
+		return clothesId;
+	}
+	public void setClothesId(int clothesId) {
+		this.clothesId = clothesId;
+	}
 }

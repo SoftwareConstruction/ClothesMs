@@ -72,5 +72,9 @@ public class OrderInDAOImpl implements OrderInDAO {
 		return result;
 	}
 
-	
+	@Override
+	public List<OrderIn> findByDocuNum(String docuNum) {
+		List<OrderIn> result = (List<OrderIn>) hibernateTemplate.find("from OrderIn as o where o.docu_number=?", docuNum);
+		return result;
+	}
 }

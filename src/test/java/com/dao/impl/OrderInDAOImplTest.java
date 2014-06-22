@@ -21,12 +21,12 @@ import com.dao.OrderInDAO;
 import com.entity.Admin;
 import com.entity.OrderIn;
 import com.entity.WareHouse;
+
 /**
  *@Author kklt21cn
  *@Since 2014年6月19日
  *@Version 1.0
  */
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:applicationContext.xml")
 @Transactional
@@ -38,9 +38,11 @@ public class OrderInDAOImplTest {
 	@Before
 	public void before(){
 		orderIn = new OrderIn();
+		orderIn.setClothesId(5);
 		orderIn.setDocu_number("docu2");
 		orderIn.setFlag(1);
 		orderIn.setSource("以纯制衣厂");
+		orderIn.setNumber(100000);
 		
 		Admin manager = new Admin();
 		manager.setId(1);
@@ -58,11 +60,8 @@ public class OrderInDAOImplTest {
 		wareHouse.setName("高邮仓库");
 		wareHouse.setTotal_storage(800);
 
-		
 		orderIn.setManager(manager);
 		orderIn.setWareHouse(wareHouse);
-		
-		
 	}
 	
 	@Test
@@ -75,7 +74,6 @@ public class OrderInDAOImplTest {
 		orderIn.setOrderId(1);
 		orderIn.setDocu_number("sadsdasddasd");
 		orderInDAOImpl.update(orderIn);
-		
 	}
 	
 	@Test
@@ -95,8 +93,19 @@ public class OrderInDAOImplTest {
 	
 	@Test
 	public void findAllByPaging(){
-		List<OrderIn> result = orderInDAOImpl.findAllByPaging(0, 5);
+		List<OrderIn> result = orderInDAOImpl.findAllByPaging(0,5);
 		assertThat(result.size(),is(5));
 	}
 	
+	@Test
+	public void findByDocuNum(){
+		List<OrderIn> result = orderInDAOImpl.findByDocuNum("docu2");
+		assertThat(result.size(),is(1));
+	}
+	
+	@Test
+	public void findBypaging(){
+		List<OrderIn> result = orderInDAOImpl.findAllByPaging(1, 3);
+		assertThat(result.size(),is(3));
+	}
 }
