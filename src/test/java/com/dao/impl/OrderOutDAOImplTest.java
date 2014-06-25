@@ -3,13 +3,13 @@
  */
 package com.dao.impl;
 
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
-
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
+
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -17,33 +17,33 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.dao.OrderInDAO;
+import com.dao.OrderOutDAO;
 import com.entity.Admin;
 import com.entity.Clothes;
-import com.entity.OrderIn;
+import com.entity.OrderOut;
 import com.entity.WareHouse;
 
 /**
  *@Author kklt21cn
- *@Since 2014年6月19日
+ *@Since 2014年6月25日
  *@Version 1.0
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:applicationContext.xml")
 @Transactional
-public class OrderInDAOImplTest {
+public class OrderOutDAOImplTest {
 	@Resource
-	private OrderInDAO orderInDAOImpl ;
-	private OrderIn orderIn;
+	private OrderOutDAO orderOutDAOImpl ;
+	private OrderOut orderOut;
 	
 	@Before
 	public void before(){
-		orderIn = new OrderIn();
+		orderOut = new OrderOut();
 		
-		orderIn.setDocu_number("docu2");
-		orderIn.setFlag(1);
-		orderIn.setSource("以纯制衣厂");
-		orderIn.setNumber(999999);
+		orderOut.setDocu_number("docu2");
+		orderOut.setFlag(1);
+		orderOut.setSource("以纯制衣厂");
+		orderOut.setNumber(999999);
 		
 		Admin manager = new Admin();
 		manager.setId(1);
@@ -73,53 +73,40 @@ public class OrderInDAOImplTest {
 		clothes.setRetail_price(800);
 		clothes.setSize(150);
 		
-		orderIn.setClothes(clothes);
-		orderIn.setManager(manager);
-		orderIn.setWareHouse(wareHouse);
+		orderOut.setClothes(clothes);
+		orderOut.setManager(manager);
+		orderOut.setWareHouse(wareHouse);
 	}
 	
 	@Test
 	public void add(){
-		orderInDAOImpl.add(orderIn);
+		orderOutDAOImpl.add(orderOut);
+	}
+	@Test
+	public void updateFlag(OrderOut orderOut){
+		orderOut.setOrderId(1);
+		orderOutDAOImpl.updateFlag(orderOut);
 	}
 	
 	@Test
-	public void update(){
-		orderIn.setOrderId(1);
-		orderIn.setDocu_number("sadsdasddasd");
-		orderInDAOImpl.update(orderIn);
+	public void update(OrderOut orderOut){
+		orderOut.setOrderId(1);
+		orderOut.setSource("1212");
+		orderOutDAOImpl.update(orderOut);
 	}
-	
 	@Test
-	public void findById(){
-		OrderIn result  = orderInDAOImpl.findById(1);
-		assertThat(result.getDocu_number(),is("docu2"));
-	}
-	
-	@Test
-	public void updateFlag(){
-		orderIn.setOrderId(1);
-		orderIn.setFlag(0);
-		orderInDAOImpl.updateFlag(orderIn);
-		OrderIn result  = orderInDAOImpl.findById(1);
-		assertThat(result.getFlag(),is(0));
-	}
-	
-	@Test
-	public void findAllByPaging(){
-		List<OrderIn> result = orderInDAOImpl.findAllByPaging(0,5);
-		assertThat(result.size(),is(5));
-	}
-	
-	@Test
-	public void findByDocuNum(){
-		List<OrderIn> result = orderInDAOImpl.findByDocuNum("docu2");
+	public void findById(int id){
+		List<OrderOut> result = orderOutDAOImpl.findById(1);
 		assertThat(result.size(),is(1));
 	}
-	
 	@Test
-	public void findBypaging(){
-		List<OrderIn> result = orderInDAOImpl.findAllByPaging(1, 3);
-		assertThat(result.size(),is(3));
+	public void findAllByPaging(int firstIndex,int size){
+		List<OrderOut> result = orderOutDAOImpl.findAllByPaging(3,2);
+		assertThat(result.size(),is(2));
+	}
+	@Test
+	public void findByDocuNum(String docuNum){
+		List<OrderOut> result = orderOutDAOImpl.findByDocuNum("asd");
+		assertThat(result.size(),is(1));
 	}
 }

@@ -86,19 +86,41 @@ public class StorageDAOImpl implements StorageDAO{
 	/**
 	 * 通过仓库Id和货号Id查询Storage的记录。通过直接执行sql语句得到
 	 */
+	
 	@Override
-	public List<Storage> findByWareHouseIdAndClothesId(final int wareHouseId,
+	public List<Integer> findIdByWareHouseIdAndClothesId(final int wareHouseId,
 			final int clothesId) {
 		@SuppressWarnings("unchecked")
-		List<Storage> result = hibernateTemplate.execute(new HibernateCallback(){
-			@Override
-			public Object doInHibernate(Session session)
-					throws HibernateException {
-				String sql = "select * from t_storage where warehouse_id=? and clothes_id=?";
+		List<Integer> result = hibernateTemplate.execute(new HibernateCallback(){
+		@Override
+		public Object doInHibernate(Session session)
+				throws HibernateException {
+				String sql = "select Id from t_storage where warehouse_id=? and clothes_id=?";
 				SQLQuery query = session.createSQLQuery(sql);
 				query.setInteger(0, wareHouseId);
 				query.setInteger(1, clothesId);
-				List<Storage> result = query.list();
+				List<Integer> result = query.list();
+				//List<Storage> result = query.list();
+				return result;
+			}
+		});
+		return result;
+	}
+	
+	@Override
+	public List<Integer> findByWareHouseIdAndClothesId(final int wareHouseId,
+			final int clothesId) {
+		@SuppressWarnings("unchecked")
+		List<Integer> result = hibernateTemplate.execute(new HibernateCallback(){
+			@Override
+			public Object doInHibernate(Session session)
+					throws HibernateException {
+				String sql = "select storage_number from t_storage where warehouse_id=? and clothes_id=?";
+				SQLQuery query = session.createSQLQuery(sql);
+				query.setInteger(0, wareHouseId);
+				query.setInteger(1, clothesId);
+				List<Integer> result = query.list();
+				//List<Storage> result = query.list();
 				return result;
 			}
 		});

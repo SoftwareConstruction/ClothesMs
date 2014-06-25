@@ -23,6 +23,12 @@ public interface OrderInService {
 	 */
 	public String save(OrderIn orderIn);
 	public String update(OrderIn orderIn);
+	/**
+	 * 
+	 * @param orderIn 里面要封装有要删除的id
+	 * @return
+	 * @Description
+	 */
 	public String delete(OrderIn orderIn);
 	public OrderIn findById(OrderIn orderIn);
 	public List<OrderIn> findAllByPaging(int first,int size);

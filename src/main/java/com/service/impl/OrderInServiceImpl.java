@@ -6,6 +6,7 @@ package com.service.impl;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Component;
 
@@ -21,8 +22,8 @@ import com.entity.Storage;
 import com.entity.WareHouse;
 import com.service.OrderInService;
 import com.util.OrderIn.OrderInLogMessage;
-import com.util.OrderIn.OrderInServiceMessage;
 import com.util.clothes.ClothesServiceMessage;
+import com.util.storage.StorageServiceMessage;
 import com.util.wareHouse.WareHouseServiceMessage;
 
 /**
@@ -31,6 +32,7 @@ import com.util.wareHouse.WareHouseServiceMessage;
  *@Version 1.0
  */
 @Component
+@Transactional
 public class OrderInServiceImpl implements OrderInService{
 	@Resource
 	private OrderInDAO orderInDAOImpl;
@@ -46,24 +48,27 @@ public class OrderInServiceImpl implements OrderInService{
 	@Override
 	public String save(OrderIn orderIn) {
 		List<WareHouse> wareHouse_result = wareHouseDAOImpl.findByName(orderIn.getWareHouse().getName());
-		List<Storage> storage_result = null;
+		List<Integer> storageID_result = null;
 		//检查是否存在这个仓库
 		if(wareHouse_result.size() == 0){
 			return WareHouseServiceMessage.no_this_WareHouse;
 		}else{
 			orderIn.setWareHouse(wareHouse_result.get(0));
-			List<Clothes> clothes_result = clothesDAOImpl.findClothesByDocuNum(orderIn.getDocu_number());
+			List<Clothes> clothes_result = clothesDAOImpl.findClothesByDocuNum(orderIn.getClothes().getDocuNum());
 			//检查是否存在这个货号
 			if(clothes_result.size() == 0){
 				return ClothesServiceMessage.no_this_clothes;
 			}else{
-				storage_result = storageDAOImpl.findByWareHouseIdAndClothesId(wareHouse_result.get(0).getId(), clothes_result.get(0).getId());
+				orderIn.setClothes(clothes_result.get(0));
+				storageID_result = storageDAOImpl.findIdByWareHouseIdAndClothesId(wareHouse_result.get(0).getId(), clothes_result.get(0).getId());
 				//当存储表中没有这条记录是直接存进去
-				if(storage_result.size() == 0){
+				if(storageID_result.size() == 0){
 					Storage storage = new Storage();
 					storage.setClothes(clothes_result.get(0));
 					storage.setWareHouse(wareHouse_result.get(0));
 					storageDAOImpl.addOrUpdate(storage);
+					
+					orderInDAOImpl.add(orderIn);
 					
 					Log log = new Log();
 					log.setAdmin(orderIn.getManager());
@@ -73,10 +78,14 @@ public class OrderInServiceImpl implements OrderInService{
 					return null;
 				}else{
 					//将查询到的storage记录中的当前存储量修改为最新数量
-					Storage storage_queried = storage_result.get(0);
-					int pre_num = storage_queried.getStorage_Number();
-					storage_queried.setStorage_Number(pre_num+orderIn.getNumber());
+					Storage storage_queried = storageDAOImpl.findById(storageID_result.get(0));
+					int pre_account = storage_queried.getStorage_Number();
+					
+					//	int pre_num = storageID_result.get(0).intValue();
+					storage_queried.setStorage_Number(pre_account+orderIn.getNumber());
 					storageDAOImpl.update(storage_queried);
+					
+					orderInDAOImpl.add(orderIn);
 					
 					Log log = new Log();
 					log.setAdmin(orderIn.getManager());
@@ -103,20 +112,36 @@ public class OrderInServiceImpl implements OrderInService{
 			if(clothes_result.size() == 0){
 				return ClothesServiceMessage.no_this_clothes;
 			}else{
-				storage_result = storageDAOImpl.findByWareHouseIdAndClothesId(wareHouse_result.get(0).getId(), clothes_result.get(0).getId());
-				//当存储表中没有这条记录是直接存进去
-				if(storage_result.size() == 0){
-					return OrderInServiceMessage.no_this_orderIn;
-				}else{
-					orderInDAOImpl.update(orderIn);
+				OrderIn orderIn_queried =  orderInDAOImpl.findByDocuNum(orderIn.getDocu_number()).get(0);
+				
+				orderIn_queried.setClothes(clothes_result.get(0));
+				orderIn_queried.setIn_time(orderIn.getIn_time());
+				orderIn_queried.setSource(orderIn.getSource());
+				orderIn_queried.setWareHouse(wareHouse_result.get(0));
+				orderIn_queried.setNumber(orderIn.getNumber());
+				
+				List<Integer> storage_list_id = storageDAOImpl.findIdByWareHouseIdAndClothesId(wareHouse_result.get(0).getId(), clothes_result.get(0).getId());
+				if(storage_list_id.size() == 0){
+					return StorageServiceMessage.no_this_storage;
 				}
+				Storage storage_queried = storageDAOImpl.findById(storage_list_id.get(0));
+				
+				int diff = orderIn.getNumber()-orderIn_queried.getNumber();
+				storage_queried.setStorage_Number(storage_queried.getStorage_Number()+diff);
+				storageDAOImpl.update(storage_queried);
+				orderInDAOImpl.update(orderIn_queried);
+				
+				return null;
+				
 			}
 		}
-		return null;
 	}
 
 	@Override
 	public String delete(OrderIn orderIn) {
+		OrderIn orderIn_queried = orderInDAOImpl.findById(orderIn.getOrderId());
+		orderIn_queried.setFlag(0);
+		orderInDAOImpl.updateFlag(orderIn_queried);
 		return null;
 	}
 

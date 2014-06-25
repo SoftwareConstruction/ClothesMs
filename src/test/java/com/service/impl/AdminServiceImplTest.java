@@ -55,8 +55,8 @@ public class AdminServiceImplTest {
 		SuperAdmin operator = new SuperAdmin();
 		operator.setId(1);
 		
-		String returnStr = adminServiceImpl.delete("hong",operator);
-		assertThat(returnStr,null);
+		String returnStr = adminServiceImpl.delete("bin",operator);
+		assertThat(returnStr,nullValue());
 	//	assertEquals(returnStr,AdminReturn.noThisUsername);
 	}
 	

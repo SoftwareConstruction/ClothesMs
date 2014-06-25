@@ -5,7 +5,7 @@
 
 <hibernate-mapping>
 
-	<class name="com.entity.OrderIn" table="t_orderIn">
+	<class name="com.entity.OrderOut" table="t_orderOut">
 		<id name="orderId">
 			<column name="id"></column>
 			<generator class="native"></generator>
@@ -19,8 +19,8 @@
 			<column name="flag" not-null="true"></column>
 		</property>
 
-		<property name="out_time">
-			<column name="out_time" not-null="true"></column>
+		<property name="in_time">
+			<column name="in_time" not-null="true"></column>
 		</property>
 
 		<property name="source">
