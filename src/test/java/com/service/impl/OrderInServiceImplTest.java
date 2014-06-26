@@ -42,7 +42,6 @@ public class OrderInServiceImplTest {
 		
 		orderIn.setDocu_number("docu_number1");
 		orderIn.setFlag(1);
-		orderIn.setNumber(90000);
 		orderIn.setSource("source1");
 		
 		WareHouse wareHouse = new WareHouse();
@@ -61,19 +60,6 @@ public class OrderInServiceImplTest {
 		admin.setUsername("bin");
 		admin.setId(5);
 		
-		Clothes clothes = new Clothes();
-		clothes.setId(6);
-		clothes.setColor("蓝色");
-		clothes.setCommodity_name("中款大衣");
-		clothes.setDocuNum("BR1703");
-		clothes.setEx_factory_price(450);
-		clothes.setFlag(100);
-		clothes.setIn_material("布");
-		clothes.setOut_material("尼龙");
-		clothes.setRetail_price(800);
-		clothes.setSize(150);
-		
-		orderIn.setClothes(clothes);
 		orderIn.setWareHouse(wareHouse);
 		orderIn.setManager(admin);
 	}
@@ -86,7 +72,6 @@ public class OrderInServiceImplTest {
 	
 	@Test
 	public void update(){
-		orderIn.setNumber(1);
 		String error = orderInServiceImpl.update(orderIn);
 		assertThat(error,nullValue());
 	}

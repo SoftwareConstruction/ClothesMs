@@ -43,7 +43,7 @@ public class OrderInDAOImplTest {
 		orderIn.setDocu_number("docu2");
 		orderIn.setFlag(1);
 		orderIn.setSource("以纯制衣厂");
-		orderIn.setNumber(999999);
+
 		
 		Admin manager = new Admin();
 		manager.setId(1);
@@ -61,19 +61,7 @@ public class OrderInDAOImplTest {
 		wareHouse.setName("高邮仓库");
 		wareHouse.setTotal_storage(800);
 
-		Clothes clothes = new Clothes();
-		clothes.setId(6);
-		clothes.setColor("蓝色");
-		clothes.setCommodity_name("中款大衣");
-		clothes.setDocuNum("BR1703");
-		clothes.setEx_factory_price(450);
-		clothes.setFlag(100);
-		clothes.setIn_material("布");
-		clothes.setOut_material("尼龙");
-		clothes.setRetail_price(800);
-		clothes.setSize(150);
 		
-		orderIn.setClothes(clothes);
 		orderIn.setManager(manager);
 		orderIn.setWareHouse(wareHouse);
 	}
