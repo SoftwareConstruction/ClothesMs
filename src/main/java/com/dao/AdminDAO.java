@@ -13,6 +13,7 @@ public interface AdminDAO {
 	public abstract List loadByUsername(String name);
 	public abstract List findAllByPaging(int firstIndex,int size);
 	public abstract Admin getAdminById(int id);
+	public abstract int getAccount();
 }
 
  

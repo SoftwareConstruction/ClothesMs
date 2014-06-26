@@ -83,30 +83,39 @@ public class OrderOutDAOImplTest {
 		orderOutDAOImpl.add(orderOut);
 	}
 	@Test
-	public void updateFlag(OrderOut orderOut){
+	public void updateFlag(){
 		orderOut.setOrderId(1);
 		orderOutDAOImpl.updateFlag(orderOut);
 	}
 	
 	@Test
-	public void update(OrderOut orderOut){
+	public void update(){
 		orderOut.setOrderId(1);
 		orderOut.setSource("1212");
 		orderOutDAOImpl.update(orderOut);
 	}
+	
 	@Test
-	public void findById(int id){
+	public void findById(){
 		List<OrderOut> result = orderOutDAOImpl.findById(1);
 		assertThat(result.size(),is(1));
 	}
+	
 	@Test
-	public void findAllByPaging(int firstIndex,int size){
+	public void findAllByPaging(){
 		List<OrderOut> result = orderOutDAOImpl.findAllByPaging(3,2);
 		assertThat(result.size(),is(2));
 	}
+	
 	@Test
-	public void findByDocuNum(String docuNum){
+	public void findByDocuNum(){
 		List<OrderOut> result = orderOutDAOImpl.findByDocuNum("asd");
 		assertThat(result.size(),is(1));
+	}
+	
+	@Test
+	public void getAccount(){
+		int account = orderOutDAOImpl.getAccount();
+		assertThat(account ,is(9));
 	}
 }

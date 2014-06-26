@@ -19,4 +19,5 @@ public interface OrderInDAO {
 	public OrderIn findById(int id);
 	public List<OrderIn> findAllByPaging(int firstIndex,int size);
 	public List<OrderIn> findByDocuNum(String docuNum);
+	public int getAccount();
 }

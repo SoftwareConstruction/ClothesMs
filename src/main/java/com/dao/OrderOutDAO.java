@@ -20,4 +20,5 @@ public interface OrderOutDAO {
 	public List<OrderOut> findById(int id);
 	public List<OrderOut> findAllByPaging(int firstIndex,int size);
 	public List<OrderOut> findByDocuNum(String docuNum);
+	public int getAccount();
 }

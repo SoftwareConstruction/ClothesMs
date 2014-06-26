@@ -18,6 +18,7 @@ import com.entity.Admin;
 import com.entity.Clothes;
 import com.entity.OrderIn;
 import com.entity.Storage;
+import com.util.GetAccountWithHibernateCallback;
 import com.util.PageNoUtil;
 
 /**
@@ -75,6 +76,13 @@ public class OrderInDAOImpl implements OrderInDAO {
 	@Override
 	public List<OrderIn> findByDocuNum(String docuNum) {
 		List<OrderIn> result = (List<OrderIn>) hibernateTemplate.find("from OrderIn as o where o.docu_number=?", docuNum);
+		return result;
+	}
+
+	@Override
+	public int getAccount() {
+		Session session=hibernateTemplate.getSessionFactory().getCurrentSession();
+		int result = (int) new GetAccountWithHibernateCallback("OrderIn").doInHibernate(session);
 		return result;
 	}
 }

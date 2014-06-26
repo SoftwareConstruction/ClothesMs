@@ -10,4 +10,5 @@ public interface ClothesDAO {
 	public abstract void update(Clothes clothes);
 	public abstract void updateFlag(Clothes clothes);
 	public abstract List<Clothes> findAllByPaging(int firstIndex,int size);
+	public abstract int getAccount();
 }

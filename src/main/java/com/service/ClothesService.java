@@ -11,4 +11,5 @@ public interface ClothesService {
 	public String delete(Clothes clothes ,Admin operator);
 	public List<Clothes> findAllByPaging(int firstIndex,int size);
 	public Clothes findClothesByDocuNum(String docuNum);
+	public int getAccount();
 }

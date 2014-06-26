@@ -110,5 +110,11 @@ public class ClothesServiceImpl implements ClothesService {
 			return null;
 		}
 	}
+
+	@Override
+	public int getAccount() {
+		int account = clothesDAOImpl.getAccount();
+		return account;
+	}
 }
 

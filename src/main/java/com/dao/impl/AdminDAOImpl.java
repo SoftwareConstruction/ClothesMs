@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.hibernate.HibernateException;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.springframework.orm.hibernate4.HibernateCallback;
 import org.springframework.orm.hibernate4.HibernateTemplate;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import com.dao.AdminDAO;
 import com.entity.Admin;
+import com.util.GetAccountWithHibernateCallback;
 import com.util.PageNoUtil;
 
 @SuppressWarnings("unchecked")
@@ -21,7 +23,7 @@ public class AdminDAOImpl implements AdminDAO{
 	@Resource
 	private HibernateTemplate hibernateTemplate;
 	public List<Admin> loadByUsernameAndPassword(String username,String password){
-		List<Admin> result = (List<Admin>) hibernateTemplate.find("from Admin as a where a.username=? and a.password =?",username,password);
+		List<Admin> result = (List<Admin>) hibernateTemplate.find("from Admin as a where a.username=? and a.password =? and a.flag=1",username,password);
 		return result;
 	}
 
@@ -65,5 +67,31 @@ public class AdminDAOImpl implements AdminDAO{
 		Admin result = hibernateTemplate.get(Admin.class, id);
 		return result;
 	}
+
+	@Override
+	public int getAccount() {
+		
+		/*int result = hibernateTemplate.execute(new HibernateCallback(){
+			@Override
+			public Object doInHibernate(Session session)
+					throws HibernateException {
+				String sql = "select count(*) from Admin where flag=1";
+				long count =0;
+				try{
+					count= ((Long) session.createQuery(sql).iterate().next()).intValue();
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				int result = (int)count;
+				return result;
+			}
+		});*/
+		
+		Session session=hibernateTemplate.getSessionFactory().getCurrentSession();
+		int result = (int) new GetAccountWithHibernateCallback("Admin").doInHibernate(session);
+		return result;
+	}
+	
+	
 	
 }

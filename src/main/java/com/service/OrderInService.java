@@ -33,4 +33,5 @@ public interface OrderInService {
 	public OrderIn findById(OrderIn orderIn);
 	public List<OrderIn> findAllByPaging(int first,int size);
 	public OrderIn findByDocuNum(String docuNum);
+	public int getAccount();
 }

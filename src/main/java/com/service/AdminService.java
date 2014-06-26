@@ -13,4 +13,5 @@ public interface AdminService {
 	public String delete(String username,SuperAdmin operator);
 	public String update(Admin admin,SuperAdmin operator);
 	public List<Admin> findAllByPaging(int firstIndex,int size);
+	public int getAccount();
 }

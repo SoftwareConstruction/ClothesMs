@@ -118,4 +118,10 @@ public class ClothesDAOImplTest {
 		List<Clothes> result = clothesDAOImpl.findClothesByDocuNum("docu1");
 		assertThat(result.get(0).getFlag(),is(100));
 	}
+	
+	@Test
+	public void getAccount(){
+		int result = clothesDAOImpl.getAccount();
+		System.out.println(result);
+	}
 }

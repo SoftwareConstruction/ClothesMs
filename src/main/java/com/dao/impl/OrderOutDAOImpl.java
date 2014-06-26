@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 import com.dao.OrderOutDAO;
 import com.entity.OrderIn;
 import com.entity.OrderOut;
+import com.util.GetAccountWithHibernateCallback;
 import com.util.PageNoUtil;
 
 /**
@@ -70,6 +71,14 @@ public class OrderOutDAOImpl implements OrderOutDAO {
 	@Override
 	public List<OrderOut> findByDocuNum(String docuNum) {
 		List<OrderOut> result = (List<OrderOut>) hibernateTemplate.find("from OrderOut as o where o.docu_number",docuNum);
+		return result;
+	}
+
+
+	@Override
+	public int getAccount() {
+		Session session=hibernateTemplate.getSessionFactory().getCurrentSession();
+		int result = (int) new GetAccountWithHibernateCallback("OrderOut").doInHibernate(session);
 		return result;
 	}
 

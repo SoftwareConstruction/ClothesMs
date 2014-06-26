@@ -4,6 +4,7 @@ import java.util.List;
 
 
 
+
 import javax.annotation.Resource;
 
 import org.hibernate.HibernateException;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Component;
 import com.dao.ClothesDAO;
 import com.entity.Admin;
 import com.entity.Clothes;
+import com.util.GetAccountWithHibernateCallback;
 import com.util.PageNoUtil;
 
 @SuppressWarnings("unchecked")
@@ -58,6 +60,16 @@ public class ClothesDAOImpl implements ClothesDAO {
 				return result;
 			}
 		});
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.dao.ClothesDAO#getAccount()
+	 */
+	@Override
+	public int getAccount() {
+		Session session=hibernateTemplate.getSessionFactory().getCurrentSession();
+		int result = (int) new GetAccountWithHibernateCallback("Clothes").doInHibernate(session);
 		return result;
 	}
 

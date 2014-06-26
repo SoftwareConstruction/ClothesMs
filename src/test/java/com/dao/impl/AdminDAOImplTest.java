@@ -93,4 +93,10 @@ public class AdminDAOImplTest {
 		assertThat(admin,notNullValue());
 		assertThat(admin.getName(),equalTo("name1"));
 	}
+	
+	@Test
+	public void getAccount(){
+		int account = adminDAOImpl.getAccount();
+		assertThat(account,is(22));
+	}
 }

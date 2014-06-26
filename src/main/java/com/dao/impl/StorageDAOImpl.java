@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 import com.dao.StorageDAO;
 import com.entity.Storage;
+import com.util.GetAccountWithHibernateCallback;
 import com.util.PageNoUtil;
 /**
  *@Author kklt21cn
@@ -45,9 +46,6 @@ public class StorageDAOImpl implements StorageDAO{
 		hibernateTemplate.update(storage);
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.dao.StorageDAO#findById(int)
-	 */
 	@Override
 	public Storage findById(int id) {
 		Storage storage = hibernateTemplate.get(Storage.class, id);
@@ -126,6 +124,4 @@ public class StorageDAOImpl implements StorageDAO{
 		});
 		return result;
 	}
-	
-	
 }

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import com.dao.WareHouseDAO;
 import com.entity.Admin;
 import com.entity.WareHouse;
+import com.util.GetAccountWithHibernateCallback;
 import com.util.PageNoUtil;
 @SuppressWarnings("unchecked")
 @Component
@@ -60,6 +61,13 @@ public class WareHouseDAOImpl implements WareHouseDAO{
 	@Override
 	public List<WareHouse> findByName(String name) {
 		List<WareHouse> result = (List<WareHouse>) hibernateTemplate.find("from WareHouse as wh where wh.name=?",name);
+		return result;
+	}
+
+	@Override
+	public int getAccount() {
+		Session session=hibernateTemplate.getSessionFactory().getCurrentSession();
+		int result = (int) new GetAccountWithHibernateCallback("WareHouse").doInHibernate(session);
 		return result;
 	}
 	

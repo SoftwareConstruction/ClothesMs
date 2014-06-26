@@ -88,4 +88,10 @@ public class WareHouseDAOImplTest {
 		List<WareHouse> result = wareHouseDAOImpl.findByName(name);
 		assertThat(result.size(),is(1));
 	}
+	
+	@Test
+	public void getAccount(){
+		int result = wareHouseDAOImpl.getAccount();
+		assertThat(result,is(12));
+	}
 }

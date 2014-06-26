@@ -11,4 +11,5 @@ public interface WareHouseDAO {
 	public abstract void update(WareHouse wareHouse);
 	public abstract List<WareHouse> findAllByPaging(int firstIndex,int size);
 	public abstract List<WareHouse> findByName(String name);
+	public abstract int getAccount();
 }

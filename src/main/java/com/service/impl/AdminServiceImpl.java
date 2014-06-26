@@ -129,4 +129,13 @@ public class AdminServiceImpl implements AdminService {
 		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.service.AdminService#getAccount()
+	 */
+	@Override
+	public int getAccount() {
+		int account = adminDAOImpl.getAccount();
+		return account;
+	}
+
 }

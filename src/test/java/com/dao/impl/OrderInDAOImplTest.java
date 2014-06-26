@@ -122,4 +122,10 @@ public class OrderInDAOImplTest {
 		List<OrderIn> result = orderInDAOImpl.findAllByPaging(1, 3);
 		assertThat(result.size(),is(3));
 	}
+	
+	@Test
+	public void getAccount(){
+		int result = orderInDAOImpl.getAccount();
+		assertThat(result ,is(5));
+	}
 }

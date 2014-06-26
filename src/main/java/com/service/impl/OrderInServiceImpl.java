@@ -166,4 +166,13 @@ public class OrderInServiceImpl implements OrderInService{
 			return result.get(0);
 		}
 	}
+
+	/* (non-Javadoc)
+	 * @see com.service.OrderInService#getAccount()
+	 */
+	@Override
+	public int getAccount() {
+		int account = orderInDAOImpl.getAccount();
+		return account;
+	}
 }
