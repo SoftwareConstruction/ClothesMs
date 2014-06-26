@@ -30,7 +30,7 @@ public interface OrderInService {
 	 * @Description
 	 */
 	public String delete(OrderIn orderIn);
-	public OrderIn findById(OrderIn orderIn);
+	public OrderIn findById(int id);
 	public List<OrderIn> findAllByPaging(int first,int size);
 	public OrderIn findByDocuNum(String docuNum);
 	public int getAccount();

@@ -42,7 +42,7 @@ public class OrderOutDAOImplTest {
 		
 		orderOut.setDocu_number("docu2");
 		orderOut.setFlag(1);
-		orderOut.setSource("以纯制衣厂");
+		orderOut.setSend("以纯制衣厂");
 		orderOut.setNumber(999999);
 		
 		Admin manager = new Admin();
@@ -91,7 +91,7 @@ public class OrderOutDAOImplTest {
 	@Test
 	public void update(){
 		orderOut.setOrderId(1);
-		orderOut.setSource("1212");
+		orderOut.setSend("1212");
 		orderOutDAOImpl.update(orderOut);
 	}
 	

@@ -16,8 +16,8 @@ public interface OrderOutService {
 	public abstract String save(OrderOut orderOut);
 	public abstract String delete(OrderOut orderOut);
 	public abstract String update(OrderOut orderOut);
-	public abstract List<OrderOut> findById(OrderOut orderout);
-	public abstract List<OrderOut> findByAllPaging();
+	public abstract List<OrderOut> findById(int id);
+	public abstract List<OrderOut> findByAllPaging(int firstIndex,int size);
 	public abstract int getAccount();
 
 }

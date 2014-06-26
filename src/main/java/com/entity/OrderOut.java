@@ -16,7 +16,14 @@ public class OrderOut {
 	private WareHouse wareHouse;
 	private Date out_time;
 	private Admin manager;
-	private String source;
+	private String send;
+	public String getSend() {
+		return send;
+	}
+
+	public void setSend(String send) {
+		this.send = send;
+	}
 	private int flag;
 	private int number;
 	private Clothes clothes;
@@ -55,12 +62,6 @@ public class OrderOut {
 	}
 	public void setManager(Admin manager) {
 		this.manager = manager;
-	}
-	public String getSource() {
-		return source;
-	}
-	public void setSource(String source) {
-		this.source = source;
 	}
 	public int getFlag() {
 		return flag;

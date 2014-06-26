@@ -146,8 +146,8 @@ public class OrderInServiceImpl implements OrderInService{
 	}
 
 	@Override
-	public OrderIn findById(OrderIn orderIn) {
-		OrderIn result = orderInDAOImpl.findById(orderIn.getOrderId());
+	public OrderIn findById(int id) {
+		OrderIn result = orderInDAOImpl.findById(id);
 		return result;
 	}
 

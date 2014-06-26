@@ -23,8 +23,8 @@
 			<column name="out_time" not-null="true"></column>
 		</property>
 
-		<property name="source">
-			<column name="source" not-null="true"></column>
+		<property name="send">
+			<column name="send" not-null="true"></column>
 		</property>
 		
 		<property name="number">
