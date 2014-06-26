@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50535
 File Encoding         : 65001
 
-Date: 2014-06-25 20:49:34
+Date: 2014-06-27 01:26:52
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -52,8 +52,8 @@ INSERT INTO `t_admin` VALUES ('16', 'username16', 'password16', 'name16', '1', '
 INSERT INTO `t_admin` VALUES ('17', 'username17', 'password17', 'name17', '1', 'introduce17');
 INSERT INTO `t_admin` VALUES ('18', 'username18', 'password18', 'name18', '1', 'introduce18');
 INSERT INTO `t_admin` VALUES ('19', 'username19', 'password19', 'name19', '1', 'introduce19');
-INSERT INTO `t_admin` VALUES ('20', 'hong', '312132321313', 'bin', '0', 'haha');
-INSERT INTO `t_admin` VALUES ('21', 'bin', '312132321313', 'bin', '0', 'haha');
+INSERT INTO `t_admin` VALUES ('20', 'hong', '312132321313', 'bin', '1', 'haha');
+INSERT INTO `t_admin` VALUES ('21', 'bin', '312132321313', 'bin', '1', 'haha');
 INSERT INTO `t_admin` VALUES ('22', 'xiaolin', '312132321313', 'xiaolin', '1', 'haha');
 
 -- ----------------------------
@@ -113,7 +113,7 @@ CREATE TABLE `t_log` (
   PRIMARY KEY (`Id`),
   KEY `fk_T_log_T_admin_1` (`adminId`),
   CONSTRAINT `fk_T_log_T_admin_1` FOREIGN KEY (`adminId`) REFERENCES `t_admin` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_log
@@ -127,46 +127,49 @@ INSERT INTO `t_log` VALUES ('7', '成功删除货号>>>>>>>>>BR1703', '2014-06-1
 INSERT INTO `t_log` VALUES ('8', '成功添加货号>>>>>>>>BR1703', '2014-06-10 11:11:49', '1');
 INSERT INTO `t_log` VALUES ('10', '成功修改货号>>>>>>>>BR1703', '2014-06-10 11:15:49', '1');
 INSERT INTO `t_log` VALUES ('17', '成功删除货号>>>>>>>>>BR1703', '2014-06-10 11:59:39', '1');
-INSERT INTO `t_log` VALUES ('19', '成功添加入单>>>>>>>>docu_number1', '2014-06-23 10:25:30', '5');
-INSERT INTO `t_log` VALUES ('20', '成功添加入单>>>>>>>>docu_number1', '2014-06-25 14:03:06', '5');
-INSERT INTO `t_log` VALUES ('21', '成功添加入单>>>>>>>>docu_number1', '2014-06-25 14:06:54', '5');
-INSERT INTO `t_log` VALUES ('22', '成功添加入单>>>>>>>>docu_number1', '2014-06-25 14:08:10', '5');
-INSERT INTO `t_log` VALUES ('23', '成功添加入单>>>>>>>>docu_number1', '2014-06-25 14:08:59', '5');
-INSERT INTO `t_log` VALUES ('24', '成功添加入单>>>>>>>>docu_number1', '2014-06-25 14:11:35', '5');
-INSERT INTO `t_log` VALUES ('25', '成功添加入单>>>>>>>>docu_number1', '2014-06-25 14:12:02', '5');
 
 -- ----------------------------
 -- Table structure for t_orderin
 -- ----------------------------
 DROP TABLE IF EXISTS `t_orderin`;
 CREATE TABLE `t_orderin` (
-  `Id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `docu_number` char(15) NOT NULL,
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `docu_number` char(25) NOT NULL,
   `warehouseId` int(11) NOT NULL,
   `in_time` date NOT NULL,
   `manager` int(11) NOT NULL,
   `source` varchar(50) NOT NULL,
   `flag` int(11) NOT NULL,
-  `number` int(11) NOT NULL,
-  `clothesId` int(11) NOT NULL,
   PRIMARY KEY (`Id`),
   KEY `fk_OrderIn_Admin_1` (`manager`),
   KEY `fk_T_orderIn_T_wareHouse_1` (`warehouseId`),
-  KEY `fk_T_orderIn_T_clothes_1` (`clothesId`),
   CONSTRAINT `fk_OrderIn_Admin_1` FOREIGN KEY (`manager`) REFERENCES `t_admin` (`Id`),
-  CONSTRAINT `fk_T_orderIn_T_clothes_1` FOREIGN KEY (`clothesId`) REFERENCES `t_clothes` (`Id`),
   CONSTRAINT `fk_T_orderIn_T_wareHouse_1` FOREIGN KEY (`warehouseId`) REFERENCES `t_warehouse` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_orderin
 -- ----------------------------
-INSERT INTO `t_orderin` VALUES ('1', 'docu_number1', '4', '2014-06-25', '5', 'source1', '0', '90000', '6');
-INSERT INTO `t_orderin` VALUES ('2', 'docu6', '9', '2014-06-04', '6', 'llkjhkjhkg', '0', '2000', '5');
-INSERT INTO `t_orderin` VALUES ('3', 'docu3', '2', '2014-06-21', '3', 'adadsad', '1', '2000', '5');
-INSERT INTO `t_orderin` VALUES ('4', 'docu4', '5', '2014-06-25', '3', 'ewrwerer', '1', '2000', '5');
-INSERT INTO `t_orderin` VALUES ('5', 'docu5', '8', '2014-06-25', '8', 'xzcxzcvb', '1', '2000', '5');
-INSERT INTO `t_orderin` VALUES ('7', 'docu_number1', '1', '2014-06-25', '5', 'source1', '1', '90000', '23');
+
+-- ----------------------------
+-- Table structure for t_orderin_detail
+-- ----------------------------
+DROP TABLE IF EXISTS `t_orderin_detail`;
+CREATE TABLE `t_orderin_detail` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `clothes_id` int(11) NOT NULL,
+  `number` int(11) NOT NULL,
+  `summary_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `clothes_id` (`clothes_id`),
+  KEY `fk_T_orderIn_detail_T_orderIn_1` (`summary_id`),
+  CONSTRAINT `fk_T_orderIn_detail_T_clothes_1` FOREIGN KEY (`clothes_id`) REFERENCES `t_clothes` (`Id`),
+  CONSTRAINT `fk_T_orderIn_detail_T_orderIn_1` FOREIGN KEY (`summary_id`) REFERENCES `t_orderin` (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_orderin_detail
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for t_orderout
@@ -179,7 +182,7 @@ CREATE TABLE `t_orderout` (
   `out_time` date NOT NULL,
   `manager` int(11) NOT NULL,
   `send` varchar(50) NOT NULL COMMENT '发往地',
-  `flat` int(11) NOT NULL,
+  `flag` int(11) NOT NULL,
   `number` int(11) NOT NULL,
   `clothesId` int(11) NOT NULL,
   PRIMARY KEY (`Id`),
@@ -189,12 +192,31 @@ CREATE TABLE `t_orderout` (
   CONSTRAINT `fk_T_orderOut_T_admin_1` FOREIGN KEY (`manager`) REFERENCES `t_admin` (`Id`),
   CONSTRAINT `fk_T_orderOut_T_clothes_1` FOREIGN KEY (`clothesId`) REFERENCES `t_clothes` (`Id`),
   CONSTRAINT `fk_T_orderOut_T_wareHouse_1` FOREIGN KEY (`warehouseId`) REFERENCES `t_warehouse` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_orderout
 -- ----------------------------
-INSERT INTO `t_orderout` VALUES ('1', 'sad', '1', '2014-06-11', '4', 'tianjin', '1', '500', '4');
+
+-- ----------------------------
+-- Table structure for t_orderout_detail
+-- ----------------------------
+DROP TABLE IF EXISTS `t_orderout_detail`;
+CREATE TABLE `t_orderout_detail` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `clothes_id` int(11) NOT NULL,
+  `number` int(11) NOT NULL,
+  `summary` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_T_orderOut_detail_T_clothes_1` (`clothes_id`),
+  KEY `fk_T_orderOut_detail_T_orderOut_1` (`summary`),
+  CONSTRAINT `fk_T_orderOut_detail_T_clothes_1` FOREIGN KEY (`clothes_id`) REFERENCES `t_clothes` (`Id`),
+  CONSTRAINT `fk_T_orderOut_detail_T_orderOut_1` FOREIGN KEY (`summary`) REFERENCES `t_orderout` (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_orderout_detail
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for t_storage
@@ -211,7 +233,7 @@ CREATE TABLE `t_storage` (
   KEY `fk_T_storage_T_clothes_1` (`clothes_id`),
   CONSTRAINT `fk_T_storage_T_clothes_1` FOREIGN KEY (`clothes_id`) REFERENCES `t_clothes` (`Id`),
   CONSTRAINT `fk_T_storage_T_wareHouse_1` FOREIGN KEY (`warehouse_id`) REFERENCES `t_warehouse` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_storage
@@ -221,7 +243,6 @@ INSERT INTO `t_storage` VALUES ('2', '2', '3', '100000', '1');
 INSERT INTO `t_storage` VALUES ('3', '3', '4', '100000', '1');
 INSERT INTO `t_storage` VALUES ('4', '4', '5', '100000', '1');
 INSERT INTO `t_storage` VALUES ('5', '5', '6', '100000', '1');
-INSERT INTO `t_storage` VALUES ('7', '1', '23', '300000', '0');
 
 -- ----------------------------
 -- Table structure for t_superadmin
@@ -256,7 +277,7 @@ CREATE TABLE `t_super_log` (
   PRIMARY KEY (`id`),
   KEY `fk_T_supser_log_T_superAdmin_1` (`superAdminId`),
   CONSTRAINT `fk_T_supser_log_T_superAdmin_1` FOREIGN KEY (`superAdminId`) REFERENCES `t_superadmin` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_super_log
@@ -271,11 +292,6 @@ INSERT INTO `t_super_log` VALUES ('8', '成功添加管理员>>>>>>>>hong', '201
 INSERT INTO `t_super_log` VALUES ('9', '成功添加管理员>>>>>>>>bin', '2014-05-31 15:28:59', '1');
 INSERT INTO `t_super_log` VALUES ('10', '成功添加管理员>>>>>>>>xiaolin', '2014-05-31 15:31:36', '1');
 INSERT INTO `t_super_log` VALUES ('11', '成功修改管理员>>>>>>>>username2', '2014-06-10 10:37:32', '1');
-INSERT INTO `t_super_log` VALUES ('12', '成功删除管理员>>>>>>>>>hong', '2014-06-23 21:03:36', '1');
-INSERT INTO `t_super_log` VALUES ('13', '成功删除管理员>>>>>>>>>hong', '2014-06-23 21:04:15', '1');
-INSERT INTO `t_super_log` VALUES ('14', '成功删除管理员>>>>>>>>>hong', '2014-06-23 21:09:24', '1');
-INSERT INTO `t_super_log` VALUES ('15', '成功删除管理员>>>>>>>>>bin', '2014-06-23 21:09:58', '1');
-INSERT INTO `t_super_log` VALUES ('16', '成功删除管理员>>>>>>>>>bin', '2014-06-23 21:10:05', '1');
 
 -- ----------------------------
 -- Table structure for t_warehouse
