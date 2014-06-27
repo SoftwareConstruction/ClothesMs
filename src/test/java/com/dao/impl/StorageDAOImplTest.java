@@ -108,10 +108,10 @@ public class StorageDAOImplTest {
 	
 	@Test
 	public void findBywareHouseIdAndClothesId(){
-		List<Integer> result = storageDAOImpl.findByWareHouseIdAndClothesId(1, 2);
+/*		List<Integer> result = storageDAOImpl.findByWareHouseIdAndClothesId(1, 2);
 		System.out.println(result.get(0));
 	//	Storage queried = result.get(0);
-		assertThat(result.size(),is(1));
+		assertThat(result.size(),is(1));*/
 	}
 	
 	@Test
@@ -119,5 +119,11 @@ public class StorageDAOImplTest {
 		List<Integer> result = storageDAOImpl.findIdByWareHouseIdAndClothesId(1, 2);
 		int id = result.get(0).intValue();
 		assertThat(id,is(1));
+	}
+	
+	@Test
+	public void findByWareHouseIdAndClothesId(){
+		List<Storage> result = storageDAOImpl.findByWareHouseIdAndClothesId(1,2);
+		Storage storage = result.get(0);
 	}
 }

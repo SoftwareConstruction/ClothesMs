@@ -14,7 +14,24 @@ import com.entity.OrderInDetail;
  */
 
 public interface OrderInDetailService {
+	/**
+	 * 
+	 * @param orderInDetail 里面封装的clothes和OrderIn。
+	 * 		  其中clothes的docuNum(编号)不能为空
+	 * 		   OrderIn的Id不能为空
+	 * @return 
+	 * @Description
+	 */
 	public String add(OrderInDetail orderInDetail);
+	/**
+	 * 
+	 * @param orderInDetail 里面封装的clothes和OrderIn。
+	 * 		  其中clothes的docuNum(编号)不能为空
+	 * 		   OrderIn的Id不能为空
+	 * 		orderInDetail也要有id;
+	 * @return 
+	 * @Description
+	 */
 	public String delete(OrderInDetail orderInDetail);
 	public List<OrderInDetail> findOrderDerailByOrderDocuNum(String docuNum);
 }

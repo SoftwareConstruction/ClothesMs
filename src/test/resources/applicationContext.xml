@@ -45,6 +45,7 @@
 				<value>com/entity/OrderIn.hbm.xml</value>
 				<value>com/entity/OrderOut.hbm.xml</value>
 				<value>com/entity/OrderInDetail.hbm.xml</value>
+				<value>com/entity/OrderOutDetail.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

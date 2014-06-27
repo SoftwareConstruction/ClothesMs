@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+      "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="com.entity.OrderOutDetail" table="t_orderOut_detail">
+		<id name="id">
+			<column name="id"></column>
+			<generator class="native"></generator>
+		</id>
+
+		
+		<property name="number">
+			<column name="number" not-null="true"></column>
+		</property>
+		
+		<many-to-one name="clothes" column="clothes_id" cascade="none"
+			class="com.entity.Clothes" not-null="true" lazy="false"></many-to-one>
+		<many-to-one name="summary" column="summary_id"
+			cascade="none" class="com.entity.OrderOut" not-null="true" lazy="false"></many-to-one>
+	</class>
+</hibernate-mapping>

@@ -43,6 +43,7 @@ public class StorageDAOImpl implements StorageDAO{
 	 */
 	@Override
 	public void update(Storage storage) {
+		System.out.println(">>>>>>>>>>>>DAO is running");
 		hibernateTemplate.update(storage);
 	}
 	
@@ -105,8 +106,8 @@ public class StorageDAOImpl implements StorageDAO{
 		return result;
 	}
 	
-	@Override
-	public List<Integer> findByWareHouseIdAndClothesId(final int wareHouseId,
+	/*@Override
+	public List<Storage> findByWareHouseIdAndClothesId(final int wareHouseId,
 			final int clothesId) {
 		@SuppressWarnings("unchecked")
 		List<Integer> result = hibernateTemplate.execute(new HibernateCallback(){
@@ -123,5 +124,13 @@ public class StorageDAOImpl implements StorageDAO{
 			}
 		});
 		return result;
+	}*/
+	@Override
+	public List<Storage> findByWareHouseIdAndClothesId(int wareHouseId,
+			int clothesId) {
+		
+		List<Storage> result = (List<Storage>) hibernateTemplate.find("from Storage as s where s.clothes.id=? and s.wareHouse.id=?",clothesId, wareHouseId);
+		return result;
+		
 	}
 }

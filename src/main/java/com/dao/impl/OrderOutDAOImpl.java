@@ -49,7 +49,7 @@ public class OrderOutDAOImpl implements OrderOutDAO {
 	
 	@Override
 	public List<OrderOut> findById(int id) {
-		List<OrderOut> result = (List<OrderOut>) hibernateTemplate.find("from OrderOut as o whehre o.orderId=?", id);
+		List<OrderOut> result = (List<OrderOut>) hibernateTemplate.find("from OrderOut as o where o.orderId=?", id);
 		return result;
 	}
 
