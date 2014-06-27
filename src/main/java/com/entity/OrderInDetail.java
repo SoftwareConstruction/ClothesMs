@@ -10,20 +10,29 @@ package com.entity;
  */
 public class OrderInDetail {
 	private int id ;
-	private int clothes_id ;
+	private Clothes clothes ;
 	private int number ;
-	private int summary_id;
+	private OrderIn summary;
+	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getClothes_id() {
-		return clothes_id;
+	
+	
+	public Clothes getClothes() {
+		return clothes;
 	}
-	public void setClothes_id(int clothes_id) {
-		this.clothes_id = clothes_id;
+	public void setClothes(Clothes clothes) {
+		this.clothes = clothes;
+	}
+	public OrderIn getSummary() {
+		return summary;
+	}
+	public void setSummary(OrderIn summary) {
+		this.summary = summary;
 	}
 	public int getNumber() {
 		return number;
@@ -31,10 +40,5 @@ public class OrderInDetail {
 	public void setNumber(int number) {
 		this.number = number;
 	}
-	public int getSummary_id() {
-		return summary_id;
-	}
-	public void setSummary_id(int summary_id) {
-		this.summary_id = summary_id;
-	}
+	
 }

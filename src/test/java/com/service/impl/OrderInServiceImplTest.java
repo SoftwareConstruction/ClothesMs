@@ -72,6 +72,8 @@ public class OrderInServiceImplTest {
 	
 	@Test
 	public void update(){
+		orderIn.setOrderId(2);
+		orderIn.setSource("sourxce1");
 		String error = orderInServiceImpl.update(orderIn);
 		assertThat(error,nullValue());
 	}

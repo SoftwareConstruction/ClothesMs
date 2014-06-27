@@ -22,6 +22,7 @@ import com.entity.Storage;
 import com.entity.WareHouse;
 import com.service.OrderInService;
 import com.util.OrderIn.OrderInLogMessage;
+import com.util.OrderIn.OrderInServiceMessage;
 import com.util.clothes.ClothesServiceMessage;
 import com.util.storage.StorageServiceMessage;
 import com.util.wareHouse.WareHouseServiceMessage;
@@ -48,59 +49,25 @@ public class OrderInServiceImpl implements OrderInService{
 	@Override
 	public String save(OrderIn orderIn) {
 		List<WareHouse> wareHouse_result = wareHouseDAOImpl.findByName(orderIn.getWareHouse().getName());
-		List<Integer> storageID_result = null;
 		//检查是否存在这个仓库
 		if(wareHouse_result.size() == 0){
 			return WareHouseServiceMessage.no_this_WareHouse;
 		}else{
 			orderIn.setWareHouse(wareHouse_result.get(0));
-			List<Clothes> clothes_result = clothesDAOImpl.findClothesByDocuNum(orderIn.getClothes().getDocuNum());
-			//检查是否存在这个货号
-			if(clothes_result.size() == 0){
-				return ClothesServiceMessage.no_this_clothes;
-			}else{
-				orderIn.setClothes(clothes_result.get(0));
-				storageID_result = storageDAOImpl.findIdByWareHouseIdAndClothesId(wareHouse_result.get(0).getId(), clothes_result.get(0).getId());
-				//当存储表中没有这条记录是直接存进去
-				if(storageID_result.size() == 0){
-					Storage storage = new Storage();
-					storage.setClothes(clothes_result.get(0));
-					storage.setWareHouse(wareHouse_result.get(0));
-					storageDAOImpl.addOrUpdate(storage);
-					
-					orderInDAOImpl.add(orderIn);
-					
-					Log log = new Log();
-					log.setAdmin(orderIn.getManager());
-					log.setLog(OrderInLogMessage.save_OrderIn_SUCCESS + orderIn.getDocu_number());
-					logDAOImpl.save(log);
-					
-					return null;
-				}else{
-					//将查询到的storage记录中的当前存储量修改为最新数量
-					Storage storage_queried = storageDAOImpl.findById(storageID_result.get(0));
-					int pre_account = storage_queried.getStorage_Number();
-					
-					//	int pre_num = storageID_result.get(0).intValue();
-					storage_queried.setStorage_Number(pre_account+orderIn.getNumber());
-					storageDAOImpl.update(storage_queried);
-					
-					orderInDAOImpl.add(orderIn);
-					
-					Log log = new Log();
-					log.setAdmin(orderIn.getManager());
-					log.setLog(OrderInLogMessage.save_OrderIn_SUCCESS + orderIn.getDocu_number());
-					logDAOImpl.save(log);
-					
-					return null;
-				}
-			}
-		}
+			orderInDAOImpl.add(orderIn);
+			
+			Log log = new Log();
+			log.setAdmin(orderIn.getManager());
+			log.setLog(OrderInLogMessage.save_OrderIn_SUCCESS + orderIn.getDocu_number());
+			logDAOImpl.save(log);
+			
+			return null;
+		}	
 	}
 
 	@Override
 	public String update(OrderIn orderIn) {
-		List<WareHouse> wareHouse_result = wareHouseDAOImpl.findByName(orderIn.getWareHouse().getName());
+		/*List<WareHouse> wareHouse_result = wareHouseDAOImpl.findByName(orderIn.getWareHouse().getName());
 		List<Storage> storage_result = null;
 		//检查是否存在这个仓库
 		if(wareHouse_result.size() == 0){
@@ -134,14 +101,49 @@ public class OrderInServiceImpl implements OrderInService{
 				return null;
 				
 			}
+		}*/
+		List<WareHouse> wareHouse_result = wareHouseDAOImpl.findByName(orderIn.getWareHouse().getName());
+		//检查是否存在这个仓库
+		if(wareHouse_result.size() == 0){
+			return WareHouseServiceMessage.no_this_WareHouse;
 		}
+		orderIn.setWareHouse(wareHouse_result.get(0));
+		List<OrderIn> order_result_list = orderInDAOImpl.findByDocuNum(orderIn.getDocu_number());
+		
+		if(order_result_list.size()==0){
+			return OrderInServiceMessage.no_this_orderIn; 
+		}
+		OrderIn orderIn_queried = order_result_list.get(0);
+		orderIn_queried.setIn_time(orderIn.getIn_time());
+		orderIn_queried.setRemark(orderIn.getRemark());
+		orderIn_queried.setWareHouse(orderIn.getWareHouse());
+		orderIn_queried.setSource(orderIn.getSource());
+		orderInDAOImpl.update(orderIn_queried);
+		
+		Log log = new Log();
+		log.setAdmin(orderIn.getManager());
+		log.setLog(OrderInLogMessage.save_OrderIn_SUCCESS + orderIn.getDocu_number());
+		logDAOImpl.save(log);
+		
+		return null;
 	}
 
 	@Override
 	public String delete(OrderIn orderIn) {
 		OrderIn orderIn_queried = orderInDAOImpl.findById(orderIn.getOrderId());
+		if(orderIn_queried == null){
+			return OrderInServiceMessage.no_this_orderIn; 
+		}
+		
 		orderIn_queried.setFlag(0);
 		orderInDAOImpl.updateFlag(orderIn_queried);
+		
+		Log log = new Log();
+		log.setAdmin(orderIn.getManager());
+		log.setLog(OrderInLogMessage.delete_OrderIn_SUCCESS + orderIn.getDocu_number());
+		logDAOImpl.save(log);
+		
+		
 		return null;
 	}
 
@@ -167,9 +169,6 @@ public class OrderInServiceImpl implements OrderInService{
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see com.service.OrderInService#getAccount()
-	 */
 	@Override
 	public int getAccount() {
 		int account = orderInDAOImpl.getAccount();

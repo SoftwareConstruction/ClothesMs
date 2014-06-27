@@ -18,6 +18,7 @@ public class OrderIn {
 	private Date in_time;
 	private Admin manager;
 	private String source;
+	private String remark;
 	private int flag;
 	
 	
@@ -27,6 +28,14 @@ public class OrderIn {
 		in_time.getTime();
 	}
 	
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
 	public int getOrderId() {
 		return orderId;
 	}

@@ -16,4 +16,6 @@ public interface OrderInDetailDAO {
 	public void add(OrderInDetail orderInDetail);
 	public void update(OrderInDetail orderInDetail);
 	public List<OrderInDetail> findByOrderInID(int orderInID);
+	public List<OrderInDetail> findByClothesIdAndOrderInId(int clothesId , int orderInId);
+	public void delete(OrderInDetail orderInDetail);
 }

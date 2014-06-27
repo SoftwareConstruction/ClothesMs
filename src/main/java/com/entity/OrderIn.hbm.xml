@@ -18,6 +18,10 @@
 		<property name="flag">
 			<column name="flag" not-null="true"></column>
 		</property>
+		
+		<property name="remark">
+			<column name="remark" not-null="false"></column>
+		</property>
 
 		<property name="in_time">
 			<column name="in_time" not-null="true"></column>
@@ -32,4 +36,5 @@
 		<many-to-one name="wareHouse" column="warehouseId"
 			cascade="none" class="com.entity.WareHouse" not-null="true" lazy="false"></many-to-one>
 	</class>
+	
 </hibernate-mapping>
