@@ -27,13 +27,6 @@
 			<column name="source" not-null="true"></column>
 		</property>
 		
-		<property name="number">
-			<column name="number" not-null="true"></column>
-		</property>
-		
-		
-		<many-to-one name="clothes" column=" clothesId" cascade="none"
-			class="com.entity.Clothes" not-null="true" lazy="false"></many-to-one>
 		<many-to-one name="manager" column="manager" cascade="none"
 			class="com.entity.Admin" not-null="true" lazy="false"></many-to-one>
 		<many-to-one name="wareHouse" column="warehouseId"

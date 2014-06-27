@@ -4,6 +4,7 @@
 package com.entity;
 
 import java.util.Date;
+import java.util.Set;
 
 /**实体类
  *@Auth  kklt21cn
@@ -18,9 +19,9 @@ public class OrderIn {
 	private Admin manager;
 	private String source;
 	private int flag;
-	private int number;
-	private Clothes clothes;
 	
+	
+
 	public OrderIn(){
 		this.in_time = new Date();
 		in_time.getTime();
@@ -68,17 +69,4 @@ public class OrderIn {
 	public void setFlag(int flag) {
 		this.flag = flag;
 	}
-	public int getNumber() {
-		return number;
-	}
-	public void setNumber(int number) {
-		this.number = number;
-	}
-	public Clothes getClothes() {
-		return clothes;
-	}
-	public void setClothes(Clothes clothes) {
-		this.clothes = clothes;
-	}
-	
 }
