@@ -40,38 +40,12 @@ public class OrderOutServiceImplTest {
 		orderOut.setNumber(100);
 		orderOut.setSend("中国");
 		
-		Clothes clothes = new Clothes();
-		clothes.setId(6);
-		clothes.setColor("蓝色");
-		clothes.setCommodity_name("中款大衣");
-		clothes.setDocuNum("docu2");
-		clothes.setEx_factory_price(450);
-		clothes.setFlag(100);
-		clothes.setIn_material("布");
-		clothes.setOut_material("尼龙");
-		clothes.setRetail_price(800);
-		clothes.setSize(150);
-		
 		Admin admin = new Admin();
-		admin.setIntroduction("123");
-		admin.setName("bin");
-		admin.setPassword("123344445");
-		admin.setUsername("bin");
 		admin.setId(5);
 		
 		WareHouse wareHouse = new WareHouse();
-		wareHouse.setId(4);
-		wareHouse.setContact("李四");
-		wareHouse.setContact_phone("122222");
-		wareHouse.setDocu_number("10001");
-		wareHouse.setFlag(1);
 		wareHouse.setName("name1");
-		wareHouse.setTotal_storage(800);
 		
-		
-		
-		
-		orderOut.setClothes(clothes);
 		orderOut.setManager(admin);
 		orderOut.setWareHouse(wareHouse);
 	}
@@ -82,4 +56,15 @@ public class OrderOutServiceImplTest {
 		String result = orderOutServiceImpl.save(orderOut);
 		assertThat(result,nullValue());
 	}
+	
+	@Test
+	public void delete(){
+		orderOutServiceImpl.delete(orderOut);
+	}
+	
+	@Test
+	public void update(){
+		orderOutServiceImpl.update(orderOut);
+	}
+	
 }

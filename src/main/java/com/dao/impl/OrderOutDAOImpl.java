@@ -70,7 +70,7 @@ public class OrderOutDAOImpl implements OrderOutDAO {
 
 	@Override
 	public List<OrderOut> findByDocuNum(String docuNum) {
-		List<OrderOut> result = (List<OrderOut>) hibernateTemplate.find("from OrderOut as o where o.docu_number",docuNum);
+		List<OrderOut> result = (List<OrderOut>) hibernateTemplate.find("from OrderOut as o where o.docu_number=?",docuNum);
 		return result;
 	}
 

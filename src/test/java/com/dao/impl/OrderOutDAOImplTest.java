@@ -61,19 +61,6 @@ public class OrderOutDAOImplTest {
 		wareHouse.setName("高邮仓库");
 		wareHouse.setTotal_storage(800);
 
-		Clothes clothes = new Clothes();
-		clothes.setId(6);
-		clothes.setColor("蓝色");
-		clothes.setCommodity_name("中款大衣");
-		clothes.setDocuNum("BR1703");
-		clothes.setEx_factory_price(450);
-		clothes.setFlag(100);
-		clothes.setIn_material("布");
-		clothes.setOut_material("尼龙");
-		clothes.setRetail_price(800);
-		clothes.setSize(150);
-		
-		orderOut.setClothes(clothes);
 		orderOut.setManager(manager);
 		orderOut.setWareHouse(wareHouse);
 	}

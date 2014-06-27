@@ -26,7 +26,6 @@ public class OrderOut {
 	}
 	private int flag;
 	private int number;
-	private Clothes clothes;
 	
 	public OrderOut(){
 		this.out_time = new Date();
@@ -75,11 +74,4 @@ public class OrderOut {
 	public void setNumber(int number) {
 		this.number = number;
 	}
-	public Clothes getClothes() {
-		return clothes;
-	}
-	public void setClothes(Clothes clothes) {
-		this.clothes = clothes;
-	}
-	
 }
