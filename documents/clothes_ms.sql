@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : MySql
+Source Server         : localhost_3306
 Source Server Version : 50535
 Source Host           : localhost:3306
 Source Database       : clothes_ms
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50535
 File Encoding         : 65001
 
-Date: 2014-06-27 01:26:52
+Date: 2014-06-27 19:32:43
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -113,7 +113,7 @@ CREATE TABLE `t_log` (
   PRIMARY KEY (`Id`),
   KEY `fk_T_log_T_admin_1` (`adminId`),
   CONSTRAINT `fk_T_log_T_admin_1` FOREIGN KEY (`adminId`) REFERENCES `t_admin` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_log
@@ -127,6 +127,9 @@ INSERT INTO `t_log` VALUES ('7', '成功删除货号>>>>>>>>>BR1703', '2014-06-1
 INSERT INTO `t_log` VALUES ('8', '成功添加货号>>>>>>>>BR1703', '2014-06-10 11:11:49', '1');
 INSERT INTO `t_log` VALUES ('10', '成功修改货号>>>>>>>>BR1703', '2014-06-10 11:15:49', '1');
 INSERT INTO `t_log` VALUES ('17', '成功删除货号>>>>>>>>>BR1703', '2014-06-10 11:59:39', '1');
+INSERT INTO `t_log` VALUES ('18', '成功添加入单>>>>>>>>docu_number1', '2014-06-27 09:51:37', '5');
+INSERT INTO `t_log` VALUES ('19', '成功添加入单>>>>>>>>docu_number1', '2014-06-27 10:18:51', '5');
+INSERT INTO `t_log` VALUES ('20', '成功添加入单>>>>>>>>docu_number1', '2014-06-27 10:20:12', '5');
 
 -- ----------------------------
 -- Table structure for t_orderin
@@ -138,18 +141,20 @@ CREATE TABLE `t_orderin` (
   `warehouseId` int(11) NOT NULL,
   `in_time` date NOT NULL,
   `manager` int(11) NOT NULL,
+  `remark` varchar(300) DEFAULT NULL,
   `source` varchar(50) NOT NULL,
   `flag` int(11) NOT NULL,
   PRIMARY KEY (`Id`),
   KEY `fk_OrderIn_Admin_1` (`manager`),
   KEY `fk_T_orderIn_T_wareHouse_1` (`warehouseId`),
-  CONSTRAINT `fk_OrderIn_Admin_1` FOREIGN KEY (`manager`) REFERENCES `t_admin` (`Id`),
-  CONSTRAINT `fk_T_orderIn_T_wareHouse_1` FOREIGN KEY (`warehouseId`) REFERENCES `t_warehouse` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `fk_T_orderIn_T_wareHouse_1` FOREIGN KEY (`warehouseId`) REFERENCES `t_warehouse` (`Id`),
+  CONSTRAINT `fk_OrderIn_Admin_1` FOREIGN KEY (`manager`) REFERENCES `t_admin` (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_orderin
 -- ----------------------------
+INSERT INTO `t_orderin` VALUES ('1', 'docu1', '2', '2014-06-17', '2', null, '中国', '1');
 
 -- ----------------------------
 -- Table structure for t_orderin_detail
@@ -161,15 +166,17 @@ CREATE TABLE `t_orderin_detail` (
   `number` int(11) NOT NULL,
   `summary_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `clothes_id` (`clothes_id`),
   KEY `fk_T_orderIn_detail_T_orderIn_1` (`summary_id`),
+  KEY `fk_T_orderIn_detail_T_clothes_1` (`clothes_id`),
   CONSTRAINT `fk_T_orderIn_detail_T_clothes_1` FOREIGN KEY (`clothes_id`) REFERENCES `t_clothes` (`Id`),
   CONSTRAINT `fk_T_orderIn_detail_T_orderIn_1` FOREIGN KEY (`summary_id`) REFERENCES `t_orderin` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_orderin_detail
 -- ----------------------------
+INSERT INTO `t_orderin_detail` VALUES ('1', '8', '1000', '1');
+INSERT INTO `t_orderin_detail` VALUES ('2', '8', '1000', '1');
 
 -- ----------------------------
 -- Table structure for t_orderout
@@ -210,8 +217,8 @@ CREATE TABLE `t_orderout_detail` (
   PRIMARY KEY (`id`),
   KEY `fk_T_orderOut_detail_T_clothes_1` (`clothes_id`),
   KEY `fk_T_orderOut_detail_T_orderOut_1` (`summary`),
-  CONSTRAINT `fk_T_orderOut_detail_T_clothes_1` FOREIGN KEY (`clothes_id`) REFERENCES `t_clothes` (`Id`),
-  CONSTRAINT `fk_T_orderOut_detail_T_orderOut_1` FOREIGN KEY (`summary`) REFERENCES `t_orderout` (`Id`)
+  CONSTRAINT `fk_T_orderOut_detail_T_orderOut_1` FOREIGN KEY (`summary`) REFERENCES `t_orderout` (`Id`),
+  CONSTRAINT `fk_T_orderOut_detail_T_clothes_1` FOREIGN KEY (`clothes_id`) REFERENCES `t_clothes` (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -231,9 +238,9 @@ CREATE TABLE `t_storage` (
   PRIMARY KEY (`Id`),
   UNIQUE KEY `warehouse_id` (`warehouse_id`,`clothes_id`),
   KEY `fk_T_storage_T_clothes_1` (`clothes_id`),
-  CONSTRAINT `fk_T_storage_T_clothes_1` FOREIGN KEY (`clothes_id`) REFERENCES `t_clothes` (`Id`),
-  CONSTRAINT `fk_T_storage_T_wareHouse_1` FOREIGN KEY (`warehouse_id`) REFERENCES `t_warehouse` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+  CONSTRAINT `fk_T_storage_T_wareHouse_1` FOREIGN KEY (`warehouse_id`) REFERENCES `t_warehouse` (`Id`),
+  CONSTRAINT `fk_T_storage_T_clothes_1` FOREIGN KEY (`clothes_id`) REFERENCES `t_clothes` (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_storage
@@ -243,6 +250,7 @@ INSERT INTO `t_storage` VALUES ('2', '2', '3', '100000', '1');
 INSERT INTO `t_storage` VALUES ('3', '3', '4', '100000', '1');
 INSERT INTO `t_storage` VALUES ('4', '4', '5', '100000', '1');
 INSERT INTO `t_storage` VALUES ('5', '5', '6', '100000', '1');
+INSERT INTO `t_storage` VALUES ('6', '2', '8', '2000', '1');
 
 -- ----------------------------
 -- Table structure for t_superadmin
