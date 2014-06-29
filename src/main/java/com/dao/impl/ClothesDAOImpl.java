@@ -2,9 +2,6 @@ package com.dao.impl;
 
 import java.util.List;
 
-
-
-
 import javax.annotation.Resource;
 
 import org.hibernate.HibernateException;
@@ -14,7 +11,6 @@ import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Component;
 
 import com.dao.ClothesDAO;
-import com.entity.Admin;
 import com.entity.Clothes;
 import com.util.GetAccountWithHibernateCallback;
 import com.util.PageNoUtil;

@@ -21,6 +21,7 @@ import com.entity.OrderOutDetail;
  *@Since 2014年6月27日
  *@Version 1.0
  */
+@SuppressWarnings("unchecked")
 @Component
 public class OrderOutDetailDAOImpl implements OrderOutDetailDAO {
 	@Resource
@@ -37,21 +38,27 @@ public class OrderOutDetailDAOImpl implements OrderOutDetailDAO {
 	}
 
 	@Override
-	public List<OrderInDetail> findByOrderInID(int orderOutID) {
-		List<OrderInDetail> result = (List<OrderInDetail>) hibernateTemplate.find("from OrderOutDetail as o where o.summary.id=?", orderOutID);
+	public List<OrderOutDetail> findByOrderOutID(int orderOutID) {
+		List<OrderOutDetail> result = (List<OrderOutDetail>) hibernateTemplate.find("from OrderOutDetail as o where o.summary.id=?", orderOutID);
 		return result;
 	}
 
 	@Override
-	public List<OrderInDetail> findByClothesIdAndOrderInId(int clothesId,
+	public List<OrderOutDetail> findByClothesIdAndOrderInId(int clothesId,
 			int orderInId) {
-		List<OrderInDetail> result = (List<OrderInDetail>) hibernateTemplate.find("from OrderOutDetail as o where o.clothes.id  =? and o.summary.id=?",clothesId, orderInId);
+		List<OrderOutDetail> result = (List<OrderOutDetail>) hibernateTemplate.find("from OrderOutDetail as o where o.clothes.id  =? and o.summary.id=?",clothesId, orderInId);
 		return result;
 	}
 
 	@Override
 	public void delete(OrderOutDetail orderOutDetail) {
 		hibernateTemplate.delete(orderOutDetail);
+	}
+	
+	@Override
+	public List<OrderOutDetail> getById(int id) {
+		List<OrderOutDetail> result = (List<OrderOutDetail>) hibernateTemplate.find("from OrderOutDetail as o where o.id  =? ",id);
+		return result;
 	}
 	
 

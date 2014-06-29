@@ -11,7 +11,6 @@ import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Component;
 
 import com.dao.WareHouseDAO;
-import com.entity.Admin;
 import com.entity.WareHouse;
 import com.util.GetAccountWithHibernateCallback;
 import com.util.PageNoUtil;

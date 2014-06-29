@@ -51,13 +51,12 @@ public class OrderOutServiceImpl implements OrderOutService {
 
 	@Override
 	public String delete(OrderOut orderOut) {
-		List<OrderOut> orderOut_list = orderOutDAOImpl.findByDocuNum(orderOut.getDocu_number());
-		System.out.println(orderOut_list.get(0).getWareHouse().getId()+"<<<<<<<<<<<<<<<<<<<<<<<<");
+		List<OrderOut> orderOut_list = orderOutDAOImpl.findById(orderOut.getOrderId());
 		if(orderOut_list.size() == 0){
 			return OrderOutServiceMessage.no_this_orderOut;
 		}
 		orderOut_list.get(0).setFlag(0);
-		orderOutDAOImpl.update(orderOut);
+		orderOutDAOImpl.update(orderOut_list.get(0));
 		return null;
 	}
 

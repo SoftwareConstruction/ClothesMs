@@ -100,7 +100,6 @@ public class OrderInDetailServiceImpl implements OrderInDetailService {
 		
 		List<Storage> storage_result_list = storageDAOImpl.findByWareHouseIdAndClothesId(orderIn_result.getWareHouse().getId(),clothes_result_list.get(0).getId());
 		Storage storage_queried = storage_result_list.get(0);
-	//	storage_queried.setStorage_Number(storage_queried.get);
 		
 		
 		return null;

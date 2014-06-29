@@ -16,13 +16,13 @@ import org.springframework.stereotype.Component;
 
 import com.dao.StorageDAO;
 import com.entity.Storage;
-import com.util.GetAccountWithHibernateCallback;
 import com.util.PageNoUtil;
 /**
  *@Author kklt21cn
  *@Since 2014年6月19日
  *@Version 1.0
  */
+@SuppressWarnings("unchecked")
 @Component
 public class StorageDAOImpl implements StorageDAO{
 	
@@ -43,7 +43,6 @@ public class StorageDAOImpl implements StorageDAO{
 	 */
 	@Override
 	public void update(Storage storage) {
-		System.out.println(">>>>>>>>>>>>DAO is running");
 		hibernateTemplate.update(storage);
 	}
 	

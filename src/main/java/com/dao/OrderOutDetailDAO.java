@@ -16,7 +16,8 @@ import com.entity.OrderOutDetail;
 public interface OrderOutDetailDAO {
 	public void add(OrderOutDetail orderOutDetail);
 	public void update(OrderOutDetail orderOutDetail);
-	public List<OrderInDetail> findByOrderInID(int orderOutID);
-	public List<OrderInDetail> findByClothesIdAndOrderInId(int clothesId , int orderInId);
+	public List<OrderOutDetail> findByOrderOutID(int orderOutID);
+	public List<OrderOutDetail> findByClothesIdAndOrderInId(int clothesId , int orderInId);
 	public void delete(OrderOutDetail orderOutDetail);
+	public List<OrderOutDetail> getById(int id);
 }

@@ -14,10 +14,7 @@ import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Component;
 
 import com.dao.OrderInDAO;
-import com.entity.Admin;
-import com.entity.Clothes;
 import com.entity.OrderIn;
-import com.entity.Storage;
 import com.util.GetAccountWithHibernateCallback;
 import com.util.PageNoUtil;
 

@@ -17,7 +17,6 @@ import com.service.ClothesService;
 import com.util.clothes.ClothesLogMessage;
 import com.util.clothes.ClothesServiceMessage;
 
-@SuppressWarnings("unchecked")
 @Component
 @Transactional
 public class ClothesServiceImpl implements ClothesService {

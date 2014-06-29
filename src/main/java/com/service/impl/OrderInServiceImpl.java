@@ -15,16 +15,12 @@ import com.dao.LogDAO;
 import com.dao.OrderInDAO;
 import com.dao.StorageDAO;
 import com.dao.WareHouseDAO;
-import com.entity.Clothes;
 import com.entity.Log;
 import com.entity.OrderIn;
-import com.entity.Storage;
 import com.entity.WareHouse;
 import com.service.OrderInService;
 import com.util.OrderIn.OrderInLogMessage;
 import com.util.OrderIn.OrderInServiceMessage;
-import com.util.clothes.ClothesServiceMessage;
-import com.util.storage.StorageServiceMessage;
 import com.util.wareHouse.WareHouseServiceMessage;
 
 /**

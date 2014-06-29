@@ -14,7 +14,6 @@ import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Component;
 
 import com.dao.OrderOutDAO;
-import com.entity.OrderIn;
 import com.entity.OrderOut;
 import com.util.GetAccountWithHibernateCallback;
 import com.util.PageNoUtil;
@@ -53,7 +52,6 @@ public class OrderOutDAOImpl implements OrderOutDAO {
 		return result;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<OrderOut> findAllByPaging(final int firstIndex,final int size) {
 		List<OrderOut> result = hibernateTemplate.execute(new HibernateCallback(){

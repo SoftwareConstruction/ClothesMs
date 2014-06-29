@@ -59,12 +59,16 @@ public class OrderOutServiceImplTest {
 	
 	@Test
 	public void delete(){
-		orderOutServiceImpl.delete(orderOut);
+		orderOut.setOrderId(2);
+		String result = orderOutServiceImpl.delete(orderOut);
+		assertThat(result,nullValue());
+		
 	}
 	
 	@Test
 	public void update(){
-		orderOutServiceImpl.update(orderOut);
+		String result = orderOutServiceImpl.update(orderOut);
+		assertThat(result,nullValue());
 	}
 	
 }
