@@ -69,7 +69,7 @@ function goto(surl){
 													<img src="image/dot1.gif" width="13" height="16">
 												</div>
 											</td>
-											<td><a href="#" onClick="goto('jsp/system/USER1001.jsp');">用户管理</a>
+											<td><a href="jsp/system/USER1001.jsp"  target="main">用户管理</a>
 											</td>
 										</tr>
 										<tr>
@@ -77,7 +77,7 @@ function goto(surl){
 													<img src="image/dot1.gif" width="13" height="16">
 												</div>
 											</td>
-											<td><a href="#" onClick="goto('jsp/system/CLOTHING1001.jsp');">货号</a>
+											<td><a href="jsp/system/CLOTHING1001.jsp"  target="main">货号</a>
 											</td>
 										</tr>
 										<tr>
@@ -85,7 +85,7 @@ function goto(surl){
 													<img src="image/dot1.gif" width="13" height="16">
 												</div>
 											</td>
-											<td><a href="#" onClick="goto('jsp/system/bsd_code_006.jsp');">仓库</a>
+											<td><a href="jsp/system/bsd_code_006.jsp"  target="main">仓库</a>
 											</td>
 										</tr>
 										<tr>
@@ -95,8 +95,6 @@ function goto(surl){
 								</div>
 							</td>
 						</tr>
-
-
 						<!--需要修改4个id和两个div的id-->
 						<tr>
 							<td height="8"></td>

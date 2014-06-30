@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -23,7 +24,9 @@
 <link rel="stylesheet" href="css/cjpm.css">
 </head>
 
-<SCRIPT LANGUAGE="javaScript">function goto()
+<SCRIPT LANGUAGE="javaScript">
+
+function goto()
 {
 	document.forms[0].action="jsp/system/USER1002.jsp";
 	document.forms[0].submit();
@@ -40,18 +43,25 @@ function goSearch(){
 	document.forms[0].action="jsp/system/USER1001.jsp";
 	document.forms[0].submit();
 }
- 
--->
+
+function del()
+{
+  if(confirm("您真的想删除该记录吗？"))
+  {
+     return true;
+  }
+  return false;
+}
 </SCRIPT>
 
 <BODY BACKGROUND="image/bg.gif">
-	<FORM NAME="mig0101" ID="idmig0101" METHOD="POST" ACTION=""
-		ONSUBMIT="return false">
+	<s:form action="superAdmin_list" theme="simple" method="post">
 		<table border=0 cellspacing=0 cellpadding=2 width="100%"
 			bgcolor="gray">
 			<tr>
 				<td class="headerbar61">用户明细查询</td>
 				<td class="headerbar61"><p align="right">
+						<s:submit value="查询list"></s:submit>
 						<input type=submit value=" 查 询 " onClick="goSearch();">
 					</p></td>
 			</tr>
@@ -66,12 +76,11 @@ function goSearch(){
 			bgcolor="gray">
 			<tr>
 				<td class="textbar81" width="15%">用户姓名</td>
-				<td class="textbar01" width="35%"><input type="text"
-					name="cusName" size="20">
+				<td class="textbar01" width="35%"><input type="text" size="20">
 				</td>
 				<td class="textbar81" width="15%">用户登录号</td>
-				<td class="textbar01" width="35%"><input type="text"
-					name="cusNo" size="20"></td>
+				<td class="textbar01" width="35%"><input type="text" size="20">
+				</td>
 			</tr>
 
 		</table>
@@ -96,6 +105,15 @@ function goSearch(){
 			</tr>
 		</table>
 
+		<%--<s:iterator value="#request.admins" status="admins">
+			<s:property value="username" /><br>
+			<s:property value="password" /><br>
+			<s:property value="name" /><br>
+			<s:property value="flag" /><br>
+			<s:property value="introduction" /><br>
+		</s:iterator>
+
+		--%>
 		<table border="0" width="100%" id="table1" cellspacing="0"
 			cellpadding="0" bgcolor="gray">
 			<tr>
@@ -107,56 +125,43 @@ function goSearch(){
 							<td width="35%" class="headerbar82">用户姓名</td>
 							<td class="headerbar82">操作</td>
 						</tr>
-						<tr>
-							<td class="gridbar11" align="center">1</td>
-							<td class="gridbar11" align="center"><a href="jsp/system/USER1002.jsp">admin</a>
-							</td>
-							<td class="gridbar11" align="center"><a href="jsp/system/USER1002.jsp">张三</a>
-							</td>
-							<td class="gridbar11" align="center"><a href="#"><img
-									src="image/del.gif" align="bottom" border="0" alt="删除"
-									onClick="javascript:del('673467')" /> </a>
-							</td>
-						</tr>
-						<tr>
-							<td class="gridbar01" align="center">2</td>
-							<td class="gridbar01" align="center"><a href="jsp/system/USER1002.jsp">lisi</a>
-							</td>
-							<td class="gridbar01" align="center"><a href="jsp/system/USER1002.jsp">李四</a>
-							</td>
-							<td class="gridbar01" align="center"><a href="#"><img
-									src="image/del.gif" align="bottom" border="0" alt="删除"
-									onClick="javascript:del('673467')" /> </a>
-							</td>
-						</tr>
-						<tr>
-							<td class="gridbar11" align="center">3</td>
-							<td class="gridbar11" align="center"><a href="jsp/system/USER1002.jsp">wangwu</a>
-							</td>
-							<td class="gridbar11" align="center"><a href="jsp/system/USER1002.jsp">王五</a>
-							</td>
-							<td class="gridbar11" align="center"><a href="#"><img
-									src="image/del.gif" alt="删除" border="0" align="bottom"
-									onClick="javascript:del('673467')" /> </a>
-							</td>
-						</tr>
+
+						<s:iterator value="#request.admins" status="admins">
+							<tr>
+								<td class="gridbar11" align="center">${admins.count}</td>
+								<td class="gridbar11" align="center"><s:property
+										value="username" /></td>
+								<td class="gridbar11" align="center"><s:property
+										value="name" /></td>
+								<td class="gridbar11" align="center">
+								 
+								         <!-- 这里应该传一个ID 到action ,action中再通过id 获取管理员信息，然后再压到session中，转到编辑页面显示出来-->
+										<a href="jsp/system/admin_update_input.jsp?id=${Id}&username=${username}&password=${password}&name=${name}&introduction=${introduction}&flag=${flag}">
+										  <img src="image/edit.gif" align="bottom" border="0" alt="编辑" /> 
+										</a>
+										&nbsp;&nbsp;
+										
+								    <a href="superAdmin_delete?username=${username}" onclick="del()"><img
+										src="image/del.gif" align="bottom" border="0" alt="删除" /> </a></td>
+							</tr>
+						</s:iterator>
+
 					</table>
+				</td>
+			</tr>
+		</table>
+		<table width="100%" border="0" cellpadding="1" cellspacing="2">
+			<tr>
+				<td colspan="2" align="right" height="20" nowrap class="textbar3">
+					&nbsp; 共${admins.size() }条 &nbsp; 第1/1页 &nbsp; <a href="#" style="cursor:hand">首页</a>&nbsp;
+					<a style="cursor:hand" href="#">上一页</a>&nbsp; <a
+					style="cursor:hand" href="#">下一页</a>&nbsp; <a style="cursor:hand"
+					href="#">尾页</a>&nbsp; &nbsp;
 				</td>
 			</tr>
 		</table>
 
 
-		<table width="100%" border="0" cellpadding="1" cellspacing="2">
-			<tr>
-				<td colspan="2" align="right" height="20" nowrap class="textbar3">
-					&nbsp; 共3条 &nbsp; 第1/1页 &nbsp; <a href="#" style="cursor:hand">首页</a>&nbsp;
-					<a style="cursor:hand" href="#">上一页</a>&nbsp; <a
-					style="cursor:hand" href="#">下一页</a>&nbsp; <a style="cursor:hand"
-					href="#">尾页</a>&nbsp; &nbsp;</td>
-			</tr>
-		</table>
-
-
-	</FORM>
+	</s:form>
 </BODY>
 </html>

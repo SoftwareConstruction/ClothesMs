@@ -35,17 +35,14 @@ function back() {
 }
 </SCRIPT>
 <BODY BACKGROUND="image/bg.gif">
-	<s:form action="superAdmin_add" theme="simple" method="post">
+	<s:form action="superAdmin_update" theme="simple" method="post">
 		<table border="0" width="100%" id="table1" cellspacing="0"
 			cellpadding="2" bgcolor="gray">
 			<tr>
 				<td class="headerbar61" width="15%" colspan="1">用户详细</td>
 				<td class="headerbar63" width="85%" colspan="1">
 				<s:submit value="保存save"></s:submit>
-				
-				<input
-					type="button" name="save70302002" onClick="javascript:save()"
-					value=" 保 存 ">&nbsp; <input type="button"
+				<input type="button"
 					name="back70302003" onClick="javascript:back()" value=" 返 回 ">
 				</td>
 			</tr>
@@ -60,24 +57,33 @@ function back() {
 		<table border="0" width="100%" id="table1" cellspacing="1"
 			cellpadding="2" bgcolor="gray">
 
+				<input name="Id" type="text"  style="visibility:hidden" value="<%=request.getParameter("id") %>"></input>
+
 			<tr>
 				<td class="textbar81" width="15%" colspan="1">用户登录号</td>
-				<td class="textbar01" width="85%" colspan="1"><s:textfield name="username"></s:textfield>
+				<td class="textbar01" width="85%" colspan="1">
+				<input name="username" type="text" readonly="readonly" value="<%=request.getParameter("username") %>"></input>
 				</td>
 			</tr>
+			
 			<tr>
 				<td class="textbar81" width="15%" colspan="1">用户姓名</td>
-				<td class="textbar01" width="85%" colspan="1"><s:textfield name="name"></s:textfield>
+				<td class="textbar01" width="85%" colspan="1">
+				<input name="name" type="text" value="<%=request.getParameter("name") %>"></input>
 				</td>
 			</tr>
 			<tr>
 				<td class="textbar81" width="15%" colspan="1">用户密码</td>
-				<td class="textbar01" width="85%" colspan="1"><s:textfield name="password"></s:textfield>
+				<td class="textbar01" width="85%" colspan="1">
+				<input name=password type="text" value="<%=request.getParameter("password") %>"></input>
 				</td>
 			</tr>
 			<tr>
 				<td class="textbar81" width="15%" colspan="1">用户简介</td>
-				<td class="textbar01" width="85%" colspan="1"><s:textfield name="introduction"></s:textfield></td>
+				<td class="textbar01" width="85%" colspan="1">
+				<input name="introduction" type="text" value="<%=request.getParameter("introduction") %>"></input>
+				<input name="flag" type="hidden" value="<%=request.getParameter("flag") %>"></input>
+				</td>
 			</tr>
 
 
@@ -86,6 +92,7 @@ function back() {
 		<table border=0 cellspacing=0 cellpadding=0 width="100%" height=5>
 			<tr>
 				<td></td>
+				
 			</tr>
 		</table>
 	</s:form>

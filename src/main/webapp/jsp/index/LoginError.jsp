@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -11,7 +12,8 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>My JSP 'index.jsp' starting page</title>
+<title>抱歉，登录失败</title>
+
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">
@@ -20,17 +22,13 @@
 <!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
+
 </head>
 
-<frameset cols="180,10,*" name="sss" frameborder="NO" border="0"
-	framespacing="0" rows="*">
-	<frame name="left" noresize scrolling="auto" src="jsp/common/left.jsp">
-	<frame src="jsp/common/middle.jsp" name="middle" scrolling="NO" noresize>
-	<frame name="main" src="jsp/common/PASSWORD1001.jsp" scrolling="auto">
-</frameset>
-<noframes></noframes>
-<noframes>
-	<body>
-	</body>
-</noframes>
+<body>
+	登录失败，原因:
+	<s:property value="#request.error" />
+	<br>
+	<a href="jsp/index/login.jsp">返回登录页面</a>
+</body>
 </html>

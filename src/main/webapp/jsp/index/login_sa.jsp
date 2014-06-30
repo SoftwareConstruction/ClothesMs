@@ -12,7 +12,7 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>您好，管理员，请登录</title>
+<title>您好，超级管理员，请登录</title>
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">
@@ -55,7 +55,7 @@
 
 	</table>
 
-	<s:form action="admin_login" theme="simple" method="post">
+	<s:form action="superAdmin_login" theme="simple" method="post">
 		<table width="100%" height="40%" border="0" cellpadding="0"
 			cellspacing="0">
 			<tr>

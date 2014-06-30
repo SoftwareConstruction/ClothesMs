@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -109,7 +110,7 @@
 
 						<td><img src="image/top_line.gif" width="2" height="29">
 						</td>
-						<td align="right">admin,您好！<span id="clock"></span></td>
+						<td align="right">您好！<span id="clock"></span></td>
 
 					</tr>
 				</table>
