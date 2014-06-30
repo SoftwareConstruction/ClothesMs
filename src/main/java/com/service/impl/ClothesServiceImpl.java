@@ -75,17 +75,18 @@ public class ClothesServiceImpl implements ClothesService {
 	}
 	
 	@Override
-	public String delete(Clothes clothes, Admin operator) {
-		List<Clothes> result = (List<Clothes>) clothesDAOImpl.findClothesByDocuNum(clothes.getDocuNum()); 
+	public String delete(String docuNum, Admin operator) {
+		List<Clothes> result = (List<Clothes>) clothesDAOImpl.findClothesByDocuNum(docuNum); 
 		if(result.size()==1){
 			if(result.get(0).getFlag() ==0){
 				return ClothesServiceMessage.had_been_delete;
 			}else{
-				clothesDAOImpl.updateFlag(clothes);
+				result.get(0).setFlag(0);
+				clothesDAOImpl.updateFlag(result.get(0));
 				
 				//添加日志
 				log.setAdmin(operator);
-				log.setLog(ClothesLogMessage.delete_Clothes_SUCCESS + clothes.getDocuNum());
+				log.setLog(ClothesLogMessage.delete_Clothes_SUCCESS + docuNum);
 				logDAOImpl.save(log);
 			}
 		}else{

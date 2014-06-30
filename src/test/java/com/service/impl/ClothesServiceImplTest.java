@@ -1,12 +1,14 @@
 package com.service.impl;
 
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -21,19 +23,23 @@ import com.service.ClothesService;
 public class ClothesServiceImplTest {
 	@Resource
 	private ClothesService clothesServiceImpl;
+	private Admin admin = null; 
 	
-	
-	
-	@Test
-	public void save(){
-		Admin admin = new Admin();
-		Clothes clothes = new Clothes();
+	@Before
+	public void before(){
+		admin = new Admin();
 		admin.setFlag(1);
 		admin.setId(1);
 		admin.setIntroduction("introduce1");
 		admin.setName("name1");
 		admin.setPassword("password1");
 		admin.setUsername("username1");
+	}
+	
+	@Test
+	public void save(){
+		Clothes clothes = new Clothes();
+		
 		
 		clothes.setColor("红色");
 		clothes.setCommodity_name("中款大衣");
@@ -87,6 +93,13 @@ public class ClothesServiceImplTest {
 	public void findAllByPaging(){
 		List<Clothes> result = clothesServiceImpl.findAllByPaging(0, 10);
 		assertThat(result.size(),is(10));
+	}
+	
+	@Test
+	public void updateFlag(){
+		String docuNUm = "docu2";
+		String error = clothesServiceImpl.delete(docuNUm, admin);
+		assertThat(error,nullValue());
 	}
 }
 

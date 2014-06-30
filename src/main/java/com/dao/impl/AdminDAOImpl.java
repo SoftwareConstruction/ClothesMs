@@ -53,7 +53,7 @@ public class AdminDAOImpl implements AdminDAO{
 			@Override
 			public Object doInHibernate(Session session)
 					throws HibernateException {
-				String hql = "from Admin as a";
+				String hql = "from Admin as a from a.flag=1";
 				List<?> result = PageNoUtil.getList(session, hql, firstIndex, size);
 				return result;
 			}
