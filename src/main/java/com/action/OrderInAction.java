@@ -4,6 +4,7 @@
 package com.action;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -115,7 +116,16 @@ public class OrderInAction extends ActionSupport{
 		actionAction.put("error", error);
 		return "orderIn_update_ERROR";
 	}
-
+	
+	public String list(){
+		List<OrderIn> orderIn_list = orderInServiceImpl.findAllByPaging(0, 15);
+		if(orderIn_list.size() == 0){
+			return "orderIn_list_SUCCESS";
+		}
+		ActionContext actionContext = ActionContext.getContext();
+		actionContext.put("orderIn_list", orderIn_list);
+		return "orderIn_list_SUCCESS";
+	}
 
 
 	//get、set方法

@@ -3,6 +3,8 @@
  */
 package com.action;
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 
 import org.springframework.context.annotation.Scope;
@@ -12,6 +14,7 @@ import com.entity.Admin;
 import com.entity.OrderOut;
 import com.opensymphony.xwork2.ActionContext;
 import com.service.OrderOutService;
+import com.util.StringToDateUtil;
 
 /**
  * @Author kklt21cn
@@ -66,8 +69,12 @@ public class OrderOutAction {
 		ActionContext actionContext =  ActionContext.getContext();
 		manager = (Admin) actionContext.get("LoginAdmin");
 		orderOut.setManager(manager);
+		orderOut.setOrderId(Integer.parseInt(orderId));
 		
+		StringToDateUtil util = new StringToDateUtil();
+		Date out_time = util.toDate(dateStr);
 		
+		orderOut.setOut_time(out_time);
 		
 		
 		
