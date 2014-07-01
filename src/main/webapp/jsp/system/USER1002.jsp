@@ -20,7 +20,7 @@
 <META HTTP-EQUIV="content-type" CONTENT="text/html; charset=utf-8">
 <META HTTP-EQUIV="content-script-type" CONTENT="text/JavaScript">
 <META HTTP-EQUIV="content-style-type" CONTENT="text/css">
-<title>用户详细</title>
+<title>新增管理员信息时候的页面</title>
 <link rel="stylesheet" href="css/cjpm.css">
 
 </head>

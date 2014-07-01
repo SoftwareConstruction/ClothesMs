@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -44,13 +45,19 @@ function doAdd(){
 	document.forms[0].action="jsp/system/CLOTHING1002.jsp";
 	document.forms[0].submit();
 }
+function del()
+{
+  if(confirm("您真的想删除该记录吗？"))
+  {
+     return true;
+  }
+  return false;
+}
  
--->
 </SCRIPT>
 
 <BODY BACKGROUND="image/bg.gif">
-	<FORM NAME="idFrmMain" ID="idmig0101" METHOD="POST" ACTION=""
-		ONSUBMIT="return false">
+	<s:form action="clothes_list" theme="simple" method="post">
 
 		<table border=0 cellspacing=0 cellpadding=2 width="100%"
 			bgcolor="gray">
@@ -58,6 +65,7 @@ function doAdd(){
 				<td class="headerbar61">货号查询</td>
 				<td class="headerbar63" width="50%" colspan="1"><p
 						align="right">
+						<s:submit value="查询list"></s:submit>
 						<input type=submit value=" 查 询 " onClick="">
 					</p>
 				</td>
@@ -155,66 +163,30 @@ function doAdd(){
 						</tr>
 
 
-						<tr>
-							<td class="gridbar11" align="center">1</td>
-							<td class="gridbar11" align="center"><a href="#"
-								onclick="javascript:goto('jsp/system/CLOTHING1002.jsp');">BR1703</a>
+
+						<s:iterator value="#request.clothes" status="clothes">
+							<tr>
+							<td class="gridbar11" align="center">${clothes.count}</td>
+							<td class="gridbar11" align="center"><s:property value="docuNum"/>
 							</td>
-							<td class="gridbar11" align="center">大红色</td>
-							<td class="gridbar11" align="center">160</td>
-							<td class="gridbar11" align="center">中款大衣</td>
-							<td class="gridbar11" align="center">450.00</td>
-							<td class="gridbar11" align="center">800.00</td>
-							<td class="gridbar11" align="center"><img
-								src="image/del.gif" align="bottom" border="0" alt="删除"
-								onClick="javascript:del('673467')" style="cursor:hand" />
-							</td>
-						</tr>
-						<tr>
-							<td class="gridbar01" align="center">2</td>
-							<td class="gridbar01" align="center"><a href="#"
-								onclick="javascript:goto('jsp/system/CLOTHING1002.jsp');">BR1704</a>
-							</td>
-							<td class="gridbar01" align="center">大红色</td>
-							<td class="gridbar01" align="center">160</td>
-							<td class="gridbar01" align="center">中款大衣</td>
-							<td class="gridbar01" align="center">450.00</td>
-							<td class="gridbar01" align="center">800.00</td>
-							<td class="gridbar01" align="center"><img
-								src="image/del.gif" align="bottom" border="0" alt="删除"
-								onClick="javascript:del('673467')" style="cursor:hand" />
+							<td class="gridbar11" align="center"><s:property value="color"/></td>
+							<td class="gridbar11" align="center"><s:property value="size"/></td>
+							<td class="gridbar11" align="center"><s:property value="commodity_name"/></td>
+							<td class="gridbar11" align="center"><s:property value="ex_factory_price"/></td>
+							<td class="gridbar11" align="center"><s:property value="retail_price"/></td>
+							<td class="gridbar11" align="center">
+							<!-- 这里应该传一个ID 到action ,action中再通过id 获取管理员信息，然后再压到session中，转到编辑页面显示出来-->
+								<a href="jsp/system/clothes_update_input.jsp?id=${id}&docuNum=${docuNum}&color=${color}&size=${size}&commodity_name=${commodity_name}&ex_factory_price=${ex_factory_price}&retail_price=${retail_price}&out_material=${out_material}&in_material=${in_material}&flag=${flag}">
+									<img src="image/edit.gif" align="bottom" border="0" alt="编辑" /> 
+								</a>
+								&nbsp;&nbsp;
+								<a href="clothes_delete?docuNum=${docuNum}" onclick="del()">
+									<img src="image/del.gif" align="bottom" border="0" alt="删除" />
+								</a>
 							</td>
 						</tr>
-						<tr>
-							<td class="gridbar11" align="center">3</td>
-							<td class="gridbar11" align="center"><a href="#"
-								onclick="javascript:goto('jsp/system/CLOTHING1002.jsp');">BR1705</a>
-							</td>
-							<td class="gridbar11" align="center">大红色</td>
-							<td class="gridbar11" align="center">160</td>
-							<td class="gridbar11" align="center">中款大衣</td>
-							<td class="gridbar11" align="center">450.00</td>
-							<td class="gridbar11" align="center">800.00</td>
-							<td class="gridbar11" align="center"><img
-								src="image/del.gif" align="bottom" border="0" alt="删除"
-								onClick="javascript:del('673467')" style="cursor:hand" />
-							</td>
-						</tr>
-						<tr>
-							<td class="gridbar01" align="center">4</td>
-							<td class="gridbar01" align="center"><a href="#"
-								onclick="javascript:goto('jsp/system/CLOTHING1002.jsp');">BR1706</a>
-							</td>
-							<td class="gridbar01" align="center">大红色</td>
-							<td class="gridbar01" align="center">160</td>
-							<td class="gridbar01" align="center">中款大衣</td>
-							<td class="gridbar01" align="center">450.00</td>
-							<td class="gridbar01" align="center">800.00</td>
-							<td class="gridbar01" align="center"><img
-								src="image/del.gif" align="bottom" border="0" alt="删除"
-								onClick="javascript:del('673467')" style="cursor:hand" />
-							</td>
-						</tr>
+						</s:iterator>
+
 					</table></td>
 			</tr>
 		</table>
@@ -231,6 +203,6 @@ function doAdd(){
 		</td>
 		</tr>
 		</table>
-	</FORM>
+	</s:form>
 </BODY>
 </html>

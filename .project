@@ -6,12 +6,27 @@
 	</projects>
 	<buildSpec>
 		<buildCommand>
-			<name>org.eclipse.wst.jsdt.core.javascriptValidator</name>
+			<name>com.genuitec.eclipse.j2eedt.core.WebClasspathBuilder</name>
 			<arguments>
 			</arguments>
 		</buildCommand>
 		<buildCommand>
 			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>com.genuitec.eclipse.j2eedt.core.J2EEProjectValidator</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>com.genuitec.eclipse.j2eedt.core.DeploymentDescriptorValidator</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.wst.jsdt.core.javascriptValidator</name>
 			<arguments>
 			</arguments>
 		</buildCommand>
@@ -47,6 +62,8 @@
 		</buildCommand>
 	</buildSpec>
 	<natures>
+		<nature>com.genuitec.eclipse.ast.deploy.core.deploymentnature</nature>
+		<nature>com.genuitec.eclipse.j2eedt.core.webnature</nature>
 		<nature>com.genuitec.eclipse.springframework.springnature</nature>
 		<nature>org.eclipse.m2e.core.maven2Nature</nature>
 		<nature>org.eclipse.jem.workbench.JavaEMFNature</nature>

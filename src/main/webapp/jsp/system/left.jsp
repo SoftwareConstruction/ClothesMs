@@ -17,7 +17,7 @@
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>无标题文档</title>
+<title>包括用户管理，货号，仓库</title>
 <link rel="stylesheet" type="text/css" href="css/frame.css">
 <script type="text/jscript" language="JavaScript"
 	src="js/qq_hidemenu.js"></script>
