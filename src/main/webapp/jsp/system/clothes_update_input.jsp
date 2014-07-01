@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -49,8 +50,7 @@ function back()
 
 </SCRIPT>
 <BODY BACKGROUND="image/bg.gif">
-	<FORM NAME="idFrmMain" ID="idFrmMain" METHOD="POST" ACTION=""
-		ONSUBMIT="return false">
+	<s:form action="clothes_update" theme="simple" method="post">
 		<table border="0" width="100%">
 			<tr>
 				<td width="100%" colspan="0" rowspan="0" align="center"
@@ -59,7 +59,9 @@ function back()
 						cellpadding="2" bgcolor="gray">
 						<tr>
 							<td class="headerbar61" width="50%">货号详细</td>
-							<td class="headerbar63" width="50%"><input type="button"
+							<td class="headerbar63" width="50%">
+							<s:submit value="保存save货号"></s:submit>
+							<input type="button"
 								name="save70302002" onClick="javascript:save()" value=" 保 存 ">
 								<input type="button" name="save70302002"
 								onClick="javascript:back()" value=" 返 回 "> &nbsp;</td>
@@ -74,37 +76,40 @@ function back()
 						cellpadding="2" bgcolor="gray">
 						<tr>
 							<td class="textbar81" width="15%">货号</td>
-							<td class="textbar01" width="35%"><input type="text"
+							<td class="textbar01" width="35%"><input name="docuNum" type="text"
 								value="<%=request.getParameter("docuNum") %>" size="15" style="width:210px "></td>
 							<td class="textbar81" width="15%">品名</td>
-							<td class="textbar01" width="35%"><input type="text"
+							<td class="textbar01" width="35%"><input name="commodity_name" type="text"
 								value="<%=request.getParameter("commodity_name") %>" size="15" style="width:210px "></td>
 						</tr>
 						<tr>
 							<td width="15%" class="textbar81">色号</td>
-							<td class="textbar01" width="35%"><input type="text"
+							<td class="textbar01" width="35%"><input name="color" type="text"
 								value="<%=request.getParameter("color") %>" size="15" style="width:210px ">
 							</td>
 
 							<td width="15%" class="textbar81">尺码</td>
-							<td class="textbar01" width="35%"><input type="text"
+							<td class="textbar01" width="35%"><input name="size" type="text"
 								value="<%=request.getParameter("size") %>" size="15" style="width:210px "></td>
 						</tr>
 						<tr>
 							<td width="15%" class="textbar81">面料</td>
-							<td class="textbar01" width="35%"><input type="text"
+							<td class="textbar01" width="35%"><input name="out_material" type="text"
 								value="<%=request.getParameter("out_material") %>" size="15" style="width:210px "></td>
 							<td class="textbar81" width="15%">里料</td>
-							<td class="textbar01" width="35%"><input type="text"
+							<td class="textbar01" width="35%"><input name="in_material" type="text"
 								value="<%=request.getParameter("in_material") %>" size="15" style="width:210px "></td>
 						</tr>
 						<tr>
 							<td width="15%" class="textbar81">出厂价</td>
-							<td class="textbar01" width="35%"><input type="text"
+							<td class="textbar01" width="35%"><input name="ex_factory_price" type="text"
 								value="<%=request.getParameter("ex_factory_price") %>" size="15" style="width:210px "></td>
 							<td class="textbar81" width="15%">零售价</td>
-							<td class="textbar01" width="35%"><input type="text"
-								value="<%=request.getParameter("retail_price") %>" size="15" style="width:210px "></td>
+							<td class="textbar01" width="35%"><input type="text" name="retail_price"
+								value="<%=request.getParameter("retail_price") %>" size="15" style="width:210px ">
+								<input name="flag" type="hidden" value="<%=request.getParameter("flag") %>"></input>
+								<input name="id" type="hidden" value="<%=request.getParameter("id") %>"></input>
+							</td>
 						</tr>
 
 
@@ -117,6 +122,6 @@ function back()
 				</td>
 			</tr>
 		</table>
-	</FORM>
+	</s:form>
 </BODY>
 </html>

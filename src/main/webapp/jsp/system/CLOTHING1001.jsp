@@ -84,15 +84,15 @@ function del()
 			<tr>
 
 				<td class="textbar81" width="15%">货号</td>
-				<td class="textbar01" width="35%"><input type="text" name="hh"
+				<td class="textbar01" width="35%"><input type="text" 
 					value="" style="width:210px "></td>
 				<td class="textbar81" width="15%">品名</td>
-				<td class="textbar01" width="35%"><input type="text" name="hh"
+				<td class="textbar01" width="35%"><input type="text" 
 					value="" style="width:210px "></td>
 			</tr>
 			<tr>
 				<td width="15%" class="textbar81">色号</td>
-				<td class="textbar01" width="35%"><select name=""
+				<td class="textbar01" width="35%"><select 
 					style="width:210px ">
 						<option value="" selected="selected">请选择</option>
 						<option value="1">大红色</option>
@@ -108,7 +108,7 @@ function del()
 				</td>
 
 				<td width="15%" class="textbar81">尺码</td>
-				<td class="textbar01" width="35%"><select name=""
+				<td class="textbar01" width="35%"><select 
 					style="width:210px ">
 						<option value="" selected="selected">请选择</option>
 						<option value="150">150</option>

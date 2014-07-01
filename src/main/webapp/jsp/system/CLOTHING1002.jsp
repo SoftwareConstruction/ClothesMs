@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -49,8 +50,7 @@ function back()
 
 </SCRIPT>
 <BODY BACKGROUND="image/bg.gif">
-	<FORM NAME="idFrmMain" ID="idFrmMain" METHOD="POST" ACTION=""
-		ONSUBMIT="return false">
+	<s:form action="clothes_save" theme="simple" method="post">
 		<table border="0" width="100%">
 			<tr>
 				<td width="100%" colspan="0" rowspan="0" align="center"
@@ -59,7 +59,9 @@ function back()
 						cellpadding="2" bgcolor="gray">
 						<tr>
 							<td class="headerbar61" width="50%">货号详细</td>
-							<td class="headerbar63" width="50%"><input type="button"
+							<td class="headerbar63" width="50%">
+							<s:submit value="保存save"></s:submit>
+							<input type="button"
 								name="save70302002" onClick="javascript:save()" value=" 保 存 ">
 								<input type="button" name="save70302002"
 								onClick="javascript:back()" value=" 返 回 "> &nbsp;</td>
@@ -74,59 +76,29 @@ function back()
 						cellpadding="2" bgcolor="gray">
 						<tr>
 							<td class="textbar81" width="15%">货号</td>
-							<td class="textbar01" width="35%"><input type="text"
-								value="BR1703" size="15" style="width:210px "></td>
+							<td class="textbar01" width="35%"><s:textfield name="docuNum"></s:textfield></td>
 							<td class="textbar81" width="15%">品名</td>
-							<td class="textbar01" width="35%"><input type="text"
-								value="中款大衣" size="15" style="width:210px "></td>
+							<td class="textbar01" width="35%"><s:textfield name="commodity_name"></s:textfield></td>
 						</tr>
 						<tr>
 							<td width="15%" class="textbar81">色号</td>
-							<td class="textbar01" width="35%"><select name=""
-								style="width:210px ">
-									<option value="" selected="selected">请选择</option>
-									<option value="1">大红色</option>
-									<option value="2">浅红色</option>
-									<option value="3">紫红色</option>
-									<option value="4">纯白色</option>
-									<option value="5">米白色</option>
-									<option value="6">深蓝色</option>
-									<option value="7">淡蓝色</option>
-									<option value="8">黑色</option>
-									<option value="9">棕色</option>
-							</select>
+							<td class="textbar01" width="35%"><s:textfield name="color"></s:textfield>
 							</td>
 
 							<td width="15%" class="textbar81">尺码</td>
-							<td class="textbar01" width="35%"><select name=""
-								style="width:210px ">
-									<option value="" selected="selected">请选择</option>
-									<option value="150">150</option>
-									<option value="155">155</option>
-									<option value="160">160</option>
-									<option value="165">165</option>
-									<option value="170">170</option>
-									<option value="175">175</option>
-									<option value="180">180</option>
-									<option value="185">185</option>
-									<option value="190">190</option>
-							</select></td>
+							<td class="textbar01" width="35%"><s:textfield name="size"></s:textfield></td>
 						</tr>
 						<tr>
 							<td width="15%" class="textbar81">面料</td>
-							<td class="textbar01" width="35%"><input type="text"
-								value="布" size="15" style="width:210px "></td>
+							<td class="textbar01" width="35%"><s:textfield name="out_material"></s:textfield></td>
 							<td class="textbar81" width="15%">里料</td>
-							<td class="textbar01" width="35%"><input type="text"
-								value="尼龙" size="15" style="width:210px "></td>
+							<td class="textbar01" width="35%"><s:textfield name="in_material"></s:textfield></td>
 						</tr>
 						<tr>
 							<td width="15%" class="textbar81">出厂价</td>
-							<td class="textbar01" width="35%"><input type="text"
-								value="450.00" size="15" style="width:210px "></td>
+							<td class="textbar01" width="35%"><s:textfield name="ex_factory_price"></s:textfield></td>
 							<td class="textbar81" width="15%">零售价</td>
-							<td class="textbar01" width="35%"><input type="text"
-								value="800.00" size="15" style="width:210px "></td>
+							<td class="textbar01" width="35%"><s:textfield name="retail_price"></s:textfield></td>
 						</tr>
 
 
@@ -139,6 +111,6 @@ function back()
 				</td>
 			</tr>
 		</table>
-	</FORM>
+	</s:form>
 </BODY>
 </html>
