@@ -3,9 +3,6 @@
  */
 package com.action;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.annotation.Resource;
@@ -19,6 +16,7 @@ import com.entity.WareHouse;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.service.OrderInService;
+import com.util.StringToDateUtil;
 
 /**
  *@Author kklt21cn
@@ -37,19 +35,14 @@ public class OrderInAction extends ActionSupport{
 	public String wareHouse_name;
 	public String source;
 	public String dateStr ;
-	
-	
+	public String id;
 	
 	
 	public String add(){
 		//转化为Date型
-		DateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");        
-		Date time = null;
-		try {
-			time = formatDate.parse(dateStr);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		StringToDateUtil util = new StringToDateUtil();
+		Date time = util.toDate(dateStr);
+		
 		
 		//取得seesion，并把里面的管理员取出
 		ActionContext actionContext = ActionContext.getContext();
@@ -76,9 +69,49 @@ public class OrderInAction extends ActionSupport{
 	
 	
 	
+	public String update(){
+		//取得seesion，并把里面的管理员取出
+		ActionContext actionContext = ActionContext.getContext();
+		Admin manager = (Admin)actionContext.getSession().get("LoginAdmin");
+		
+		//转化为Date型
+		StringToDateUtil util = new StringToDateUtil();
+		Date time = util.toDate(dateStr);		
+		
+		WareHouse wareHouse = new WareHouse();
+		wareHouse.setName(wareHouse_name);
+		
+		OrderIn orderIn= new OrderIn();
+		orderIn.setOrderId(Integer.parseInt(id));
+		orderIn.setDocu_number(docuNum);
+		orderIn.setFlag(1);
+		orderIn.setManager(manager);
+		orderIn.setRemark(remark);
+		orderIn.setSource(source);
+		orderIn.setIn_time(time);
+		orderIn.setWareHouse(wareHouse);
+		
+		String error = orderInServiceImpl.update(orderIn);
+		if(error==null){
+			return "orderIn_update_SUCCESS";
+		}
+		return "orderIn_update_ERROR";
+	}
 	
 	
-	
+	public String delete(){
+		OrderIn orderIn = new OrderIn();
+		orderIn.setOrderId(Integer.parseInt(id));
+		
+		String error = orderInServiceImpl.delete(orderIn);
+		if(error == null){
+			return "orderIn_update_SUCCESS";
+		}
+		return "orderIn_update_ERROR";
+	}
+
+
+
 	//get、set方法
 	public String getDocuNum() {
 		return docuNum;
@@ -109,5 +142,11 @@ public class OrderInAction extends ActionSupport{
 	}
 	public void setDateStr(String dateStr) {
 		this.dateStr = dateStr;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 }
