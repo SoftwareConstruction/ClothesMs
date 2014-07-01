@@ -63,9 +63,12 @@ public class OrderInAction extends ActionSupport{
 		orderIn.setIn_time(time);
 		orderIn.setWareHouse(wareHouse);
 		
-		String error
-		
-		return "orderIn_add_SUCCESS";
+		String error = orderInServiceImpl.save(orderIn);
+		if(error ==null){
+			return "orderIn_add_SUCCESS";
+		}else{
+			return "orderIn_add_ERROR";
+		}
 	}
 	
 
