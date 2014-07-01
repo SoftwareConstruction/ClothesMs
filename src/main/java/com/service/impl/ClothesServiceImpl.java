@@ -37,7 +37,6 @@ public class ClothesServiceImpl implements ClothesService {
 		try{
 			result = (List<Clothes>) clothesDAOImpl.findClothesByDocuNum(clothes.getDocuNum());
 		}catch(Exception e){
-			System.out.println("<----------->");
 			e.printStackTrace();
 		}
 		if(result.size()== 0){
@@ -59,14 +58,14 @@ public class ClothesServiceImpl implements ClothesService {
 	
 	@Override
 	public String update(Clothes clothes, Admin operator) {
-			
-			clothesDAOImpl.update(clothes);
-			
-			//添加日志记录
-			log.setAdmin(operator);
-			log.setLog(ClothesLogMessage.update_Clothes_SUCCESS+clothes.getDocuNum());
-			logDAOImpl.save(log);
-			return null;
+		
+		clothesDAOImpl.update(clothes);
+		
+		//添加日志记录
+		log.setAdmin(operator);
+		log.setLog(ClothesLogMessage.update_Clothes_SUCCESS+clothes.getDocuNum());
+		logDAOImpl.save(log);
+		return null;
 	}
 	
 	@Override

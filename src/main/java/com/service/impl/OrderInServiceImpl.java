@@ -19,8 +19,8 @@ import com.entity.Log;
 import com.entity.OrderIn;
 import com.entity.WareHouse;
 import com.service.OrderInService;
-import com.util.OrderIn.OrderInLogMessage;
-import com.util.OrderIn.OrderInServiceMessage;
+import com.util.orderIn.OrderInLogMessage;
+import com.util.orderIn.OrderInServiceMessage;
 import com.util.wareHouse.WareHouseServiceMessage;
 
 /**

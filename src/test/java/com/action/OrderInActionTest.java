@@ -23,23 +23,24 @@ public class OrderInActionTest {
 	private OrderInAction orderIn;
 	
 	@Before
-	private void before(){
+	public void before(){
 		
 	}
 	
 	@Test
 	public void add(){
-		String docuNum ="";
-		String remark ="";
+		String remark ="没有备注";
 		String wareHouse_name = "一号仓";
 		String source ="泰国";
 		String dateStr ="2011-1-1";
 		
+		orderIn.setWareHouse_name(wareHouse_name);
 		orderIn.setDateStr(dateStr);
-		orderIn.setDocuNum(docuNum);
 		orderIn.setRemark(remark);
 		orderIn.setSource(source);
 		
-		orderIn.add();
+		
+		
+		String result = orderIn.add();
 	}
 }

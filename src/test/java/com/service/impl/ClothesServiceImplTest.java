@@ -59,9 +59,9 @@ public class ClothesServiceImplTest {
 	@Test
 	public void update(){
 		Clothes clothes = new Clothes();
-		clothes.setId(1);
+		clothes.setId(2);
 		clothes.setCommodity_name("中款大衣");
-		clothes.setDocuNum("docu1");
+		clothes.setDocuNum("docu2");
 		clothes.setEx_factory_price(100000);
 		clothes.setFlag(100);
 		clothes.setIn_material("塑料");
@@ -78,11 +78,7 @@ public class ClothesServiceImplTest {
 		admin.setPassword("password1");
 		admin.setFlag(1);
 		
-		
-		
-		
 		clothes.setOperator(admin);
-		
 		clothesServiceImpl.update(clothes, admin);
 		
 		

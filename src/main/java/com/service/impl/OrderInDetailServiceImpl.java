@@ -19,8 +19,8 @@ import com.entity.OrderIn;
 import com.entity.OrderInDetail;
 import com.entity.Storage;
 import com.service.OrderInDetailService;
-import com.util.OrderIn.OrderInServiceMessage;
 import com.util.clothes.ClothesServiceMessage;
+import com.util.orderIn.OrderInServiceMessage;
 
 /**
  *@Author kklt21cn
