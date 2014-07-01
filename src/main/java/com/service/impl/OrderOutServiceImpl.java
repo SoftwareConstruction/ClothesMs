@@ -44,6 +44,10 @@ public class OrderOutServiceImpl implements OrderOutService {
 		if(wareHouse_list.size()==0){
 			return WareHouseServiceMessage.no_this_WareHouse;
 		}
+		//生成入单的编号，并set进orderIn里，编号为操作人员的账号+仓库的编号+操作的日期
+		String docuNum = orderOut.getManager().getUsername() + wareHouse_list.get(0).getDocu_number()+orderOut.getOut_time().toString();
+		orderOut.setDocu_number(docuNum);
+		
 		orderOut.setWareHouse(wareHouse_list.get(0));
 		orderOutDAOImpl.add(orderOut);
 		return null;

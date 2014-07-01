@@ -63,6 +63,8 @@ public class OrderInAction extends ActionSupport{
 		if(error == null){
 			return "orderIn_add_SUCCESS";
 		}else{
+			ActionContext actionAction = ActionContext.getContext();
+			actionAction.put("error", error);
 			return "orderIn_add_ERROR";
 		}
 	}
@@ -95,6 +97,8 @@ public class OrderInAction extends ActionSupport{
 		if(error==null){
 			return "orderIn_update_SUCCESS";
 		}
+		ActionContext actionAction = ActionContext.getContext();
+		actionAction.put("error", error);
 		return "orderIn_update_ERROR";
 	}
 	
@@ -107,6 +111,8 @@ public class OrderInAction extends ActionSupport{
 		if(error == null){
 			return "orderIn_update_SUCCESS";
 		}
+		ActionContext actionAction = ActionContext.getContext();
+		actionAction.put("error", error);
 		return "orderIn_update_ERROR";
 	}
 

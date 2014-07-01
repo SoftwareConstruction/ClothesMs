@@ -53,6 +53,7 @@ public class WareHouseServiceImpl implements WareHouseService{
 		if(result.size() == 1){
 			 WareHouse deleted = result.get(0);
 			 if(deleted.getFlag() ==1){
+				 deleted.setFlag(0);
 				 wareHouseDAOImpl.updateFlag(result.get(0));
 				 
 				 //添加Log记录
