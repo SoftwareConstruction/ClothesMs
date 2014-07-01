@@ -3,6 +3,7 @@
  */
 package com.action;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -42,7 +43,7 @@ public class OrderInAction extends ActionSupport{
 	
 	public String add(){
 		//转化为Date型
-		SimpleDateFormat formatDate = new SimpleDateFormat();
+		DateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");        
 		Date time = null;
 		try {
 			time = formatDate.parse(dateStr);
@@ -66,7 +67,7 @@ public class OrderInAction extends ActionSupport{
 		orderIn.setWareHouse(wareHouse);
 		
 		String error = orderInServiceImpl.save(orderIn);
-		if(error ==null){
+		if(error == null){
 			return "orderIn_add_SUCCESS";
 		}else{
 			return "orderIn_add_ERROR";

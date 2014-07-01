@@ -43,13 +43,13 @@ public class ClothesAction extends ActionSupport {
 	 */
 	public String list() {
 		ActionContext actionContext = ActionContext.getContext();
-		System.out.println("jiiiiiiiiiiiiiiiiii");
+//		System.out.println("jiiiiiiiiiiiiiiiiii");
 		List<Clothes> clothes = clothesService.findAllByPaging(0, 15);
 
 		if (clothes.size() > 0) {
 			actionContext.put("clothes", clothes);
 			for (Clothes c : clothes) {
-				System.out.println("货号：" + c.getColor());
+//				System.out.println("货号：" + c.getColor());
 			}
 			return "clothes_list_success";
 		} else {
@@ -82,12 +82,88 @@ public class ClothesAction extends ActionSupport {
 		}
 
 	}
-	
+
+	/**
+	 * 更新货号信息
+	 * @return
+	 */
 	public String update() {
-		
-		String msg ;
-		
-		return null;
+		System.out.println(color);
+		System.out.println(commodity_name);
+		System.out.println(docuNum);
+		System.out.println(ex_factory_price);
+		System.out.println(flag);
+		System.out.println(id);
+		System.out.println(in_material);
+		System.out.println(out_material);
+		System.out.println(retail_price);
+		System.out.println(size);
+		ActionContext actionContext = ActionContext.getContext();
+		Admin admin = (Admin) actionContext.getSession().get("LoginAdmin");
+		Clothes clothes = new Clothes();
+		clothes.setColor(color);
+		clothes.setCommodity_name(commodity_name);
+		clothes.setDocuNum(docuNum);
+		clothes.setEx_factory_price(ex_factory_price);
+		clothes.setFlag(flag);
+		clothes.setId(id);
+		clothes.setIn_material(in_material);
+		clothes.setOperator(admin);
+		clothes.setOut_material(out_material);
+		clothes.setRetail_price(retail_price);
+		clothes.setSize(size);
+		String msg = clothesService.update(clothes, admin);
+
+		if (msg == null) {
+			// 更新成功
+			System.out.println("货号更新成功！");
+			return list();
+		} else {
+			System.out.println("货号更新失败！");
+			return "clothes_update_error";			
+		}
+	}
+	
+	/**
+	 * 添加货号信息
+	 * @return
+	 */
+	public String save() {
+		System.out.println("save-----------------------------");
+		System.out.println(color);
+		System.out.println(commodity_name);
+		System.out.println(docuNum);
+		System.out.println(ex_factory_price);
+		System.out.println(flag);
+		System.out.println(id);
+		System.out.println(in_material);
+		System.out.println(out_material);
+		System.out.println(retail_price);
+		System.out.println(size);
+		System.out.println("save-----------------------------");
+		ActionContext actionContext = ActionContext.getContext();
+		Admin admin = (Admin) actionContext.getSession().get("LoginAdmin");
+		Clothes clothes = new Clothes();
+		clothes.setColor(color);
+		clothes.setCommodity_name(commodity_name);
+		clothes.setDocuNum(docuNum);
+		clothes.setEx_factory_price(ex_factory_price);
+		clothes.setFlag(1);
+		clothes.setId(id);
+		clothes.setIn_material(in_material);
+		clothes.setOperator(admin);
+		clothes.setOut_material(out_material);
+		clothes.setRetail_price(retail_price);
+		clothes.setSize(size);
+		String msg = clothesService.save(clothes, admin);
+		if (msg == null) {
+			// 保存成功
+			System.out.println("保存成功");
+			return list();
+		} else {
+			System.out.println("保存失败");
+			return "clothes_save_error";			
+		}
 	}
 
 	public int getId() {
