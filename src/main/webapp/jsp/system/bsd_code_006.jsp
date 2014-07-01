@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -19,7 +20,7 @@
 <META HTTP-EQUIV="content-type" CONTENT="text/html; charset=GB2312">
 <META HTTP-EQUIV="content-script-type" CONTENT="text/JavaScript">
 <META HTTP-EQUIV="content-style-type" CONTENT="text/css">
-<title>ghgg</title>
+<title>点击仓库的时候，右边显示的界面</title>
 <link rel="stylesheet" href="css/cjpm.css">
 <script type="text/javascript" src="js/page.js"></script>
 <script type="text/javascript" src="js/cjcalendar.js"></script>
@@ -39,15 +40,18 @@ function del(id)
 		alert("删除成功！");
 	}
 }
-
- 
- 
--->
+function del()
+{
+  if(confirm("您真的想删除该记录吗？"))
+  {
+     return true;
+  }
+  return false;
+}
 </SCRIPT>
 
 <BODY BACKGROUND="image/bg.gif">
-	<FORM NAME="idFrmMain" ID="idmig0101" METHOD="POST" ACTION=""
-		ONSUBMIT="return false">
+	<s:form action="wareHouse_list" theme="simple" method="post">
 
 
 		<table border=0 cellspacing=0 cellpadding=2 width="100%"
@@ -56,6 +60,7 @@ function del(id)
 				<td class="headerbar61">仓库查询</td>
 				<td class="headerbar63" width="50%" colspan="1"><p
 						align="right">
+						<s:submit value="查询list仓库"></s:submit>
 						<input type=submit value=" 查 询 " onClick="">
 					</p>
 				</td>
@@ -74,10 +79,10 @@ function del(id)
 			<tr>
 
 				<td class="textbar81" width="15%">仓库编号</td>
-				<td class="textbar01" width="35%"><input type="text" name="hh"
+				<td class="textbar01" width="35%"><input type="text" 
 					value="" style="width:210px "></td>
 				<td class="textbar81" width="15%">仓库名称</td>
-				<td class="textbar01" width="35%"><input type="text" name="hh"
+				<td class="textbar01" width="35%"><input type="text" 
 					value="" style="width:210px "></td>
 			</tr>
 
@@ -119,21 +124,29 @@ function del(id)
 							<td width="5%" class="headerbar82">操作</td>
 						</tr>
 
-
+						<s:iterator value="#request.wareHouses" status="wareHouses">
 						<tr>
-							<td width="5%" class="gridbar11">1</td>
-							<td width="10%" class="gridbar11"><a href="#"
-								onclick="javascript:goto('jsp/system/bsd_code_006_1.jsp');">10001</a>
+							<td width="5%" class="gridbar11">${wareHouses.count}
 							</td>
-							<td width="20%" class="gridbar11">高邮仓库</td>
-							<td width="10%" class="gridbar11">600</td>
-							<td width="5%" class="gridbar11"><img src="image/del.gif"
-								align="bottom" border="0" alt="删除"
-								onclick="javascript:del('673467')" style="cursor:hand" />
+							<td width="10%" class="gridbar11"><s:property
+										value="docu_number" />
 							</td>
-
+							<td width="20%" class="gridbar11"><s:property
+										value="name" /></td>
+							<td width="10%" class="gridbar11"><s:property
+										value="total_storage" /></td>
+							<td width="5%" class="gridbar11">
+							<!-- 这里应该传一个ID 到action ,action中再通过id 获取管理员信息，然后再压到session中，转到编辑页面显示出来-->
+							<a href="jsp/system/wareHouse_update_input.jsp?id=${id}&docu_number=${docu_number}&contact_phone=${contact_phone}&name=${name}&contact=${contact}&total_storage=${total_storage}&flag=${flag}">
+										  <img src="image/edit.gif" align="bottom" border="0" alt="编辑" /> 
+										</a>
+							&nbsp;&nbsp;
+							<a href="wareHouse_delete?docu_number=${docu_number}" onclick="del()">
+								<img src="image/del.gif" align="bottom" border="0" alt="删除" />
+							</a>
 							</td>
 						</tr>
+						</s:iterator>
 					</table></td>
 			</tr>
 		</table>
@@ -148,9 +161,6 @@ function del(id)
 			</tr>
 		</table>
 
-		</td>
-		</tr>
-		</table>
-	</FORM>
+	</s:form>
 </BODY>
 </html>

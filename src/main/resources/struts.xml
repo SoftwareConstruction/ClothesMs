@@ -51,8 +51,23 @@
 		   <result name="clothes_save_success">/jsp/system/CLOTHING1001.jsp</result>
 		   <result name="clothes_save_error">/jsp/superAdmin/result/superAdmin_login_error.jsp</result>
 		 </action>
+		 
+		 <!-- 仓库 -->
+		 <action name="wareHouse_*" class="com.action.WareHouseAction" method="{1}">
+		   <result name="wareHouse_list_success">/jsp/system/bsd_code_006.jsp</result>
+		   <result name="wareHouse_list_error">/jsp/superAdmin/result/superAdmin_login_error.jsp</result>
+
+		   <result name="wareHouse_delete_success">/jsp/system/bsd_code_006.jsp</result>
+		   <result name="wareHouse_delete_error">/jsp/superAdmin/result/superAdmin_login_error.jsp</result>
+
+		   <result name="wareHouse_update_success">/jsp/system/bsd_code_006.jsp</result>
+		   <result name="wareHouse_update_error">/jsp/superAdmin/result/superAdmin_login_error.jsp</result>
+
+		   <result name="wareHouse_save_success">/jsp/system/bsd_code_006.jsp</result>
+		   <result name="wareHouse_save_error">/jsp/superAdmin/result/superAdmin_login_error.jsp</result>
+		 </action>
 
 	</package>
 
 
-</struts>    
+</struts>  

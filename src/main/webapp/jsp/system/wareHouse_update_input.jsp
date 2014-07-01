@@ -12,7 +12,7 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>新建仓库的页面</title>
+<title>仓库更新--输入</title>
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">
@@ -49,7 +49,7 @@ function back()
 
 </SCRIPT>
 <BODY BACKGROUND="image/bg.gif">
-	<s:form action="wareHouse_save" theme="simple" method="post">
+	<s:form action="wareHouse_update" theme="simple" method="post">
 		<table border="0" width="100%">
 			<tr>
 				<td width="100%" colspan="0" rowspan="0" align="center"
@@ -75,35 +75,38 @@ function back()
 						cellpadding="2" bgcolor="gray">
 						<tr>
 							<td class="textbar81" width="15%" colspan="1">仓库编号</td>
-							<td class="textbar01" width="85%" colspan="1">
-							<s:textfield name="docu_number"></s:textfield>
-							</td>
+							<td class="textbar01" width="85%" colspan="1"><input
+								type="text" readonly="readonly" name="docu_number" value="<%=request.getParameter("docu_number") %>" size="15"></td>
 						</tr>
 
 						<tr>
 							<td class="textbar81" width="15%">仓库名称</td>
-							<td class="textbar01" width="85%">
-							<s:textfield name="name"></s:textfield>
-							</td>
+							<td class="textbar01" width="85%"><input type="text" name="name"
+								value="<%=request.getParameter("name") %>" size="15"></td>
 						</tr>
 
 
 						<tr>
 							<td class="textbar81" width="15%">联系人</td>
-							<td class="textbar01" width="85%">
-							<s:textfield name="contact"></s:textfield></td>
+							<td class="textbar01" width="85%"><input type="text" name="contact"
+								value="<%=request.getParameter("contact") %>" size="15"></td>
 						</tr>
 
 						<tr>
 							<td class="textbar81" width="15%">联系电话</td>
-							<td class="textbar01" width="85%">
-							<s:textfield name="contact_phone"></s:textfield></td>
+							<td class="textbar01" width="85%"><input type="text"
+								name="contact_phone"
+								value="<%=request.getParameter("contact_phone") %>" size="15"></td>
 						</tr>
 
 						<tr>
 							<td class="textbar81" width="15%">仓储量</td>
-							<td class="textbar01" width="85%">
-							<s:textfield name="total_storage"></s:textfield></td>
+							<td class="textbar01" width="85%"><input type="text"
+								name="total_storage"
+								value="<%=request.getParameter("total_storage") %>" size="15">
+								<input name="flag" type="hidden" value="<%=request.getParameter("flag") %>"></input>
+								<input name="id" type="hidden" value="<%=request.getParameter("id") %>"></input>
+								</td>
 						</tr>
 					</table>
 					<table border=0 cellspacing=0 cellpadding=0 width="100%" height=5>

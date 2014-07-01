@@ -76,7 +76,7 @@ function back()
 						cellpadding="2" bgcolor="gray">
 						<tr>
 							<td class="textbar81" width="15%">货号</td>
-							<td class="textbar01" width="35%"><input name="docuNum" type="text"
+							<td class="textbar01" width="35%"><input name="docuNum" readonly="readonly" type="text"
 								value="<%=request.getParameter("docuNum") %>" size="15" style="width:210px "></td>
 							<td class="textbar81" width="15%">品名</td>
 							<td class="textbar01" width="35%"><input name="commodity_name" type="text"
