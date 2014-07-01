@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -11,7 +12,7 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>My JSP 'index.jsp' starting page</title>
+<title>点击入库管理时候的页面</title>
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">
@@ -20,7 +21,6 @@
 <META HTTP-EQUIV="content-type" CONTENT="text/html; charset=GB2312">
 <META HTTP-EQUIV="content-script-type" CONTENT="text/JavaScript">
 <META HTTP-EQUIV="content-style-type" CONTENT="text/css">
-<title>采购入库管理</title>
 <link rel="stylesheet" href="css/cjpm.css">
 <script type="text/javascript" src="js/cjcalendar.js"></script>
 <script type="text/javascript" src="js/page.js"></script>
@@ -58,22 +58,25 @@ function locatePage(id){
 	document.forms[0].action="jsp/stock/order2001.jsp";
 	document.forms[0].submit();		
 }
-
- 
--->
+function del()
+{
+  if(confirm("您真的想删除该记录吗？"))
+  {
+     return true;
+  }
+  return false;
+}
 </SCRIPT>
 
 <BODY BACKGROUND="image/bg.gif">
-	<FORM NAME="idFrmMain" ID="idmig0101" METHOD="POST" ACTION="orderIn_add"
-		ONSUBMIT="return false">
+	<s:form action="orderIn_list" theme="simple" method="post">
 
 		<table border=0 cellspacing=0 cellpadding=2 width="100%"
 			bgcolor="gray">
 			<tr>
 				<td class="headerbar61">入库单查询</td>
 				<td class="headerbar61"><p align="right">
-						<input type=submit value=" 查 询 " onClick="JavaScript:goSearch();">
-					</p>
+					<s:submit value="查询list"></s:submit>
 				</td>
 			</tr>
 		</table>
@@ -90,7 +93,7 @@ function locatePage(id){
 			bgcolor="gray">
 			<tr>
 				<td class="textbar81" width="15%">所入仓库</td>
-				<td class="textbar01" width="35%"><select name="storeRoom"
+				<td class="textbar01" width="35%"><select 
 					style="width:152px">
 						<option value="">------</option>
 						<option value="1">一号仓库</option>
@@ -101,7 +104,7 @@ function locatePage(id){
 				</td>
 				<td class="textbar81" width="15%">单据编号</td>
 				<td class="textbar01" width="35%"><input type="text"
-					name="number" style="width:152px">
+					style="width:152px">
 				</td>
 
 			</tr>
@@ -109,14 +112,14 @@ function locatePage(id){
 			<tr>
 				<td class="textbar81" width="15%">入库日期</td>
 				<td class="textbar01" width="35%" colspan="3"><input
-					type="text" name="frmWRPT_OPT_DATE2_PJT70302"
-					id="frmWRPT_OPT_DATE2_PJT70302" value="2007-06-21"
+					type="text" 
+					value="2007-06-21"
 					readonly="readonly" size="12"> <input type="image"
 					src="image/calendar.gif" width="18" height="17"
 					onClick="CalendarWebControl.show(forms[0].frmWRPT_OPT_DATE2_PJT70302,'',forms[0].frmWRPT_OPT_DATE2_PJT70302);"
 					title="显示日历" /> ~ <input type="text"
-					name="frmWRPT_OPT_DATE3_PJT70302" id="frmWRPT_OPT_DATE3_PJT70302"
-					value="2007-06-26" readonly="readonly" size="12"> <input
+					
+					value="2014-06-26" readonly="readonly" size="12"> <input
 					type="image" src="image/calendar.gif" width="18" height="17"
 					onClick="CalendarWebControl.show(forms[0].frmWRPT_OPT_DATE3_PJT70302,'',forms[0].frmWRPT_OPT_DATE3_PJT70302);"
 					title="显示日历" />
@@ -149,40 +152,34 @@ function locatePage(id){
 				<td width="100%" colspan="1">
 					<table border="0" cellspacing="1" cellpadding="2" width="100%">
 						<tr>
-							<td width="5%" class="headerbar82">序号</td>
-							<td width="15%" class="headerbar82">单据编号</td>
-							<td width="20%" class="headerbar82">所入仓库</td>
-							<td width="15%" class="headerbar82">入库日期</td>
-							<td width="15%" class="headerbar82">经办人</td>
-							<td width="25%" class="headerbar82">来源</td>
-							<td class="headerbar82">操作</td>
+							<td  width="5%"  class="headerbar82">序号</td>
+							<td   width="15%"  class="headerbar82">单据编号</td>
+							<td   width="20%" class="headerbar82">所入仓库</td>
+							<td    width="15%" class="headerbar82">入库日期</td>					
+							<td    width="15%" class="headerbar82">经办人</td>
+							<td    width="25%" class="headerbar82">来源</td>
+							<td  class="headerbar82">操作</td>			
 						</tr>
+						<s:iterator value="#request.orderIn_list" status="orderIn_list">
 						<tr>
-							<td class="gridbar11" align="center">1</td>
-							<td class="gridbar11" align="center"><a href="jsp/stock/order2002.jsp">RC071105CEN0052</a>
+							<td class="gridbar11" align="center">${orderIn_list.count}</td>
+							<td class="gridbar11" align="center"><s:property value="docuNum"/>
 							</td>
-							<td class="gridbar11" align="center">一号仓库</td>
-							<td class="gridbar11" align="center">2007-11-05</td>
-							<td class="gridbar11" align="left">张三</td>
-							<td class="gridbar11" align="left">第一分公司</td>
-							<td class="gridbar11" align="center"><a href="#"><img
-									src="image/del.gif" align="bottom" border="0" alt="作废"
-									onClick="javascript:del('673467')" /> </a>
-							</td>
-						</tr>
-						<tr>
-							<td class="gridbar01" align="center">2</td>
-							<td class="gridbar01" align="center"><a href="jsp/stock/order2002.jsp">RC071105CEN0053</a>
-							</td>
-							<td class="gridbar01" align="center">二号仓库</td>
-							<td class="gridbar01" align="center">2007-11-05</td>
-							<td class="gridbar01" align="left">李四</td>
-							<td class="gridbar01" align="left">第一分公司</td>
-							<td class="gridbar01" align="center"><a href="#"><img
-									src="image/del.gif" align="bottom" border="0" alt="作废"
-									onClick="javascript:del('673467')" /> </a>
+							<td class="gridbar11" align="center"><s:property value="wareHouse_name"/></td>
+							<td class="gridbar11" align="center"><s:property value="dateStr"/></td>
+							<td class="gridbar11" align="left">${orderIn_list.manager.name}</td>
+							<td class="gridbar11" align="left"><s:property value="source"/></td>
+							<td class="gridbar11" align="center">
+								<a href="jsp/stock/order2002.jsp?id=${id}&docuNum=${docuNum}&color=${color}&size=${size}&commodity_name=${commodity_name}&ex_factory_price=${ex_factory_price}&retail_price=${retail_price}&out_material=${out_material}&in_material=${in_material}&flag=${flag}">
+									<img src="image/edit.gif" align="bottom" border="0" alt="编辑" /> 
+								</a>
+								&nbsp;&nbsp;
+								<a href="clothes_delete?id=${id}" onclick="del()">
+									<img src="image/del.gif" align="bottom" border="0" alt="删除" />
+								</a>
 							</td>
 						</tr>
+						</s:iterator>
 					</table>
 				</td>
 			</tr>
@@ -191,12 +188,12 @@ function locatePage(id){
 		<table width="100%" border="0" cellpadding="0" cellspacing="2">
 			<tr>
 				<td colspan="2" align="right" height="20" nowrap class="textbar3">
-					&nbsp; 共4条 &nbsp;&nbsp; 第1/1页 &nbsp;&nbsp; <a href="#"
+					&nbsp; 共5条 &nbsp;&nbsp; 第1/1页 &nbsp;&nbsp; <a href="#"
 					style="cursor:hand">首页</a>&nbsp;&nbsp; <a style="cursor:hand"
 					href="#">上一页</a>&nbsp;&nbsp; <a style="cursor:hand" href="#">下一页</a>&nbsp;&nbsp;
 					<a style="cursor:hand" href="#">尾页</a>&nbsp;&nbsp;</td>
 			</tr>
 		</table>
-	</FORM>
+	</s:form>
 </BODY>
 </html>

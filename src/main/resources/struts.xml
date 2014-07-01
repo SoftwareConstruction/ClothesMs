@@ -66,6 +66,22 @@
 		   <result name="wareHouse_save_success">/jsp/system/bsd_code_006.jsp</result>
 		   <result name="wareHouse_save_error">/jsp/superAdmin/result/superAdmin_login_error.jsp</result>
 		 </action>
+		 
+		 <!-- 库存管理-入库 -->
+		 <action name="orderIn_*" class="com.action.OrderInAction" method="{1}">
+		   <result name="orderIn_list_SUCCESS">/jsp/stock/order2001.jsp</result>
+		   <result name="orderIn_list_ERROR">/jsp/superAdmin/result/superAdmin_login_error.jsp</result>
+
+		   <result name="orderIn_delete_SUCCESS">/jsp/stock/order2001.jsp</result>
+		   <result name="orderIn_delete_ERROR">/jsp/superAdmin/result/superAdmin_login_error.jsp</result>
+
+		   <result name="orderIn_update_SUCCESS">/jsp/stock/order2001.jsp</result>
+		   <result name="orderIn_update_ERROR">/jsp/superAdmin/result/superAdmin_login_error.jsp</result>
+
+		   <result name="orderIn_add_SUCCESS">/jsp/stock/order2001.jsp</result>
+		   <result name="orderIn_add_ERROR">/jsp/superAdmin/result/superAdmin_login_error.jsp</result>
+		 </action>
+		 
 
 	</package>
 
