@@ -48,7 +48,7 @@ public class WareHouseDAOImpl implements WareHouseDAO{
 			@Override
 			public Object doInHibernate(Session session)
 					throws HibernateException {
-				String hql = "from WareHouse ";
+				String hql = "from WareHouse as a where a.flag=1 ";
 				List<?> list = PageNoUtil.getList(session, hql, firstIndex, size);
 				return list;
 			}

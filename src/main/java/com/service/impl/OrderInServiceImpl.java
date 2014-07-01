@@ -49,6 +49,10 @@ public class OrderInServiceImpl implements OrderInService{
 		if(wareHouse_result.size() == 0){
 			return WareHouseServiceMessage.no_this_WareHouse;
 		}else{
+			//生成入单的编号，并set进orderIn里，编号为操作人员的账号+仓库的编号+操作的日期
+			String docuNum = orderIn.getManager().getUsername()+wareHouse_result.get(0).getDocu_number()+orderIn.getIn_time().toString();
+			orderIn.setDocu_number(docuNum);
+			
 			orderIn.setWareHouse(wareHouse_result.get(0));
 			orderInDAOImpl.add(orderIn);
 			

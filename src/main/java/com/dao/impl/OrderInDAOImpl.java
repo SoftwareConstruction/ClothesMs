@@ -62,7 +62,7 @@ public class OrderInDAOImpl implements OrderInDAO {
 			@Override
 			public Object doInHibernate(Session session)
 					throws HibernateException {
-				String hql = "from OrderIn as a";
+				String hql = "from OrderIn as a where a.flag=1";
 				List<?> result = PageNoUtil.getList(session, hql, firstIndex, size);
 				return result;
 			}
