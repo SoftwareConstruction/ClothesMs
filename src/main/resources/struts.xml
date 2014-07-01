@@ -45,10 +45,11 @@
 		   <result name="clothes_delete_success">/jsp/system/CLOTHING1001.jsp</result>
 		   <result name="clothes_delete_error">/jsp/superAdmin/result/superAdmin_login_error.jsp</result>
 		 
-		 </action>
-		
-		 <action name="orderIn_*" class="com.action.OrderInAction" method="{1}">
-		 	<result name="clothes_*_success">/jsp/stock/order2001.jsp</result>
+		   <result name="clothes_update_success">/jsp/system/CLOTHING1001.jsp</result>
+		   <result name="clothes_update_error">/jsp/superAdmin/result/superAdmin_login_error.jsp</result>
+		   
+		   <result name="clothes_save_success">/jsp/system/CLOTHING1001.jsp</result>
+		   <result name="clothes_save_error">/jsp/superAdmin/result/superAdmin_login_error.jsp</result>
 		 </action>
 		
 	</package>

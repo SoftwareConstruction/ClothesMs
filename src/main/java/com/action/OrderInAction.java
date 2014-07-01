@@ -37,7 +37,8 @@ public class OrderInAction extends ActionSupport{
 	public String source;
 	public String dateStr ;
 	
-	public OrderIn orderIn;
+	
+	
 	
 	public String add(){
 		//转化为Date型
@@ -56,6 +57,7 @@ public class OrderInAction extends ActionSupport{
 		WareHouse wareHouse = new WareHouse();
 		wareHouse.setName(wareHouse_name);
 		
+		OrderIn orderIn= new OrderIn();
 		orderIn.setFlag(1);
 		orderIn.setManager(manager);
 		orderIn.setRemark(remark);
@@ -71,5 +73,40 @@ public class OrderInAction extends ActionSupport{
 		}
 	}
 	
-
+	
+	
+	
+	
+	
+	//get、set方法
+	public String getDocuNum() {
+		return docuNum;
+	}
+	public void setDocuNum(String docuNum) {
+		this.docuNum = docuNum;
+	}
+	public String getRemark() {
+		return remark;
+	}
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+	public String getWareHouse_name() {
+		return wareHouse_name;
+	}
+	public void setWareHouse_name(String wareHouse_name) {
+		this.wareHouse_name = wareHouse_name;
+	}
+	public String getSource() {
+		return source;
+	}
+	public void setSource(String source) {
+		this.source = source;
+	}
+	public String getDateStr() {
+		return dateStr;
+	}
+	public void setDateStr(String dateStr) {
+		this.dateStr = dateStr;
+	}
 }
