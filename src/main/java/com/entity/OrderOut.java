@@ -17,15 +17,7 @@ public class OrderOut {
 	private Date out_time;
 	private Admin manager;
 	private String send;
-	public String getSend() {
-		return send;
-	}
-
-	public void setSend(String send) {
-		this.send = send;
-	}
 	private int flag;
-	private int number;
 	
 	public OrderOut(){
 		this.out_time = new Date();
@@ -68,10 +60,10 @@ public class OrderOut {
 	public void setFlag(int flag) {
 		this.flag = flag;
 	}
-	public int getNumber() {
-		return number;
+	public String getSend() {
+		return send;
 	}
-	public void setNumber(int number) {
-		this.number = number;
+	public void setSend(String send) {
+		this.send = send;
 	}
 }

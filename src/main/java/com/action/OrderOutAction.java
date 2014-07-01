@@ -28,6 +28,7 @@ public class OrderOutAction {
 	public String dateStr;
 	public String remark;
 	public String send;
+	public String orderId;
 	public Admin manager;
 
 	public String save() {
@@ -37,11 +38,44 @@ public class OrderOutAction {
 		ActionContext actionContext =  ActionContext.getContext();
 		manager = (Admin) actionContext.get("LoginAdmin");
 		orderOut.setManager(manager);
-		orderOutServiceImpl.save(orderOut);
-		return null;
+		String error = orderOutServiceImpl.save(orderOut);
+		if(error == null){
+			return "orderOut_save_SUCCESS";
+		}
+		actionContext.put("error", error);
+		return "orderOut_save_FALSE";
 	}
 	
+	public String delete(){
+		OrderOut orderOut = new OrderOut();
+		orderOut.setOrderId(Integer.parseInt(orderId));
+		
+		String error = orderOutServiceImpl.delete(orderOut);
+		if(error == null){
+			return "orderOut_delete_SUCCESS";
+		}
+		ActionContext actionContext = ActionContext.getContext();
+		actionContext.put("error", error);
+		return "orderOut_delete_ERROR";
+	}
 	
+	public String update(){
+		OrderOut orderOut  = new OrderOut();
+		orderOut.setFlag(1);
+		
+		ActionContext actionContext =  ActionContext.getContext();
+		manager = (Admin) actionContext.get("LoginAdmin");
+		orderOut.setManager(manager);
+		
+		
+		
+		
+		
+		
+		
+		return dateStr;
+		
+	}
 	
 	
 
