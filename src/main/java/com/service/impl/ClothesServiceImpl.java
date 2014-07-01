@@ -59,8 +59,6 @@ public class ClothesServiceImpl implements ClothesService {
 	
 	@Override
 	public String update(Clothes clothes, Admin operator) {
-		List<Clothes> result = (List<Clothes>) clothesDAOImpl.findClothesByDocuNum(clothes.getDocuNum()); 
-		if(result.size()==1){
 			
 			clothesDAOImpl.update(clothes);
 			
@@ -69,9 +67,6 @@ public class ClothesServiceImpl implements ClothesService {
 			log.setLog(ClothesLogMessage.update_Clothes_SUCCESS+clothes.getDocuNum());
 			logDAOImpl.save(log);
 			return null;
-		}else{
-			return ClothesServiceMessage.no_this_clothes;
-		}
 	}
 	
 	@Override

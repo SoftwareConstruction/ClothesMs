@@ -71,7 +71,7 @@ function setValue1(){
 </SCRIPT>
 
 <BODY BACKGROUND="image/bg.gif">
-	<FORM NAME="mig0101" ID="idmig0101" METHOD="POST" ACTION=""
+	<FORM NAME="mig0101" ID="idmig0101" METHOD="POST" ACTION="orderIn_add"
 		ONSUBMIT="return false">
 
 		<table border=0 cellspacing=0 cellpadding=2 width="100%"
@@ -119,13 +119,13 @@ function setValue1(){
 				</td>
 				<td class="textbar81" width="15%">来源</td>
 				<td class="textbar01" width="35%"><input type="text"
-					name="frmWRPT" value="" size="20">
+					name="source" size="20">
 				</td>
 			</tr>
 			<tr>
 				<td class="textbar81" width="15%">备注</td>
 				<td class="textbar01" width="85%" colspan="3"><textarea
-						name="textarea" cols="80" rows="4"></textarea>
+						name="remark" cols="80" rows="4"></textarea>
 				</td>
 			</tr>
 

@@ -64,7 +64,7 @@ function locatePage(id){
 </SCRIPT>
 
 <BODY BACKGROUND="image/bg.gif">
-	<FORM NAME="idFrmMain" ID="idmig0101" METHOD="POST" ACTION=""
+	<FORM NAME="idFrmMain" ID="idmig0101" METHOD="POST" ACTION="orderIn_add"
 		ONSUBMIT="return false">
 
 		<table border=0 cellspacing=0 cellpadding=2 width="100%"

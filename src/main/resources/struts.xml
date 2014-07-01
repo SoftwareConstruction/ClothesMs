@@ -47,6 +47,10 @@
 		 
 		 </action>
 		
+		 <action name="orderIn_*" class="com.action.OrderInAction" method="{1}">
+		 	<result name="clothes_*_success">/jsp/stock/order2001.jsp</result>
+		 </action>
+		
 	</package>
 	
 	
