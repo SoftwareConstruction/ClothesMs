@@ -76,6 +76,12 @@ public class OrderInDetailAction extends ActionSupport {
 		actionAction.put("error", error);
 		return "orderInDetail_delete_FALSE";
 	}
+	
+	public String list(){
+		
+		
+		return null;
+	}
 
 	public String getDocuNum() {
 		return docuNum;

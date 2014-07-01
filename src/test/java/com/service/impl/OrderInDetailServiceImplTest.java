@@ -62,4 +62,8 @@ public class OrderInDetailServiceImplTest {
 		List<OrderInDetail> result = orderInDetailServiceImpl.findOrderDerailByOrderDocuNum("docu");
 		assertThat(result.size(),is(1));
 	}
+	@Test
+	public void list(){
+		
+	}
 }

@@ -43,7 +43,6 @@ public class OrderOutDAOImplTest {
 		orderOut.setDocu_number("docu2");
 		orderOut.setFlag(1);
 		orderOut.setSend("以纯制衣厂");
-		orderOut.setNumber(999999);
 		
 		Admin manager = new Admin();
 		manager.setId(1);

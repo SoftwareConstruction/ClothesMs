@@ -120,7 +120,7 @@ public class OrderInAction extends ActionSupport{
 	public String list(){
 		List<OrderIn> orderIn_list = orderInServiceImpl.findAllByPaging(0, 15);
 		if(orderIn_list.size() == 0){
-			return "orderIn_list_SUCCESS";
+			return "orderIn_list_ERROR";
 		}
 		ActionContext actionContext = ActionContext.getContext();
 		actionContext.put("orderIn_list", orderIn_list);

@@ -37,7 +37,6 @@ public class OrderOutServiceImplTest {
 		orderOut = new OrderOut();
 		orderOut.setDocu_number("docunum1");
 		orderOut.setFlag(1);
-		orderOut.setNumber(100);
 		orderOut.setSend("中国");
 		
 		Admin admin = new Admin();
