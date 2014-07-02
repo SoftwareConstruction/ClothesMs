@@ -82,6 +82,21 @@
 		   <result name="orderIn_add_ERROR">/jsp/superAdmin/result/superAdmin_login_error.jsp</result>
 		 </action>
 		 
+		 <!-- 库存管理-出库 -->
+		 <action name="orderOut_*" class="com.action.OrderOutAction" method="{1}">
+		   <result name="orderOut_list_SUCCESS">/jsp/stock/order3001.jsp</result>
+		   <result name="orderOut_list_ERROR">/jsp/superAdmin/result/superAdmin_login_error.jsp</result>
+
+		   <result name="orderOut_delete_SUCCESS">/jsp/stock/order3001.jsp</result>
+		   <result name="orderOut_delete_ERROR">/jsp/superAdmin/result/superAdmin_login_error.jsp</result>
+
+		   <result name="orderOut_update_SUCCESS">/jsp/stock/order3001.jsp</result>
+		   <result name="orderOut_update_ERROR">/jsp/superAdmin/result/superAdmin_login_error.jsp</result>
+
+		   <result name="orderOut_add_SUCCESS">/jsp/stock/order3001.jsp</result>
+		   <result name="orderOut_add_ERROR">/jsp/superAdmin/result/superAdmin_login_error.jsp</result>
+		 </action>
+		 
 
 	</package>
 

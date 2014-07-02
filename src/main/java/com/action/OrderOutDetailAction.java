@@ -34,9 +34,6 @@ public class OrderOutDetailAction {
 	public String account;
 	public int orderId;
 	
-	private ActionContext actionContext = ActionContext.getContext();
-	
-	
 	public String save(){
 		OrderOutDetail orderOutDetail = new OrderOutDetail();
 		
@@ -59,6 +56,7 @@ public class OrderOutDetailAction {
 	}
 	
 	public String delete(){
+		ActionContext actionContext = ActionContext.getContext();
 		OrderOutDetail orderOutDetail = new OrderOutDetail();
 		orderOutDetail.setId(orderOutDetailId);
 		
@@ -80,6 +78,7 @@ public class OrderOutDetailAction {
 	
 	
 	public String list(){
+		ActionContext actionContext = ActionContext.getContext();
 		List<OrderOutDetail> orderDetail_list = orderOutDetailServiceImpl.findByOrderId(orderId); 
 		if(orderDetail_list.size() == 0){
 			return "orderOutDetail_list_ERROR";

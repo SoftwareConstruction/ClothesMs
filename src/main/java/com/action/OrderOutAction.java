@@ -36,9 +36,8 @@ public class OrderOutAction {
 	public String orderId;
 	public Admin manager;
 
-	private ActionContext actionContext =  ActionContext.getContext();
-	
 	public String save() {
+		ActionContext actionContext = ActionContext.getContext();
 		OrderOut orderOut = new OrderOut();
 		orderOut.setFlag(1);
 		
@@ -53,6 +52,7 @@ public class OrderOutAction {
 	}
 	
 	public String delete(){
+		ActionContext actionContext = ActionContext.getContext();
 		OrderOut orderOut = new OrderOut();
 		orderOut.setOrderId(Integer.parseInt(orderId));
 		
@@ -65,6 +65,7 @@ public class OrderOutAction {
 	}
 	
 	public String update(){
+		ActionContext actionContext = ActionContext.getContext();
 		OrderOut orderOut  = new OrderOut();
 		orderOut.setFlag(1);
 		
@@ -94,12 +95,18 @@ public class OrderOutAction {
 	}
 	
 	public String list(){
-		List<OrderOut> list = orderOutServiceImpl.findByAllPaging(0, 15);
-		if(list.size() == 0){
+		ActionContext actionContext = ActionContext.getContext();
+		List<OrderOut> orderOuts = orderOutServiceImpl.findByAllPaging(0, 15);
+		
+		if (orderOuts.size() > 0) {
+			System.out.println("查询成功！");
+			actionContext.put("orderOuts", orderOuts);
+			return "orderOut_list_SUCCESS";
+		} else {
+			System.out.println("查询失败！");
 			return "orderOut_list_ERROR";
 		}
-		actionContext.put("orderOut_list", list);
-		return "orderOut_list_SUCCESS";
+		
 	}
 	
 

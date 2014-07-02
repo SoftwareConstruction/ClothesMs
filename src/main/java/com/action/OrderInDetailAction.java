@@ -34,9 +34,8 @@ public class OrderInDetailAction extends ActionSupport {
 	public int orderInId;
 	private int orderInDetailId;
 	
-	private ActionContext actionAction = ActionContext.getContext();
-
 	public String save(){
+		ActionContext actionContext = ActionContext.getContext();
 		OrderInDetail orderInDetail = new OrderInDetail();
 		
 		Clothes clothes = new Clothes();
@@ -52,11 +51,12 @@ public class OrderInDetailAction extends ActionSupport {
 		if(error == null){
 			return "orderInDetail_save_SUCCESS";
 		}
-		actionAction.put("error", error);
+		actionContext.put("error", error);
 		return "orderInDetail_save_ERROR";	
 	}
 	
 	public String delete(){
+		ActionContext actionContext = ActionContext.getContext();
 		OrderInDetail orderInDetail = new OrderInDetail();
 		orderInDetail.setId(orderInDetailId);
 		
@@ -74,18 +74,19 @@ public class OrderInDetailAction extends ActionSupport {
 			return "orderInDetail_delete_SUCCESS";
 		}
 		
-		actionAction.put("error", error);
+		actionContext.put("error", error);
 		return "orderInDetail_delete_FALSE";
 	}
 	/**
 	 * 查询一个orderIn的所有明细入库单
 	 */
 	public String list(){
+		ActionContext actionContext = ActionContext.getContext();
 		List<OrderInDetail> list = orderInDetailServiceImpl.findOrderDerailByOrderDocuNum(docuNum);
 		if(list.size() == 0){
 			return "orderInDeatil_list_ERROR";
 		}else{
-			actionAction.put("orderInDetail_list", list);
+			actionContext.put("orderInDetail_list", list);
 			return "orderInDeatil_list_SUCCESS";
 		}
 		

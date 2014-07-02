@@ -22,7 +22,6 @@ public class AdminAction extends ActionSupport {
 	public User user;
 	public Admin admin;
 	
-	private ActionContext actionContext = ActionContext.getContext();
 	public String newPassword;
 	
 	
@@ -44,6 +43,7 @@ public class AdminAction extends ActionSupport {
 	
 	//管理员修改密码
 	public String changePassword(){
+		ActionContext actionContext = ActionContext.getContext();
 		Admin admin = (Admin) actionContext.get("LoginAdmin");
 		String error = adminService.changePassword(newPassword, admin.getId());
 		if(error == null){

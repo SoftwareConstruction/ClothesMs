@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -11,7 +12,7 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>My JSP 'index.jsp' starting page</title>
+<title>点击出库管理显示的页面</title>
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">
@@ -62,19 +63,18 @@ function setValue()
 {
 	document.all.sccj.value="海大有限公司";
 }
--->
 </SCRIPT>
 
 <BODY BACKGROUND="image/bg.gif">
-	<FORM NAME="idFrmMain" ID="idmig0101" METHOD="POST" ACTION=""
-		ONSUBMIT="return false">
+	<s:form action="orderOut_list" theme="simple" method="post">
 		<input type="hidden" id="slide_img">
 		<table border=0 cellspacing=0 cellpadding=2 width="100%"
 			bgcolor="gray">
 			<tr>
 				<td class="headerbar61">出库单查询</td>
-				<td class="headerbar61"><p align="right">
-						<input type=submit value=" 查 询 " onClick="JavaScript:goSearch();">
+				<td class="headerbar61">
+					<p align="right">
+						<s:submit value="查询"></s:submit>
 					</p>
 				</td>
 			</tr>
@@ -91,7 +91,7 @@ function setValue()
 			bgcolor="gray">
 			<tr>
 				<td class="textbar81" width="15%">所出仓库</td>
-				<td class="textbar01" width="35%"><select name="storeRoom"
+				<td class="textbar01" width="35%"><select 
 					style="width:152px">
 						<option value="">------</option>
 						<option value="1">一号仓库</option>
@@ -101,20 +101,18 @@ function setValue()
 				</select></td>
 				<td class="textbar81" width="15%">单据编号</td>
 				<td class="textbar01" width="35%"><input type="text"
-					name="number" style="width:152px"></td>
+					 style="width:152px"></td>
 
 			</tr>
 
 			<tr>
 				<td class="textbar81" width="15%">出库日期</td>
 				<td class="textbar01" width="35%" colspan="3"><input
-					type="text" name="frmWRPT_OPT_DATE2_PJT70302"
-					id="frmWRPT_OPT_DATE2_PJT70302" value="2007-06-21"
+					type="text"  value="2007-06-21"
 					readonly="readonly" size="12"> <input type="image"
 					src="image/calendar.gif" width="18" height="17"
 					onClick="CalendarWebControl.show(forms[0].frmWRPT_OPT_DATE2_PJT70302,'',forms[0].frmWRPT_OPT_DATE2_PJT70302);"
 					title="显示日历" /> ~ <input type="text"
-					name="frmWRPT_OPT_DATE3_PJT70302" id="frmWRPT_OPT_DATE3_PJT70302"
 					value="2007-06-26" readonly="readonly" size="12"> <input
 					type="image" src="image/calendar.gif" width="18" height="17"
 					onClick="CalendarWebControl.show(forms[0].frmWRPT_OPT_DATE3_PJT70302,'',forms[0].frmWRPT_OPT_DATE3_PJT70302);"
@@ -153,32 +151,30 @@ function setValue()
 							<td width="25%" class="headerbar82">发往地址</td>
 							<td class="headerbar82">操作</td>
 						</tr>
+						<s:iterator value="#request.orderOuts" status="orderOuts">
 						<tr>
-							<td class="gridbar11" align="center">1</td>
-							<td class="gridbar11" align="center"><a href="jsp/stock/order2002.jsp">RC071105CEN0052</a>
+							<td class="gridbar11" align="center">${orderOuts.count}</td>
+							<td class="gridbar11" align="center"><s:property value="docu_number"/>
 							</td>
-							<td class="gridbar11" align="center">一号仓库</td>
-							<td class="gridbar11" align="center">2007-11-05</td>
-							<td class="gridbar11" align="left">张三</td>
-							<td class="gridbar11" align="left">第一分公司</td>
-							<td class="gridbar11" align="center"><a href="#"><img
-									src="image/del.gif" align="bottom" border="0" alt="作废"
-									onClick="javascript:del('673467')" />
-							</a></td>
-						</tr>
-						<tr>
-							<td class="gridbar01" align="center">2</td>
-							<td class="gridbar01" align="center"><a href="jsp/stock/order2002.jsp">RC071105CEN0053</a>
+							<td class="gridbar11" align="center"><s:property value="wareHouse.name"/></td>
+							<td class="gridbar11" align="center"><s:property value="out_time"/></td>
+							<td class="gridbar11" align="left"><s:property value="manager.name"/></td>
+							<td class="gridbar11" align="left"><s:property value="send"/></td>
+							<td class="gridbar11" align="center">
+							<a href="jsp/stock/orderIn_update_input.jsp?orderId=${orderId}
+								&docu_number=${docu_number}&wareHouseName=${wareHouse.name}
+								&in_time=${in_time}&managerName=${manager.name}
+								&source=${source}
+								&remark=${remark}&flag=${flag}">
+									<img src="image/edit.gif" align="bottom" border="0" alt="编辑" /> 
+								</a>
+								&nbsp;&nbsp;
+								<a href="orderIn_delete?id=${orderId}" onclick="del()">
+									<img src="image/del.gif" align="bottom" border="0" alt="删除" />
+								</a>
 							</td>
-							<td class="gridbar01" align="center">二号仓库</td>
-							<td class="gridbar01" align="center">2007-11-05</td>
-							<td class="gridbar01" align="left">李四</td>
-							<td class="gridbar01" align="left">第一分公司</td>
-							<td class="gridbar01" align="center"><a href="#"><img
-									src="image/del.gif" align="bottom" border="0" alt="作废"
-									onClick="javascript:del('673467')" />
-							</a></td>
 						</tr>
+						</s:iterator>
 					</table></td>
 			</tr>
 		</table>
@@ -193,6 +189,6 @@ function setValue()
 					<a style="cursor:hand" href="#">尾页</a>&nbsp;&nbsp; &nbsp;&nbsp;</td>
 			</tr>
 		</table>
-	</FORM>
+	</s:form>
 </BODY>
 </html>
