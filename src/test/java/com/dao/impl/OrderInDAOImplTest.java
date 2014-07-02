@@ -96,7 +96,8 @@ public class OrderInDAOImplTest {
 	@Test
 	public void findAllByPaging(){
 		List<OrderIn> result = orderInDAOImpl.findAllByPaging(0,5);
-		assertThat(result.size(),is(5));
+		System.out.println(result.get(0).getManager().getName());
+		assertThat(result.size(),is(1));
 	}
 	
 	@Test

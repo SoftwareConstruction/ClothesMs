@@ -96,7 +96,7 @@ function setValue1(){
 			<tr>
 				<td class="textbar81" width="15%">单据号</td>
 				<td class="textbar01" width="35%"> <input type="text"
-					value="<s:property value="docu_number"/>" readonly size="20"> 
+					value="<%=request.getParameter("orderId") %>" readonly size="20"> 
 					<%-- <s:textfield name="docu_number" size="20"></s:textfield> --%>
 				</td>
 				<td class="textbar81" width="15%">入库日期</td>

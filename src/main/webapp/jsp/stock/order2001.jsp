@@ -163,14 +163,14 @@ function del()
 						<s:iterator value="#request.orderIn_list" status="orderIn_list">
 						<tr>
 							<td class="gridbar11" align="center">${orderIn_list.count}</td>
-							<td class="gridbar11" align="center"><s:property value="docuNum"/>
+							<td class="gridbar11" align="center"><s:property value="docu_number"/>
 							</td>
-							<td class="gridbar11" align="center"><s:property value="wareHouse_name"/></td>
-							<td class="gridbar11" align="center"><s:property value="dateStr"/></td>
-							<td class="gridbar11" align="left">${orderIn_list.manager.name}</td>
+							<td class="gridbar11" align="center"><s:property value="wareHouse.name"/></td>
+							<td class="gridbar11" align="center"><s:property value="in_time"/></td>
+							<td class="gridbar11" align="left"><s:property value="manager.name"/></td>
 							<td class="gridbar11" align="left"><s:property value="source"/></td>
 							<td class="gridbar11" align="center">
-								<a href="jsp/stock/order2002.jsp?id=${id}&docuNum=${docuNum}&color=${color}&size=${size}&commodity_name=${commodity_name}&ex_factory_price=${ex_factory_price}&retail_price=${retail_price}&out_material=${out_material}&in_material=${in_material}&flag=${flag}">
+								<a href="jsp/stock/orderIn_update_input.jsp?orderId=${orderId}&docu_number=${docu_number} />">
 									<img src="image/edit.gif" align="bottom" border="0" alt="编辑" /> 
 								</a>
 								&nbsp;&nbsp;
