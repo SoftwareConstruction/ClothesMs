@@ -134,7 +134,9 @@ public class OrderInAction extends ActionSupport{
 		if(orderIn_list.size() == 0){
 			return "orderIn_list_ERROR";
 		}
-		actionContext.put("orderIn_list", orderIn_list);
+		System.out.println(orderIn_list.size());
+		System.out.println(orderIn_list.get(0).getDocu_number());
+		actionContext.put("list", orderIn_list);
 		return "orderIn_list_SUCCESS";
 	}
 

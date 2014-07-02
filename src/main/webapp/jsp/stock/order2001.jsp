@@ -160,11 +160,12 @@ function del()
 							<td    width="25%" class="headerbar82">来源</td>
 							<td  class="headerbar82">操作</td>			
 						</tr>
-						<s:iterator value="#request.orderIn_list" status="orderIn_list">
+						<s:iterator value="#request.list" status="t">
 						<tr>
-							<td class="gridbar11" align="center">${orderIn_list.count}</td>
+							<td class="gridbar11" align="center">${list.count}</td>
 							<td class="gridbar11" align="center"><s:property value="docu_number"/>
 							</td>
+							
 							<td class="gridbar11" align="center"><s:property value="wareHouse.name"/></td>
 							<td class="gridbar11" align="center"><s:property value="in_time"/></td>
 							<td class="gridbar11" align="left"><s:property value="manager.name"/></td>
@@ -185,6 +186,7 @@ function del()
 						</tr>
 						</s:iterator>
 					</table>
+					
 				</td>
 			</tr>
 		</table>
@@ -197,6 +199,7 @@ function del()
 					href="#">上一页</a>&nbsp;&nbsp; <a style="cursor:hand" href="#">下一页</a>&nbsp;&nbsp;
 					<a style="cursor:hand" href="#">尾页</a>&nbsp;&nbsp;</td>
 			</tr>
+			
 		</table>
 	</s:form>
 </BODY>
