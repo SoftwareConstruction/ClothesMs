@@ -162,9 +162,9 @@ function del()
 							<td    width="25%" class="headerbar82">来源</td>
 							<td  class="headerbar82">操作</td>			
 						</tr>
-						<s:iterator value="#request.list" status="t">
+						<s:iterator value="#request.orderIn_list" status="orderIn_list">
 						<tr>
-							<td class="gridbar11" align="center">${list.count}</td>
+							<td class="gridbar11" align="center">${orderIn_list.count}</td>
 							<td class="gridbar11" align="center"><s:property value="docu_number"/>
 							</td>
 							

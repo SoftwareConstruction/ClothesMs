@@ -38,8 +38,6 @@ public class OrderInAction extends ActionSupport{
 	public String dateStr ;
 	public String id;
 	
-	ActionContext actionContext = ActionContext.getContext();
-	
 	public String add(){
 		System.out.println("add:"+ dateStr);
 		System.out.println("add:"+ wareHouse_name);
@@ -48,7 +46,7 @@ public class OrderInAction extends ActionSupport{
 		//转化为Date型
 		StringToDateUtil util = new StringToDateUtil();
 		Date time = util.toDate(dateStr);
-		
+		ActionContext actionContext = ActionContext.getContext();
 		
 		//取得seesion，并把里面的管理员取出
 		Admin manager = (Admin) actionContext.getSession().get("LoginAdmin");
@@ -117,26 +115,29 @@ public class OrderInAction extends ActionSupport{
 	public String delete(){
 		OrderIn orderIn = new OrderIn();
 		orderIn.setOrderId(Integer.parseInt(id));
-		
-		Admin manager = (Admin) actionContext.get("LoginAdmin");
+		ActionContext actionContext = ActionContext.getContext();
+		Admin manager = (Admin) actionContext.getSession().get("LoginAdmin");
 		orderIn.setManager(manager);
+		System.out.println(">>>>>>>>>name:"+manager.getName());
 		String error = orderInServiceImpl.delete(orderIn);
 		if(error == null){
 			return list();
 		}
 		
 		actionContext.put("error", error);
+		System.out.println("error:"+error);
 		return "orderIn_update_ERROR";
 	}
 	
 	public String list(){
+		ActionContext actionContext = ActionContext.getContext();
 		List<OrderIn> orderIn_list = orderInServiceImpl.findAllByPaging(0, 15);
 		if(orderIn_list.size() == 0){
 			return "orderIn_list_ERROR";
 		}
-		System.out.println(orderIn_list.size());
+		System.out.println(" 长度:"+orderIn_list.size());
 		System.out.println(orderIn_list.get(0).getDocu_number());
-		actionContext.put("list", orderIn_list);
+		actionContext.put("orderIn_list", orderIn_list);
 		return "orderIn_list_SUCCESS";
 	}
 

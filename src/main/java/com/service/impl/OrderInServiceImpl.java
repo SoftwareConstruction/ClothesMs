@@ -134,6 +134,7 @@ public class OrderInServiceImpl implements OrderInService{
 		if(orderIn_queried == null){
 			return OrderInServiceMessage.no_this_orderIn; 
 		}
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>"+orderIn.getManager().getId());
 		
 		orderIn_queried.setFlag(0);
 		orderInDAOImpl.updateFlag(orderIn_queried);
