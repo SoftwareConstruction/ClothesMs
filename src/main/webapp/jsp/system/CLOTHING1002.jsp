@@ -18,7 +18,7 @@
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
-<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=gb2312">
+<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=utf-8">
 <META HTTP-EQUIV="content-script-type" CONTENT="text/JavaScript">
 <META HTTP-EQUIV="content-style-type" CONTENT="text/css">
 <title>品牌修改</title>

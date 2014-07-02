@@ -49,6 +49,7 @@ public class AdminAction extends ActionSupport {
 		if(error == null){
 			return "admin_changePassowrd_SUCCESS";
 		}
+		actionContext.put("error", error);
 		return "admin_changePassowrd_ERROR";
 	}
 

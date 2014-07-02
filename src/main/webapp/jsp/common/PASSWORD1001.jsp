@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -12,7 +13,7 @@
 <base href="<%=basePath%>">
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>在线通知</title>
+<title>修改密码页面</title>
 <link rel="stylesheet" href="css/cjpm.css">
 <script type="text/javascript" src="js/page.js"></script>
 <script type="text/javascript" src="js/msn_message.js"></script>
@@ -26,15 +27,14 @@ body {
 </head>
 
 <BODY BACKGROUND="image/bg.gif">
-
-	<FORM NAME="BSDTERM001" ID="BSDTERM001" METHOD="POST" ACTION=""
-		ONSUBMIT="return false">
+	<s:form action="admin_changePassword" theme="simple" method="post">
 		<table border=0 cellspacing=0 cellpadding=2 width="100%"
 			bgcolor="gray">
 			<tr>
 				<td class="headerbar61">修改密码</td>
-				<td class="headerbar61"><p align="right">
-						<input type=submit value=" 保 存 " onClick="JavaScript:save();">
+				<td class="headerbar61">
+					<p align="right">
+						<s:submit value="保存"></s:submit>
 					</p>
 				</td>
 			</tr>
@@ -48,24 +48,24 @@ body {
 			bgcolor="gray">
 			<tr>
 				<td class="textbar81" width="15%">旧密码</td>
-				<td class="textbar01" width="85%"><input type="password"
-					name="keyword0" size="30">
+				<td class="textbar01" width="85%">
+					<s:textfield ></s:textfield>
 				</td>
 			</tr>
 			<tr>
 				<td class="textbar81" width="15%">新密码</td>
-				<td class="textbar01" width="85%"><input type="password"
-					name="keyword1" size="30">
+				<td class="textbar01" width="85%">
+					<s:textfield name="newPassword"></s:textfield>
 				</td>
 			</tr>
 			<tr>
 				<td class="textbar81" width="15%">确认密码</td>
-				<td class="textbar01" width="85%"><input type="password"
-					name="keyword2" size="30">
+				<td class="textbar01" width="85%">
+					<s:textfield name="newPassword"></s:textfield>
 				</td>
 			</tr>
 		</table>
 
-	</FORM>
+	</s:form>
 </body>
 </html>
