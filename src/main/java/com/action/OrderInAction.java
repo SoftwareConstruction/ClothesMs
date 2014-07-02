@@ -38,6 +38,7 @@ public class OrderInAction extends ActionSupport{
 	public String dateStr ;
 	public String id;
 	
+	ActionContext actionContext = ActionContext.getContext();
 	
 	public String add(){
 		System.out.println("add:"+ dateStr);
@@ -50,7 +51,6 @@ public class OrderInAction extends ActionSupport{
 		
 		
 		//取得seesion，并把里面的管理员取出
-		ActionContext actionContext = ActionContext.getContext();
 		Admin manager = (Admin) actionContext.getSession().get("LoginAdmin");
 		
 		WareHouse wareHouse = new WareHouse();
@@ -109,8 +109,7 @@ public class OrderInAction extends ActionSupport{
 		if(error==null){
 			return list();
 		}
-		ActionContext actionAction = ActionContext.getContext();
-		actionAction.put("error", error);
+		actionContext.put("error", error);
 		return "orderIn_update_ERROR";
 	}
 	
@@ -119,12 +118,14 @@ public class OrderInAction extends ActionSupport{
 		OrderIn orderIn = new OrderIn();
 		orderIn.setOrderId(Integer.parseInt(id));
 		
+		Admin manager = (Admin) actionContext.get("LoginAdmin");
+		orderIn.setManager(manager);
 		String error = orderInServiceImpl.delete(orderIn);
 		if(error == null){
 			return list();
 		}
-		ActionContext actionAction = ActionContext.getContext();
-		actionAction.put("error", error);
+		
+		actionContext.put("error", error);
 		return "orderIn_update_ERROR";
 	}
 	
@@ -133,7 +134,6 @@ public class OrderInAction extends ActionSupport{
 		if(orderIn_list.size() == 0){
 			return "orderIn_list_ERROR";
 		}
-		ActionContext actionContext = ActionContext.getContext();
 		actionContext.put("orderIn_list", orderIn_list);
 		return "orderIn_list_SUCCESS";
 	}
