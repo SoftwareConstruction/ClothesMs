@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50535
 File Encoding         : 65001
 
-Date: 2014-07-02 09:37:46
+Date: 2014-07-02 10:43:10
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -141,7 +141,7 @@ INSERT INTO `t_log` VALUES ('25', '成功删除仓库>>>>>>>>>', '2014-07-01 17:
 DROP TABLE IF EXISTS `t_orderin`;
 CREATE TABLE `t_orderin` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `docu_number` char(25) NOT NULL,
+  `docu_number` varchar(100) NOT NULL,
   `warehouseId` int(11) NOT NULL,
   `in_time` date NOT NULL,
   `manager` int(11) NOT NULL,
@@ -188,7 +188,7 @@ INSERT INTO `t_orderin_detail` VALUES ('2', '8', '1000', '1');
 DROP TABLE IF EXISTS `t_orderout`;
 CREATE TABLE `t_orderout` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `docu_number` char(15) NOT NULL,
+  `docu_number` char(100) NOT NULL,
   `warehouseId` int(11) NOT NULL,
   `out_time` date NOT NULL,
   `manager` int(11) NOT NULL,
