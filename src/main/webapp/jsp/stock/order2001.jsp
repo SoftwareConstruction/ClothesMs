@@ -76,7 +76,7 @@ function del()
 			<tr>
 				<td class="headerbar61">入库单查询</td>
 				<td class="headerbar61"><p align="right">
-					<s:submit value="查询list"></s:submit>
+					<s:submit value="查询"></s:submit>
 				</td>
 			</tr>
 		</table>
