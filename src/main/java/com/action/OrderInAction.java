@@ -40,6 +40,10 @@ public class OrderInAction extends ActionSupport{
 	
 	
 	public String add(){
+		System.out.println("add:"+ dateStr);
+		System.out.println("add:"+ wareHouse_name);
+		System.out.println("add:"+ source);
+		System.out.println("add:"+ remark);
 		//转化为Date型
 		StringToDateUtil util = new StringToDateUtil();
 		Date time = util.toDate(dateStr);
@@ -62,7 +66,7 @@ public class OrderInAction extends ActionSupport{
 		
 		String error = orderInServiceImpl.save(orderIn);
 		if(error == null){
-			return "orderIn_add_SUCCESS";
+			return list();
 		}else{
 			ActionContext actionAction = ActionContext.getContext();
 			actionAction.put("error", error);
@@ -73,6 +77,12 @@ public class OrderInAction extends ActionSupport{
 	
 	
 	public String update(){
+		System.out.println("orderIn:" + docuNum);
+		System.out.println("orderIn:" + remark);
+		System.out.println("orderIn:" + wareHouse_name);
+		System.out.println("orderIn:" + source);
+		System.out.println("orderIn:" + dateStr);
+		System.out.println("orderIn:" + id);
 		//取得seesion，并把里面的管理员取出
 		ActionContext actionContext = ActionContext.getContext();
 		Admin manager = (Admin)actionContext.getSession().get("LoginAdmin");
@@ -95,8 +105,9 @@ public class OrderInAction extends ActionSupport{
 		orderIn.setWareHouse(wareHouse);
 		
 		String error = orderInServiceImpl.update(orderIn);
+		System.out.println("更新错误信息：" + error);
 		if(error==null){
-			return "orderIn_update_SUCCESS";
+			return list();
 		}
 		ActionContext actionAction = ActionContext.getContext();
 		actionAction.put("error", error);
@@ -110,7 +121,7 @@ public class OrderInAction extends ActionSupport{
 		
 		String error = orderInServiceImpl.delete(orderIn);
 		if(error == null){
-			return "orderIn_update_SUCCESS";
+			return list();
 		}
 		ActionContext actionAction = ActionContext.getContext();
 		actionAction.put("error", error);

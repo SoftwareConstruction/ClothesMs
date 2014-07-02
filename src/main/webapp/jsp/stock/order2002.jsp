@@ -21,7 +21,7 @@
 <META HTTP-EQUIV="content-type" CONTENT="text/html; charset=GB2312">
 <META HTTP-EQUIV="content-script-type" CONTENT="text/JavaScript">
 <META HTTP-EQUIV="content-style-type" CONTENT="text/css">
-<title>采购入库单详细</title>
+<title>新建 入库单</title>
 <link rel="stylesheet" href="css/cjpm.css">
 <script type="text/javascript" src="js/page.js"></script>
 <script type="text/javascript" src="js/cjcalendar.js"></script>
@@ -72,18 +72,16 @@ function setValue1(){
 </SCRIPT>
 
 <BODY BACKGROUND="image/bg.gif">
-	<FORM NAME="mig0101" ID="idmig0101" METHOD="POST" ACTION="orderIn_add"
-		ONSUBMIT="return false">
+	<s:form action="orderIn_add" theme="simple" method="post">
 
 		<table border=0 cellspacing=0 cellpadding=2 width="100%"
 			bgcolor="gray">
 			<tr>
 				<td class="headerbar61">入库单详细</td>
 				<td class="headerbar61"><p align="right">
-						<input type="button" value="确认"> <input type=button
-							value=" 保 存 " onClick="JavaScript:history.save();"> <input
-							type=button value=" 返 回 " onClick="JavaScript:history.back();">
-					</p></td>
+					<s:submit value="保存"></s:submit>
+					<input type=button value=" 返 回 " onClick="JavaScript:history.back();">
+				</td>
 			</tr>
 		</table>
 		<table border=0 cellspacing=0 cellpadding=2 width="100%" height="5">
@@ -95,39 +93,28 @@ function setValue1(){
 			bgcolor="gray">
 			<tr>
 				<td class="textbar81" width="15%">单据号</td>
-				<td class="textbar01" width="35%"> <input type="text"
-					value="<s:property value="docu_number"/>" readonly size="20"> 
-					<%-- <s:textfield name="docu_number" size="20"></s:textfield> --%>
+				<td class="textbar01" width="35%"> 
+				<s:textfield value="自动编号" readonly="readonly"></s:textfield>
 				</td>
 				<td class="textbar81" width="15%">入库日期</td>
-				<td class="textbar01" width="35%"><input type="text"
-					name="frmWRPT_OPT_DATE2_PJT70302" id="frmWRPT_OPT_DATE2_PJT70302"
-					value="2007-06-21" readonly="readonly" size="12"> <img
-					src="image/calendar.gif" width="18" height="17"
-					onClick="CalendarWebControl.show(forms[0].frmWRPT_OPT_DATE2_PJT70302,'',forms[0].frmWRPT_OPT_DATE2_PJT70302);"
-					title="显示日历" />
+				<td class="textbar01" width="35%">
+				<s:textfield name="dateStr"></s:textfield>
 				</td>
 			</tr>
 			<tr>
 				<td class="textbar81" width="15%">所入仓库</td>
-				<td class="textbar01" width="35%"><select name="storeRoom"
-					style="width:152px">
-						<option value="">------</option>
-						<option value="1">一号仓库</option>
-						<option value="2">二号仓库</option>
-						<option value="3">三号仓库</option>
-						<option value="4">四号仓库</option>
-				</select>
+				<td class="textbar01" width="35%">
+				<s:textfield name="wareHouse_name"></s:textfield>
 				</td>
 				<td class="textbar81" width="15%">来源</td>
-				<td class="textbar01" width="35%"><input type="text"
-					name="source" size="20" value="${source}">
+				<td class="textbar01" width="35%">
+				<s:textfield name="source"></s:textfield>
 				</td>
 			</tr>
 			<tr>
 				<td class="textbar81" width="15%">备注</td>
-				<td class="textbar01" width="85%" colspan="3"><textarea
-						name="remark" cols="80" rows="4"></textarea>
+				<td class="textbar01" width="85%" colspan="3">
+				<s:textfield name="remark"></s:textfield>
 				</td>
 			</tr>
 
@@ -189,6 +176,6 @@ function setValue1(){
 		</table>
 
 
-	</FORM>
+	</s:form>
 </BODY>
 </html>
