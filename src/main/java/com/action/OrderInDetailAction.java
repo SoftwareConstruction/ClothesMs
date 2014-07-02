@@ -3,6 +3,8 @@
  */
 package com.action;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.context.annotation.Scope;
@@ -32,7 +34,7 @@ public class OrderInDetailAction extends ActionSupport {
 	public int orderInId;
 	private int orderInDetailId;
 	
-	
+	private ActionContext actionAction = ActionContext.getContext();
 
 	public String save(){
 		OrderInDetail orderInDetail = new OrderInDetail();
@@ -50,7 +52,6 @@ public class OrderInDetailAction extends ActionSupport {
 		if(error == null){
 			return "orderInDetail_save_SUCCESS";
 		}
-		ActionContext actionAction = ActionContext.getContext();
 		actionAction.put("error", error);
 		return "orderInDetail_save_ERROR";	
 	}
@@ -72,15 +73,22 @@ public class OrderInDetailAction extends ActionSupport {
 		if(error == null){
 			return "orderInDetail_delete_SUCCESS";
 		}
-		ActionContext actionAction = ActionContext.getContext();
+		
 		actionAction.put("error", error);
 		return "orderInDetail_delete_FALSE";
 	}
-	
+	/**
+	 * 查询一个orderIn的所有明细入库单
+	 */
 	public String list(){
+		List<OrderInDetail> list = orderInDetailServiceImpl.findOrderDerailByOrderDocuNum(docuNum);
+		if(list.size() == 0){
+			return "orderInDeatil_list_ERROR";
+		}else{
+			actionAction.put("orderInDetail_list", list);
+			return "orderInDeatil_list_SUCCESS";
+		}
 		
-		
-		return null;
 	}
 
 	public String getDocuNum() {

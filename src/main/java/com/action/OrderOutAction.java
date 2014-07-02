@@ -4,6 +4,7 @@
 package com.action;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import com.entity.Admin;
 import com.entity.OrderOut;
+import com.entity.WareHouse;
 import com.opensymphony.xwork2.ActionContext;
 import com.service.OrderOutService;
 import com.util.StringToDateUtil;
@@ -34,11 +36,12 @@ public class OrderOutAction {
 	public String orderId;
 	public Admin manager;
 
+	private ActionContext actionContext =  ActionContext.getContext();
+	
 	public String save() {
 		OrderOut orderOut = new OrderOut();
 		orderOut.setFlag(1);
 		
-		ActionContext actionContext =  ActionContext.getContext();
 		manager = (Admin) actionContext.get("LoginAdmin");
 		orderOut.setManager(manager);
 		String error = orderOutServiceImpl.save(orderOut);
@@ -57,7 +60,6 @@ public class OrderOutAction {
 		if(error == null){
 			return "orderOut_delete_SUCCESS";
 		}
-		ActionContext actionContext = ActionContext.getContext();
 		actionContext.put("error", error);
 		return "orderOut_delete_ERROR";
 	}
@@ -66,7 +68,7 @@ public class OrderOutAction {
 		OrderOut orderOut  = new OrderOut();
 		orderOut.setFlag(1);
 		
-		ActionContext actionContext =  ActionContext.getContext();
+		
 		manager = (Admin) actionContext.get("LoginAdmin");
 		orderOut.setManager(manager);
 		orderOut.setOrderId(Integer.parseInt(orderId));
@@ -75,15 +77,30 @@ public class OrderOutAction {
 		Date out_time = util.toDate(dateStr);
 		
 		orderOut.setOut_time(out_time);
+		orderOut.setFlag(1);
+		orderOut.setSend(send);
 		
+		WareHouse wareHouse = new WareHouse();
+		wareHouse.setName(wareHouseName);
+		orderOut.setWareHouse(wareHouse);
 		
+		String error = orderOutServiceImpl.update(orderOut);
 		
-		
-		
-		return dateStr;
-		
+		if(error == null){
+			return "orderOut_update_SUCCESS";
+		}
+		actionContext.put("error", error);
+		return "orderOut_update_ERROR";
 	}
 	
+	public String list(){
+		List<OrderOut> list = orderOutServiceImpl.findByAllPaging(0, 15);
+		if(list.size() == 0){
+			return "orderOut_list_ERROR";
+		}
+		actionContext.put("orderOut_list", list);
+		return "orderOut_list_SUCCESS";
+	}
 	
 
 	public String getWareHouseName() {

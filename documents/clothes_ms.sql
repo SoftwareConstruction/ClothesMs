@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50535
 File Encoding         : 65001
 
-Date: 2014-06-27 19:32:43
+Date: 2014-07-02 09:37:46
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -80,7 +80,7 @@ CREATE TABLE `t_clothes` (
 -- ----------------------------
 -- Records of t_clothes
 -- ----------------------------
-INSERT INTO `t_clothes` VALUES ('2', 'docu2', 'color2', '150', 'commodiry2', '200', '1', '500', 'out_mater2', 'in_mart2', '1');
+INSERT INTO `t_clothes` VALUES ('2', 'docu2', '深蓝色', '150', '中款大衣', '100000', '1', '800', '棉布', '塑料', '100');
 INSERT INTO `t_clothes` VALUES ('3', 'docu3', 'color3', '150', 'commodiry3', '200', '1', '500', 'out_mater3', 'in_mart3', '1');
 INSERT INTO `t_clothes` VALUES ('4', 'docu4', 'color4', '150', 'commodiry4', '200', '1', '500', 'out_mater4', 'in_mart4', '1');
 INSERT INTO `t_clothes` VALUES ('5', 'docu5', 'color5', '150', 'commodiry5', '200', '1', '500', 'out_mater5', 'in_mart5', '1');
@@ -113,7 +113,7 @@ CREATE TABLE `t_log` (
   PRIMARY KEY (`Id`),
   KEY `fk_T_log_T_admin_1` (`adminId`),
   CONSTRAINT `fk_T_log_T_admin_1` FOREIGN KEY (`adminId`) REFERENCES `t_admin` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_log
@@ -130,6 +130,10 @@ INSERT INTO `t_log` VALUES ('17', '成功删除货号>>>>>>>>>BR1703', '2014-06-
 INSERT INTO `t_log` VALUES ('18', '成功添加入单>>>>>>>>docu_number1', '2014-06-27 09:51:37', '5');
 INSERT INTO `t_log` VALUES ('19', '成功添加入单>>>>>>>>docu_number1', '2014-06-27 10:18:51', '5');
 INSERT INTO `t_log` VALUES ('20', '成功添加入单>>>>>>>>docu_number1', '2014-06-27 10:20:12', '5');
+INSERT INTO `t_log` VALUES ('21', '成功删除货号>>>>>>>>>docu2', '2014-07-01 00:14:35', '1');
+INSERT INTO `t_log` VALUES ('23', '成功修改货号>>>>>>>>docu2', '2014-07-01 14:47:59', '1');
+INSERT INTO `t_log` VALUES ('24', '成功删除仓库>>>>>>>>>', '2014-07-01 17:02:52', '1');
+INSERT INTO `t_log` VALUES ('25', '成功删除仓库>>>>>>>>>', '2014-07-01 17:04:01', '1');
 
 -- ----------------------------
 -- Table structure for t_orderin
@@ -190,15 +194,11 @@ CREATE TABLE `t_orderout` (
   `manager` int(11) NOT NULL,
   `send` varchar(50) NOT NULL COMMENT '发往地',
   `flag` int(11) NOT NULL,
-  `number` int(11) NOT NULL,
-  `clothesId` int(11) NOT NULL,
   PRIMARY KEY (`Id`),
   KEY `fk_T_orderOut_T_admin_1` (`manager`),
   KEY `fk_T_orderOut_T_wareHouse_1` (`warehouseId`),
-  KEY `fk_T_orderOut_T_clothes_1` (`clothesId`),
-  CONSTRAINT `fk_T_orderOut_T_admin_1` FOREIGN KEY (`manager`) REFERENCES `t_admin` (`Id`),
-  CONSTRAINT `fk_T_orderOut_T_clothes_1` FOREIGN KEY (`clothesId`) REFERENCES `t_clothes` (`Id`),
-  CONSTRAINT `fk_T_orderOut_T_wareHouse_1` FOREIGN KEY (`warehouseId`) REFERENCES `t_warehouse` (`Id`)
+  CONSTRAINT `fk_T_orderOut_T_wareHouse_1` FOREIGN KEY (`warehouseId`) REFERENCES `t_warehouse` (`Id`),
+  CONSTRAINT `fk_T_orderOut_T_admin_1` FOREIGN KEY (`manager`) REFERENCES `t_admin` (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -320,7 +320,7 @@ CREATE TABLE `t_warehouse` (
 -- ----------------------------
 -- Records of t_warehouse
 -- ----------------------------
-INSERT INTO `t_warehouse` VALUES ('1', 'do1', 'contact_phone1', 'name1', 'contact1', '800', '1');
+INSERT INTO `t_warehouse` VALUES ('1', 'do1', 'contact_phone1', 'name1', 'contact1', '800', '0');
 INSERT INTO `t_warehouse` VALUES ('2', 'do2', 'contact_phone2', 'name2', 'contact2', '800', '1');
 INSERT INTO `t_warehouse` VALUES ('3', 'do3', 'contact_phone3', 'name3', 'contact3', '800', '1');
 INSERT INTO `t_warehouse` VALUES ('4', 'do4', 'contact_phone4', 'name4', 'contact4', '800', '1');
