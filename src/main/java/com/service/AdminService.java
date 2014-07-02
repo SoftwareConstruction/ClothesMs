@@ -14,4 +14,5 @@ public interface AdminService {
 	public String update(Admin admin,SuperAdmin operator);
 	public List<Admin> findAllByPaging(int firstIndex,int size);
 	public int getAccount();
+	public String changePassword(String newPassword,int id);
 }

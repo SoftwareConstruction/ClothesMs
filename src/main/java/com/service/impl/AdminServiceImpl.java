@@ -120,7 +120,11 @@ public class AdminServiceImpl implements AdminService {
 		}
 		
 	}
-
+	
+	
+	
+	
+	
 	@Override
 	public List<Admin> findAllByPaging(int firstIndex, int size) {
 		List<Admin> result = adminDAOImpl.findAllByPaging(firstIndex, size);
@@ -134,6 +138,19 @@ public class AdminServiceImpl implements AdminService {
 	public int getAccount() {
 		int account = adminDAOImpl.getAccount();
 		return account;
+	}
+
+
+	@Override
+	public String changePassword(String newPassword,int id) {
+		Admin admin = adminDAOImpl.getAdminById(id);
+		if(admin == null){
+			return AdminServiceMessage.noThisUsername;
+		}
+		
+		admin.setPassword(newPassword);
+		adminDAOImpl.update(admin);
+		return null;
 	}
 
 }

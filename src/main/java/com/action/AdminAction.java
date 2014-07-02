@@ -21,6 +21,11 @@ public class AdminAction extends ActionSupport {
 	private static final long serialVersionUID = 5495325462902008455L;
 	public User user;
 	public Admin admin;
+	
+	private ActionContext actionContext = ActionContext.getContext();
+	public String newPassword;
+	
+	
 	@Resource
 	private AdminService adminService;
 
@@ -34,6 +39,17 @@ public class AdminAction extends ActionSupport {
 			actionContext.put("error", loginVo.getErrorWords());
 			return "admin_login_error";
 		}
+	}
+	
+	
+	//管理员修改密码
+	public String changePassword(){
+		Admin admin = (Admin) actionContext.get("LoginAdmin");
+		String error = adminService.changePassword(newPassword, admin.getId());
+		if(error == null){
+			return "admin_changePassowrd_SUCCESS";
+		}
+		return "admin_changePassowrd_ERROR";
 	}
 
 	public User getUser() {
