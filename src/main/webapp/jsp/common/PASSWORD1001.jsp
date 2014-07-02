@@ -49,19 +49,19 @@ body {
 			<tr>
 				<td class="textbar81" width="15%">旧密码</td>
 				<td class="textbar01" width="85%">
-					<s:textfield ></s:textfield>
+					<s:password name="oldPassword"></s:password>
 				</td>
 			</tr>
 			<tr>
 				<td class="textbar81" width="15%">新密码</td>
 				<td class="textbar01" width="85%">
-					<s:textfield name="newPassword"></s:textfield>
+					<s:password name="newPassword"></s:password>
 				</td>
 			</tr>
 			<tr>
 				<td class="textbar81" width="15%">确认密码</td>
 				<td class="textbar01" width="85%">
-					<s:textfield name="newPassword"></s:textfield>
+					<s:password name=""></s:password>
 				</td>
 			</tr>
 		</table>

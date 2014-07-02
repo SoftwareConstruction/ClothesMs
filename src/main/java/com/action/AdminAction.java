@@ -23,7 +23,7 @@ public class AdminAction extends ActionSupport {
 	public Admin admin;
 	
 	public String newPassword;
-	
+	public String oldPassword;
 	
 	@Resource
 	private AdminService adminService;
@@ -40,11 +40,14 @@ public class AdminAction extends ActionSupport {
 		}
 	}
 	
-	
 	//管理员修改密码
 	public String changePassword(){
 		ActionContext actionContext = ActionContext.getContext();
-		Admin admin = (Admin) actionContext.get("LoginAdmin");
+		Admin admin = (Admin) actionContext.getSession().get("LoginAdmin");
+		if(!admin.getPassword().equals(oldPassword)){
+			actionContext.put("error", "旧密码错误");
+			return "admin_changePassword_ERROR";
+		}
 		String error = adminService.changePassword(newPassword, admin.getId());
 		if(error == null){
 			return "admin_changePassowrd_SUCCESS";

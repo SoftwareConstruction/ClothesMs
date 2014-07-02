@@ -7,6 +7,9 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
+
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.junit.Before;
@@ -69,5 +72,9 @@ public class OrderOutServiceImplTest {
 		String result = orderOutServiceImpl.update(orderOut);
 		assertThat(result,nullValue());
 	}
-	
+	@Test
+	public void findByAllPaging(){
+		List<OrderOut> list = orderOutServiceImpl.findByAllPaging(0, 3);
+		assertThat(list.size(),is(3));
+	}
 }

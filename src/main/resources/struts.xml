@@ -13,8 +13,8 @@
 			<result name="admin_login_success">/jsp/index/Main.jsp</result>
 			<result name="admin_login_error">/jsp/index/LoginError.jsp</result>
 			
-			<result name="admin_changePassword_success">/jsp/index/Main.jsp</result>
-			<result name="admin_changePassword_error">/jsp/index/LoginError.jsp</result>
+			<result name="admin_changePassowrd_SUCCESS">/jsp/common/PASSWORD1001.jsp</result>
+			<result name="admin_changePassword_ERROR">/jsp/index/Error.jsp</result>
 		</action>
 
 		   <!-- 超级管理员的相关操作 -->
@@ -24,16 +24,16 @@
 			<result name="admin_login_error">/jsp/index/LoginError.jsp</result>
 
 			<result name="admin_add_success">/jsp/superAdmin/result/superAdmin_login_success.jsp</result>
-			<result name="admin_add_error">/jsp/superAdmin/result/superAdmin_login_error.jsp</result>
+			<result name="admin_add_error">/jsp/index/Error.jsp</result>
 
 			<result name="admin_list_success">/jsp/system/USER1001.jsp</result>
-			<result name="admin_list_error">/jsp/superAdmin/result/superAdmin_login_error.jsp</result>
+			<result name="admin_list_error">/jsp/index/Error.jsp</result>
 
 			<result name="admin_delete_success">/jsp/system/USER1001.jsp</result>
-			<result name="admin_delete_error">/jsp/superAdmin/result/superAdmin_login_error.jsp</result>
+			<result name="admin_delete_error">/jsp/index/Error.jsp</result>
 
 			<result name="admin_update_success">/jsp/system/USER1001.jsp</result>
-			<result name="admin_update_error">/jsp/superAdmin/result/superAdmin_login_error.jsp</result>		
+			<result name="admin_update_error">/jsp/index/Error.jsp</result>		
 		</action>
 		 <!-- 货号管理 -->
 		 <action name="clothes_*" class="com.action.ClothesAction" method="{1}">
@@ -41,61 +41,59 @@
 		   <result name="clothes_list_error">/jsp/superAdmin/result/superAdmin_login_error.jsp</result>
 
 		   <result name="clothes_delete_success">/jsp/system/CLOTHING1001.jsp</result>
-		   <result name="clothes_delete_error">/jsp/superAdmin/result/superAdmin_login_error.jsp</result>
+		   <result name="clothes_delete_error">/jsp/index/Error.jsp</result>
 
 		   <result name="clothes_update_success">/jsp/system/CLOTHING1001.jsp</result>
-		   <result name="clothes_update_error">/jsp/superAdmin/result/superAdmin_login_error.jsp</result>
+		   <result name="clothes_update_error">/jsp/index/Error.jsp</result>
 
 		   <result name="clothes_save_success">/jsp/system/CLOTHING1001.jsp</result>
-		   <result name="clothes_save_error">/jsp/superAdmin/result/superAdmin_login_error.jsp</result>
+		   <result name="clothes_save_error">/jsp/index/Error.jsp</result>
 		 </action>
 		 
 		 <!-- 仓库 -->
 		 <action name="wareHouse_*" class="com.action.WareHouseAction" method="{1}">
 		   <result name="wareHouse_list_success">/jsp/system/bsd_code_006.jsp</result>
-		   <result name="wareHouse_list_error">/jsp/superAdmin/result/superAdmin_login_error.jsp</result>
+		   <result name="wareHouse_list_error">/jsp/index/Error.jsp</result>
 
 		   <result name="wareHouse_delete_success">/jsp/system/bsd_code_006.jsp</result>
-		   <result name="wareHouse_delete_error">/jsp/superAdmin/result/superAdmin_login_error.jsp</result>
+		   <result name="wareHouse_delete_error">/jsp/index/Error.jsp</result>
 
 		   <result name="wareHouse_update_success">/jsp/system/bsd_code_006.jsp</result>
-		   <result name="wareHouse_update_error">/jsp/superAdmin/result/superAdmin_login_error.jsp</result>
+		   <result name="wareHouse_update_error">/jsp/index/Error.jsp</result>
 
 		   <result name="wareHouse_save_success">/jsp/system/bsd_code_006.jsp</result>
-		   <result name="wareHouse_save_error">/jsp/superAdmin/result/superAdmin_login_error.jsp</result>
+		   <result name="wareHouse_save_error">/jsp/index/Error.jsp</result>
 		 </action>
 		 
 		 <!-- 库存管理-入库 -->
 		 <action name="orderIn_*" class="com.action.OrderInAction" method="{1}">
 		   <result name="orderIn_list_SUCCESS">/jsp/stock/order2001.jsp</result>
-		   <result name="orderIn_list_ERROR">/jsp/superAdmin/result/superAdmin_login_error.jsp</result>
+		   <result name="orderIn_list_ERROR">/jsp/index/Error.jsp</result>
 
 		   <result name="orderIn_delete_SUCCESS">/jsp/stock/order2001.jsp</result>
-		   <result name="orderIn_delete_ERROR">/jsp/superAdmin/result/superAdmin_login_error.jsp</result>
+		   <result name="orderIn_delete_ERROR">/jsp/index/Error.jsp</result>
 
 		   <result name="orderIn_update_SUCCESS">/jsp/stock/order2001.jsp</result>
-		   <result name="orderIn_update_ERROR">/jsp/superAdmin/result/superAdmin_login_error.jsp</result>
+		   <result name="orderIn_update_ERROR">/jsp/index/Error.jsp</result>
 
 		   <result name="orderIn_add_SUCCESS">/jsp/stock/order2001.jsp</result>
-		   <result name="orderIn_add_ERROR">/jsp/superAdmin/result/superAdmin_login_error.jsp</result>
+		   <result name="orderIn_add_ERROR">/jsp/index/Error.jsp</result>
 		 </action>
 		 
 		 <!-- 库存管理-出库 -->
 		 <action name="orderOut_*" class="com.action.OrderOutAction" method="{1}">
 		   <result name="orderOut_list_SUCCESS">/jsp/stock/order3001.jsp</result>
-		   <result name="orderOut_list_ERROR">/jsp/superAdmin/result/superAdmin_login_error.jsp</result>
+		   <result name="orderOut_list_ERROR">/jsp/index/Error.jsp</result>
 
 		   <result name="orderOut_delete_SUCCESS">/jsp/stock/order3001.jsp</result>
-		   <result name="orderOut_delete_ERROR">/jsp/superAdmin/result/superAdmin_login_error.jsp</result>
+		   <result name="orderOut_delete_ERROR">/jsp/index/Error.jsp</result>
 
 		   <result name="orderOut_update_SUCCESS">/jsp/stock/order3001.jsp</result>
-		   <result name="orderOut_update_ERROR">/jsp/superAdmin/result/superAdmin_login_error.jsp</result>
+		   <result name="orderOut_update_ERROR">/jsp/index/Error.jsp</result>
 
 		   <result name="orderOut_add_SUCCESS">/jsp/stock/order3001.jsp</result>
-		   <result name="orderOut_add_ERROR">/jsp/superAdmin/result/superAdmin_login_error.jsp</result>
+		   <result name="orderOut_add_ERROR">/jsp/index/Error.jsp</result>
 		 </action>
-		 
-
 	</package>
 
 
