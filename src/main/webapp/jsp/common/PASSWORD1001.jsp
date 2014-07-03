@@ -27,7 +27,7 @@ body {
 </head>
 
 <BODY BACKGROUND="image/bg.gif">
-	<s:form action="admin_changePassword" theme="simple" method="post">
+	<s:form id="myform" action="admin_changePassword" theme="simple" method="post" onsubmit="javaScript:return formchk();">
 		<table border=0 cellspacing=0 cellpadding=2 width="100%"
 			bgcolor="gray">
 			<tr>
@@ -55,13 +55,13 @@ body {
 			<tr>
 				<td class="textbar81" width="15%">新密码</td>
 				<td class="textbar01" width="85%">
-					<s:password name="newPassword"></s:password>
+					<s:password id="pw1" name="newPassword"></s:password>
 				</td>
 			</tr>
 			<tr>
 				<td class="textbar81" width="15%">确认密码</td>
 				<td class="textbar01" width="85%">
-					<s:password name=""></s:password>
+					<s:password d="pw2" name=""></s:password>
 				</td>
 			</tr>
 		</table>
@@ -69,3 +69,19 @@ body {
 	</s:form>
 </body>
 </html>
+<script type="text/javascript">
+function formchk(){
+alert("启动");
+ var addform=document.myform;
+ if (addform.pw1.value=="" && addform.pw2.value==""){
+  alert("密码不能为空!");
+  addform.username.focus();   //用户名输入框获得焦点
+  return false;   //不提交表单
+ }
+ if(addform.pw1.value == addform.pw2.value){
+	 return true;
+ }
+ alert("两次密码不一致");
+ return false;   //输入符合要求后执行表单提交操作
+}
+</script>

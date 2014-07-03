@@ -56,6 +56,7 @@
 	</table>
 
 	<s:form action="admin_login" theme="simple" method="post">
+	<a style="padding-right: 0px" href="jsp/index/login_sa.jsp" >切换到超级用户登录</a>
 		<table width="100%" height="40%" border="0" cellpadding="0"
 			cellspacing="0">
 			<tr>
@@ -66,11 +67,12 @@
 							</td>
 							<td>密&nbsp;码:<s:password name="user.password"></s:password>
 							</td>
-							<td><s:submit value="登录"></s:submit>
+							<td><s:submit cssStyle="" value="登录"></s:submit>
 							</td>
 						</tr>
 					</table>
 				</td>
+				
 			</tr>
 		</table>
 	</s:form>
