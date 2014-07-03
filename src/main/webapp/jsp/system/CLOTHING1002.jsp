@@ -60,9 +60,8 @@ function back()
 						<tr>
 							<td class="headerbar61" width="50%">货号详细</td>
 							<td class="headerbar63" width="50%">
-							<s:submit value="保存save"></s:submit>
-							<input type="button"
-								name="save70302002" onClick="javascript:save()" value=" 保 存 ">
+							<s:submit value="保存"></s:submit>
+							
 								<input type="button" name="save70302002"
 								onClick="javascript:back()" value=" 返 回 "> &nbsp;</td>
 						</tr>

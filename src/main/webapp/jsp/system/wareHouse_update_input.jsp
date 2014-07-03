@@ -59,10 +59,8 @@ function back()
 						<tr>
 							<td class="headerbar61" width="50%" colspan="1">仓库详细</td>
 							<td class="headerbar63" width="50%" colspan="1">
-							<s:submit value="保存save仓库"></s:submit>
-							<input
-								type="button" name="save70302002" onclick="javascript:save()"
-								value=" 保 存 "> <input type="button" name="save70302002"
+							<s:submit value="保存"></s:submit>
+							<input type="button" name="save70302002"
 								onclick="javascript:back()" value=" 返 回 ">&nbsp;</td>
 						</tr>
 					</table></td>

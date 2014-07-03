@@ -61,8 +61,8 @@ function del()
 			<tr>
 				<td class="headerbar61">用户明细查询</td>
 				<td class="headerbar61"><p align="right">
-						<s:submit value="查询list"></s:submit>
-						<input type=submit value=" 查 询 " onClick="goSearch();">
+						<s:submit value="查询"></s:submit>
+						
 					</p></td>
 			</tr>
 		</table>

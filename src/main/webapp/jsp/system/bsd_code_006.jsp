@@ -60,8 +60,8 @@ function del()
 				<td class="headerbar61">仓库查询</td>
 				<td class="headerbar63" width="50%" colspan="1"><p
 						align="right">
-						<s:submit value="查询list仓库"></s:submit>
-						<input type=submit value=" 查 询 " onClick="">
+						<s:submit value="查询"></s:submit>
+						
 					</p>
 				</td>
 			</tr>
