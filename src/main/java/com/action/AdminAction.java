@@ -9,6 +9,7 @@ import com.entity.Admin;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.service.AdminService;
+import com.service.SuperAdminService;
 import com.vo.User;
 import com.vo.service.LoginVo;
 
@@ -50,6 +51,9 @@ public class AdminAction extends ActionSupport {
 		}
 		String error = adminService.changePassword(newPassword, admin.getId());
 		if(error == null){
+			actionContext.getSession().clear();
+			admin.setPassword(newPassword);
+			actionContext.getSession().put("LoginAdmin", admin);
 			return "admin_changePassowrd_SUCCESS";
 		}
 		actionContext.put("error", error);

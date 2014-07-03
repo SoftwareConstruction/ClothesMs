@@ -25,7 +25,6 @@ function formchk(){
 		  addform.username.focus();   //用户名输入框获得焦点
 		  return false;   //不提交表单
 	 } else if(addform.pw1.value == addform.pw2.value){
-		 alert("相等");
 		 return true;
 	 }
 	 alert("两次密码不一致");
