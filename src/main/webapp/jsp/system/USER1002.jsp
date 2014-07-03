@@ -42,10 +42,7 @@ function back() {
 				<td class="headerbar61" width="15%" colspan="1">用户详细</td>
 				<td class="headerbar63" width="85%" colspan="1">
 				<s:submit value="保存save"></s:submit>
-				
-				<input
-					type="button" name="save70302002" onClick="javascript:save()"
-					value=" 保 存 ">&nbsp; <input type="button"
+				<input type="button"
 					name="back70302003" onClick="javascript:back()" value=" 返 回 ">
 				</td>
 			</tr>
