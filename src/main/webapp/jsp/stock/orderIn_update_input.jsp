@@ -117,8 +117,6 @@ function setValue1(){
 				<input name="id" type="hidden" value="<%=request.getParameter("orderId") %>" > 
 				</td>
 			</tr>
-
-
 		</table>
 
 		<table border=0 cellspacing=0 cellpadding=0 width="100%" height=5>
@@ -126,55 +124,6 @@ function setValue1(){
 				<td></td>
 			</tr>
 		</table>
-
-		<table border="0" width="100%" id="table1" cellspacing="0"
-			cellpadding="2" bgcolor="gray">
-			<tr>
-				<td class="headerbar61" colspan="1">入库单明细</td>
-				<td class="headerbar63" colspan="1">
-					<p align="right">
-
-						<input type=button value=" 新增明细 " onClick="goto('jsp/stock/order2003.jsp');">
-					</p>
-				</td>
-			</tr>
-		</table>
-
-		<table id="tab0" border="0" cellspacing="1" cellpadding="2"
-			width="100%" bgcolor="gray">
-			<tr>
-				<td width="5%" class="headerbar82">序号</td>
-				<td width="20%" class="headerbar82">货号</td>
-				<td width="20%" class="headerbar82">品名</td>
-				<td width="15%" class="headerbar82">色号</td>
-				<td width="15%" class="headerbar82">尺码</td>
-				<td width="15%" class="headerbar82">数量</td>
-				<td class="headerbar82">操作</td>
-			</tr>
-			<tr>
-				<td class="gridbar11" align="center">1</td>
-				<td class="gridbar11" align="center">BR1703</td>
-				<td class="gridbar11">中款大衣</td>
-				<td class="gridbar11">大红色</td>
-				<td class="gridbar11">155</td>
-				<td class="gridbar11" align="center">200</td>
-				<td class="gridbar11" align="center"><a href="#"><img
-						src="image/del.gif" align="bottom" border="0" alt="删除"
-						onClick="javascript:del('673467')" /> </a></td>
-			</tr>
-			<tr>
-				<td class="gridbar01" align="center">2</td>
-				<td class="gridbar01" align="center">BR1703</td>
-				<td class="gridbar01">中款大衣</td>
-				<td class="gridbar01">大红色</td>
-				<td class="gridbar01">185</td>
-				<td class="gridbar01" align="center">200</td>
-				<td class="gridbar01" align="center"><a href="#"><img
-						src="image/del.gif" align="bottom" border="0" alt="删除"
-						onClick="javascript:del('673467')" /> </a></td>
-			</tr>
-		</table>
-
 
 	</s:form>
 </BODY>
