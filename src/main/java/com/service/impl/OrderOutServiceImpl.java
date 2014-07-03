@@ -66,36 +66,12 @@ public class OrderOutServiceImpl implements OrderOutService {
 
 	@Override
 	public String update(OrderOut orderOut) {
-		/*List<WareHouse> wareHouse_list = wareHouseDAOImpl.findByName(orderOut.getWareHouse().getName());
+		List<WareHouse> wareHouse_list = wareHouseDAOImpl.findByName(orderOut.getWareHouse().getName());
 		if(wareHouse_list.size()==0){
 			return WareHouseServiceMessage.no_this_WareHouse;
 		}
 		orderOut.setWareHouse(wareHouse_list.get(0));
-		List<Clothes> clothes_list = clothesDAOImpl.findClothesByDocuNum(orderOut.getClothes().getDocuNum());
-		if(clothes_list.size()==0){
-			return ClothesServiceMessage.no_this_clothes;
-		}
-		orderOut.setClothes(clothes_list.get(0));
-		List<Integer> storage_id_list = storageDAOImpl.findIdByWareHouseIdAndClothesId(wareHouse_list.get(0).getId(),clothes_list.get(0).getId());
-		if(storage_id_list.size()==0){
-			return StorageServiceMessage.no_this_storage;
-		}
-		
-		Storage storage_queried = storageDAOImpl.findById(storage_id_list.get(0));
-		int accuont_queried = storage_queried.getStorage_Number();
-		if(accuont_queried<orderOut.getNumber()){
-			return StorageServiceMessage.storage_not_enough; 
-		}
-		storage_queried.setStorage_Number(accuont_queried-orderOut.getNumber());
-		storageDAOImpl.update(storage_queried);
-		
-		List<OrderOut> orderOut_queried_list = orderOutDAOImpl.findByDocuNum(orderOut.getDocu_number());
-		OrderOut orderOut_queried = orderOut_queried_list.get(0);
-		
-		orderOut_queried.setNumber(orderOut.getNumber());
-		orderOut_queried.setSend(orderOut.getSend());
-		
-		orderOutDAOImpl.update(orderOut_queried);*/
+		orderOutDAOImpl.update(orderOut);
 		return null;
 	}
 

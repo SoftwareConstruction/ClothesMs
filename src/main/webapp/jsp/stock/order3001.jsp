@@ -169,7 +169,7 @@ function setValue()
 									<img src="image/edit.gif" align="bottom" border="0" alt="编辑" /> 
 								</a>
 								&nbsp;&nbsp;
-								<a href="orderOut_delete?id=${orderId}" onclick="del()">
+								<a href="orderOut_delete?orderId=${orderId}" onclick="del()">
 									<img src="image/del.gif" align="bottom" border="0" alt="删除" />
 								</a>
 							</td>

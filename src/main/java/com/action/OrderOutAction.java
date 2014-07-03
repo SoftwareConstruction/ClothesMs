@@ -74,13 +74,14 @@ public class OrderOutAction {
 		orderOut.setFlag(1);
 		
 		
-		manager = (Admin) actionContext.get("LoginAdmin");
+		manager = (Admin) actionContext.getSession().get("LoginAdmin");
 		orderOut.setManager(manager);
 		orderOut.setOrderId(Integer.parseInt(orderId));
 		
 		StringToDateUtil util = new StringToDateUtil();
 		Date out_time = util.toDate(dateStr);
 		
+		orderOut.setDocu_number(docuNum);
 		orderOut.setOut_time(out_time);
 		orderOut.setFlag(1);
 		orderOut.setSend(send);

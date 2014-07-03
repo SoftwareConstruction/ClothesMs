@@ -103,19 +103,14 @@ function setValue1(){
 			<tr>
 				<td class="textbar81" width="15%">所出仓库</td>
 				<td class="textbar01" width="35%">
-				<input name="wareHouse_name" type="text" value="<%=request.getParameter("wareHouseName") %>" size="20"> 
+				<input name="wareHouseName" type="text" value="<%=request.getParameter("wareHouseName") %>" size="20"> 
 				</td>
 				<td class="textbar81" width="15%">发往地址</td>
 				<td class="textbar01" width="35%">
-				<input name="source" type="text" value="<%=request.getParameter("send") %>" size="20"> 
+				<input name="send" type="text" value="<%=request.getParameter("send") %>" size="20"> 
 				</td>
 			</tr>
-			<tr>
-				<td class="textbar81" width="15%">备注</td>
-				<td class="textbar01" width="85%" colspan="3">
-				<input name="remark" type="text" value="<%=request.getParameter("remark") %>" size="20"> 
-				<input name="id" type="hidden" value="<%=request.getParameter("orderId") %>" > 
-				</td>
+				<input name="orderId" type="hidden" value="<%=request.getParameter("orderId") %>" > 
 			</tr>
 		</table>
 
