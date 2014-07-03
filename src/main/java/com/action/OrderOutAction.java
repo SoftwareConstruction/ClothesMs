@@ -37,18 +37,22 @@ public class OrderOutAction {
 	public Admin manager;
 
 	public String save() {
+		System.out.println("save" + send);
 		ActionContext actionContext = ActionContext.getContext();
 		OrderOut orderOut = new OrderOut();
 		orderOut.setFlag(1);
-		
-		manager = (Admin) actionContext.get("LoginAdmin");
+		WareHouse wareHouse = new WareHouse();
+		wareHouse.setName(wareHouseName);
+		orderOut.setWareHouse(wareHouse);
+		orderOut.setSend(send);
+		manager = (Admin) actionContext.getSession().get("LoginAdmin");
 		orderOut.setManager(manager);
 		String error = orderOutServiceImpl.save(orderOut);
 		if(error == null){
-			return "orderOut_save_SUCCESS";
+			return list();
 		}
 		actionContext.put("error", error);
-		return "orderOut_save_FALSE";
+		return "orderOut_save_ERROR";
 	}
 	
 	public String delete(){

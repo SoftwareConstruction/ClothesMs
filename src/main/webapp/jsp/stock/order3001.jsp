@@ -18,7 +18,7 @@
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
-<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=GB2312">
+<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=utf-8">
 <META HTTP-EQUIV="content-script-type" CONTENT="text/JavaScript">
 <META HTTP-EQUIV="content-style-type" CONTENT="text/css">
 <link rel="stylesheet" href="css/cjpm.css">
@@ -161,15 +161,15 @@ function setValue()
 							<td class="gridbar11" align="left"><s:property value="manager.name"/></td>
 							<td class="gridbar11" align="left"><s:property value="send"/></td>
 							<td class="gridbar11" align="center">
-							<a href="jsp/stock/orderIn_update_input.jsp?orderId=${orderId}
+							<a href="jsp/stock/orderOut_update_input.jsp?orderId=${orderId}
 								&docu_number=${docu_number}&wareHouseName=${wareHouse.name}
-								&in_time=${in_time}&managerName=${manager.name}
-								&source=${source}
+								&out_time=${out_time}&managerName=${manager.name}
+								&send=${send}
 								&remark=${remark}&flag=${flag}">
 									<img src="image/edit.gif" align="bottom" border="0" alt="编辑" /> 
 								</a>
 								&nbsp;&nbsp;
-								<a href="orderIn_delete?id=${orderId}" onclick="del()">
+								<a href="orderOut_delete?id=${orderId}" onclick="del()">
 									<img src="image/del.gif" align="bottom" border="0" alt="删除" />
 								</a>
 							</td>
