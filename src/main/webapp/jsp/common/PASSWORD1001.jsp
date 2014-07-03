@@ -17,6 +17,21 @@
 <link rel="stylesheet" href="css/cjpm.css">
 <script type="text/javascript" src="js/page.js"></script>
 <script type="text/javascript" src="js/msn_message.js"></script>
+<script type="text/javascript">
+function formchk(){
+	 var addform = document.myform;
+	 if (addform.pw1.value=="" && addform.pw2.value==""){
+		  alert("密码不能为空!");
+		  addform.username.focus();   //用户名输入框获得焦点
+		  return false;   //不提交表单
+	 } else if(addform.pw1.value == addform.pw2.value){
+		 alert("相等");
+		 return true;
+	 }
+	 alert("两次密码不一致");
+	 return false;   //输入符合要求后执行表单提交操作
+}
+</script>
 <style type="text/css">
 <!--
 body {
@@ -61,27 +76,11 @@ body {
 			<tr>
 				<td class="textbar81" width="15%">确认密码</td>
 				<td class="textbar01" width="85%">
-					<s:password d="pw2" name=""></s:password>
+					<s:password id="pw2" name=""></s:password>
 				</td>
 			</tr>
 		</table>
-
 	</s:form>
 </body>
 </html>
-<script type="text/javascript">
-function formchk(){
-alert("启动");
- var addform=document.myform;
- if (addform.pw1.value=="" && addform.pw2.value==""){
-  alert("密码不能为空!");
-  addform.username.focus();   //用户名输入框获得焦点
-  return false;   //不提交表单
- }
- if(addform.pw1.value == addform.pw2.value){
-	 return true;
- }
- alert("两次密码不一致");
- return false;   //输入符合要求后执行表单提交操作
-}
-</script>
+
