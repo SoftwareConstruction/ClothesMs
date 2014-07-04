@@ -14,6 +14,8 @@ public interface AdminDAO {
 	public abstract List findAllByPaging(int firstIndex,int size);
 	public abstract Admin getAdminById(int id);
 	public abstract int getAccount();
+	public abstract List<Admin> findByFuzzyUsername(String usernmae);
+	
 }
 
  

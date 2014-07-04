@@ -106,4 +106,10 @@ public class AdminDAOImplTest {
 		List<Admin> result = adminDAOImpl.loadByUsername(username);
 		assertThat(result.size(),is(1));
 	}
+	
+	@Test
+	public void findByFuzzyUsername(){
+		List<Admin> result = adminDAOImpl.findByFuzzyUsername("u");
+		assertThat(result.size(),is(10));
+	}
 }
