@@ -15,4 +15,5 @@ public interface AdminService {
 	public List<Admin> findAllByPaging(int firstIndex,int size);
 	public int getAccount();
 	public String changePassword(String newPassword,int id);
+	public List<Admin> findByUsername(String name);
 }

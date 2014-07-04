@@ -82,4 +82,10 @@ public class AdminServiceImplTest {
 		List<Admin> list = adminServiceImpl.findAllByPaging(0, 10);
 		assertThat(list.size(),is(10));
 	}
+	
+	@Test
+	public void findByUsername(){
+		List<Admin> result = adminServiceImpl.findByUsername("username2");
+		assertThat(result.size(),is(1));
+	}
 }

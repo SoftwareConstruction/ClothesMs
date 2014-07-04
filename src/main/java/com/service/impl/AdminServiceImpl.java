@@ -153,4 +153,13 @@ public class AdminServiceImpl implements AdminService {
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.service.AdminService#findByUsername(java.lang.String)
+	 */
+	@Override
+	public List<Admin> findByUsername(String name) {
+		List<Admin> result = adminDAOImpl.loadByUsername(name);
+		return result;
+	}
+
 }

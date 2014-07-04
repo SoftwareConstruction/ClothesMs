@@ -99,4 +99,11 @@ public class AdminDAOImplTest {
 		int account = adminDAOImpl.getAccount();
 		assertThat(account,is(22));
 	}
+	
+	@Test
+	public void loadByUsername(){
+		String username = "username2";
+		List<Admin> result = adminDAOImpl.loadByUsername(username);
+		assertThat(result.size(),is(1));
+	}
 }
