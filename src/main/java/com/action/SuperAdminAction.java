@@ -31,6 +31,7 @@ public class SuperAdminAction extends ActionSupport {
 	private String name;
 	private int flag;
 	private String introduction;
+	private String checkName;
 
 	private List<Admin> admins;
 
@@ -117,7 +118,8 @@ public class SuperAdminAction extends ActionSupport {
 		SuperAdmin superAdmin = (SuperAdmin) actionContext.getSession().get(
 				"LoginSuperAdmin");
 		// //////提取这段代码
-		List<Admin> admins = adminService.findAllByPaging(0, 15);
+
+		List<Admin> admins = adminService.findByUsername(checkName);
 
 		if (admins != null) {
 			actionContext.put("admins", admins);
@@ -176,6 +178,14 @@ public class SuperAdminAction extends ActionSupport {
 			System.out.println("【删除失败！】");
 			return "admin_delete_error";
 		}
+	}
+
+	public String getCheckName() {
+		return checkName;
+	}
+
+	public void setCheckName(String checkName) {
+		this.checkName = checkName;
 	}
 
 	/**

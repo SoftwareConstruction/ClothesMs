@@ -76,7 +76,7 @@ function del()
 			bgcolor="gray">
 			<tr>
 				<td class="textbar81" width="15%">用户姓名</td>
-				<td class="textbar01" width="35%"><input type="text" size="20">
+				<td class="textbar01" width="35%"><input type="text" size="20" name = "checkName">
 				</td>
 				<td class="textbar81" width="15%">用户登录号</td>
 				<td class="textbar01" width="35%"><input type="text" size="20">
