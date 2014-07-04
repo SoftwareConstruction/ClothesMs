@@ -158,7 +158,7 @@ public class AdminServiceImpl implements AdminService {
 	 */
 	@Override
 	public List<Admin> findByUsername(String name) {
-		List<Admin> result = adminDAOImpl.loadByUsername(name);
+		List<Admin> result = adminDAOImpl.findByFuzzyUsername(name);
 		return result;
 	}
 
