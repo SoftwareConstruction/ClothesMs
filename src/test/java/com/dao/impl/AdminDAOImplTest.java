@@ -109,7 +109,7 @@ public class AdminDAOImplTest {
 	
 	@Test
 	public void findByFuzzyUsername(){
-		List<Admin> result = adminDAOImpl.findByFuzzyUsername("u");
-		assertThat(result.size(),is(10));
+		List<Admin> result = adminDAOImpl.findByFuzzyUsername("u",5,5);
+		assertThat(result.size(),is(5));
 	}
 }

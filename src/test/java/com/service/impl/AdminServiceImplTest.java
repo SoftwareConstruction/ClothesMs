@@ -84,8 +84,8 @@ public class AdminServiceImplTest {
 	}
 	
 	@Test
-	public void findByUsername(){
-		List<Admin> result = adminServiceImpl.findByUsername("username2");
-		assertThat(result.size(),is(1));
+	public void findByFuzzyUsername(){
+		List<Admin> result = adminServiceImpl.findByFuzzyUsername("u",5,5);
+		assertThat(result.size(),is(5));
 	}
 }

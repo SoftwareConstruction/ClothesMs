@@ -92,12 +92,20 @@ public class AdminDAOImpl implements AdminDAO{
 	}
 
 	/* (non-Javadoc)
-	 * @see com.dao.AdminDAO#findByFuzzyUsername()
+	 * @see com.dao.AdminDAO#findByFuzzyUsername(java.lang.String, int, int)
 	 */
 	@Override
-	public List<Admin> findByFuzzyUsername(String username) {
-		return (List<Admin>)hibernateTemplate.find("from Admin as a where a.username like '%"+username+"%'");
-	
+	public List<Admin> findByFuzzyUsername(final String usernmae,final int firstIndex, final int size) {
+		List<Admin> result = hibernateTemplate.execute(new HibernateCallback(){
+			@Override
+			public Object doInHibernate(Session session)
+					throws HibernateException {
+				String hql = "from Admin as a where a.username like '%"+ usernmae +"%'";
+				List<?> result = PageNoUtil.getList(session, hql, firstIndex, size);
+				return result;
+			}
+		});
+		return result;
 	}
 	
 	

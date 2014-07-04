@@ -119,7 +119,7 @@ public class SuperAdminAction extends ActionSupport {
 				"LoginSuperAdmin");
 		// //////提取这段代码
 
-		List<Admin> admins = adminService.findByUsername(checkName);
+		List<Admin> admins = adminService.findByFuzzyUsername(checkName,0,0);
 
 		if (admins != null) {
 			actionContext.put("admins", admins);
