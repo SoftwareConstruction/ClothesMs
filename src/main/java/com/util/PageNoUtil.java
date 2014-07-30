@@ -11,4 +11,15 @@ public class PageNoUtil {
 		List<?> list = query.list();
 		return list;
 	}
+	
+	public static int size=10;
+	
+	public static int getPageAccount(int account){
+		int remainder = account%size;
+		if(remainder!=0){
+			return account/size+1;
+		}else{
+			return account/size;
+		}
+	}
 }

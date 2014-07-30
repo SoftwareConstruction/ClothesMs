@@ -13,6 +13,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.service.AdminService;
 import com.service.SuperAdminService;
+import com.util.PageNoUtil;
 import com.vo.User;
 
 @Component("superAdmin")
@@ -32,7 +33,10 @@ public class SuperAdminAction extends ActionSupport {
 	private int flag;
 	private String introduction;
 	private String checkName;
-
+	//想要获得数据的页数
+	private String page_num ;
+	
+	
 	private List<Admin> admins;
 
 	public List<Admin> getAdmins() {
@@ -115,14 +119,17 @@ public class SuperAdminAction extends ActionSupport {
 	 */
 	public String list() {
 		ActionContext actionContext = ActionContext.getContext();
-		SuperAdmin superAdmin = (SuperAdmin) actionContext.getSession().get(
-				"LoginSuperAdmin");
-		// //////提取这段代码
-
-		List<Admin> admins = adminService.findByFuzzyUsername(checkName,0,0);
-
-		if (admins != null) {
+		int account = adminService.getAccount();
+		//List<Admin> admins = adminService.findByFuzzyUsername(checkName,0,0);
+		List<Admin> admins = adminService.findAllByPaging(0, 10);
+		int account_page = PageNoUtil.getPageAccount(account);
+		
+		System.out.println("[当前页数]"+page_num);
+		if (admins.size()!=0) {
 			actionContext.put("admins", admins);
+			actionContext.put("accountPage", account_page);
+			actionContext.put("accountAdmin", account);
+			actionContext.put("page_num", page_num);
 			for (Admin admin : admins) {
 				System.out.println("【哈】" + admin.getUsername());
 			}
@@ -142,7 +149,6 @@ public class SuperAdminAction extends ActionSupport {
 		ActionContext actionContext = ActionContext.getContext();
 		SuperAdmin superAdmin = (SuperAdmin) actionContext.getSession().get(
 				"LoginSuperAdmin");
-		// //////提取这段代码
 		List<Admin> admins = adminService.findAllByPaging(0, perPageCount);
 
 		if (admins != null) {
@@ -231,7 +237,7 @@ public class SuperAdminAction extends ActionSupport {
 	 * @return
 	 */
 	public String update_ui() {
-
+		
 		// 接收前台传入的值，因为后台没有提供相应的根据Id获取 管理员信息 的值的函数所以只能全部传入。
 
 		return "admin_update_ui";
@@ -293,4 +299,11 @@ public class SuperAdminAction extends ActionSupport {
 		Id = id;
 	}
 
+	public String getPage_num() {
+		return page_num;
+	}
+
+	public void setPage_num(String page_num) {
+		this.page_num = page_num;
+	}
 }

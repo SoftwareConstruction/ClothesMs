@@ -17,7 +17,7 @@
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
-<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=GB2312">
+<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=utf-8">
 <META HTTP-EQUIV="content-script-type" CONTENT="text/JavaScript">
 <META HTTP-EQUIV="content-style-type" CONTENT="text/css">
 <title>用户管理</title>
@@ -153,7 +153,7 @@ function del()
 		<table width="100%" border="0" cellpadding="1" cellspacing="2">
 			<tr>
 				<td colspan="2" align="right" height="20" nowrap class="textbar3">
-					&nbsp; 共${admins.size() }条 &nbsp; 第1/1页 &nbsp; <a href="#" style="cursor:hand">首页</a>&nbsp;
+					&nbsp; 共${accountAdmin }条 &nbsp; 第${page_num}/${accountPage}页 &nbsp; <a href="#" style="cursor:hand">首页</a>&nbsp;
 					<a style="cursor:hand" href="#">上一页</a>&nbsp; <a
 					style="cursor:hand" href="#">下一页</a>&nbsp; <a style="cursor:hand"
 					href="#">尾页</a>&nbsp; &nbsp;
