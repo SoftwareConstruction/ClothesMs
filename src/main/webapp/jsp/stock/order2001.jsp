@@ -147,7 +147,6 @@ function del()
 					</p>
 				</td>
 		</table>
-
 		<table border="0" width="100%" id="table1" cellspacing="0"
 			cellpadding="0" bgcolor="gray">
 			<tr>
@@ -188,11 +187,9 @@ function del()
 						</tr>
 						</s:iterator>
 					</table>
-					
 				</td>
 			</tr>
 		</table>
-
 		<table width="100%" border="0" cellpadding="0" cellspacing="2">
 			<tr>
 				<td colspan="2" align="right" height="20" nowrap class="textbar3">
@@ -201,7 +198,6 @@ function del()
 					href="#">上一页</a>&nbsp;&nbsp; <a style="cursor:hand" href="#">下一页</a>&nbsp;&nbsp;
 					<a style="cursor:hand" href="#">尾页</a>&nbsp;&nbsp;</td>
 			</tr>
-			
 		</table>
 	</s:form>
 </BODY>

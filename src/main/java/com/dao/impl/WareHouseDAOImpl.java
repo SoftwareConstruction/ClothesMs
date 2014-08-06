@@ -27,7 +27,6 @@ public class WareHouseDAOImpl implements WareHouseDAO{
 
 	@Override
 	public List findByDocu_number(String docu_number){
-		
 		List<WareHouse> list = (List<WareHouse>) hibernateTemplate.find("from WareHouse as wh where wh.docu_number=?",docu_number);
 		return list;
 	}
@@ -65,8 +64,14 @@ public class WareHouseDAOImpl implements WareHouseDAO{
 
 	@Override
 	public int getAccount() {
-		Session session=hibernateTemplate.getSessionFactory().getCurrentSession();
+		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 		int result = (int) new GetAccountWithHibernateCallback("WareHouse").doInHibernate(session);
+		return result;
+	}
+
+	@Override
+	public List<WareHouse> findAllName() {
+		List<WareHouse> result = (List<WareHouse>) hibernateTemplate.find("from WareHouse as w");
 		return result;
 	}
 	

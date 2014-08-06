@@ -1,5 +1,6 @@
 package com.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -118,5 +119,16 @@ public class WareHouseServiceImpl implements WareHouseService{
 	public List<WareHouse> findAllByPaging(int firstIndex,int size) {
 		List<WareHouse> result = wareHouseDAOImpl.findAllByPaging(firstIndex, size);
 		return result;
+	}
+
+
+	@Override
+	public List<String> findAllName() {
+		List<WareHouse> result = wareHouseDAOImpl.findAllName();
+		List<String> names = new ArrayList<String>();
+		for(WareHouse warehouse : result){
+			names.add(warehouse.getName());
+		}
+		return names;
 	}
 }

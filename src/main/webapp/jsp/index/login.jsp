@@ -18,9 +18,8 @@
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
-<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
+<link rel="stylesheet" type="text/css" href="css/styles.css">
+
 </head>
 
 <BODY BACKGROUND="image/bg.gif">
@@ -65,16 +64,19 @@
 						<tr>
 							<td>用户名:<s:textfield name="user.username"></s:textfield>
 							</td>
-							<td>密&nbsp;码:<s:password name="user.password"></s:password>
-							</td>
-							<td><s:submit cssStyle="" value="登录"></s:submit>
-							</td>
+							<tr>
+							<td>密&nbsp;&nbsp;码:<s:password name="user.password"></s:password></td>
+							<tr>
+							<tr>
+								<td><s:submit cssStyle="" value="登录"></s:submit><s:reset value="重置"></s:reset></td>
+								<div id="error_div" class="error" ><s:property value="#request.error" /></div>
+							</tr>
 						</tr>
 					</table>
 				</td>
-				
 			</tr>
 		</table>
 	</s:form>
+	
 </BODY>
 </html>

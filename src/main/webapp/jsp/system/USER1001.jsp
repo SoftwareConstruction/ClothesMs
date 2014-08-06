@@ -153,10 +153,10 @@ function del()
 		<table width="100%" border="0" cellpadding="1" cellspacing="2">
 			<tr>
 				<td colspan="2" align="right" height="20" nowrap class="textbar3">
-					&nbsp; 共${accountAdmin }条 &nbsp; 第${page_num}/${accountPage}页 &nbsp; <a href="#" style="cursor:hand">首页</a>&nbsp;
-					<a style="cursor:hand" href="#">上一页</a>&nbsp; <a
-					style="cursor:hand" href="#">下一页</a>&nbsp; <a style="cursor:hand"
-					href="#">尾页</a>&nbsp; &nbsp;
+					&nbsp; 共${accountAdmin }条 &nbsp; 第${page_num}/${accountPage}页 &nbsp; <a href="superAdmin_list?page_num=1" style="cursor:hand">首页</a>&nbsp;
+					<a style="cursor:hand" href="superAdmin_list?page_num=${page_num-1}">上一页</a>&nbsp; <a
+					style="cursor:hand" href="superAdmin_list?page_num=${page_num+1}">下一页</a>&nbsp; <a style="cursor:hand"
+					href="superAdmin_list?page_num=${accountPage}">尾页</a>&nbsp; &nbsp;
 				</td>
 			</tr>
 		</table>

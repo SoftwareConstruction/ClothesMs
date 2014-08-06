@@ -76,7 +76,6 @@ public class WareHouseServiceImplTest {
 		operator.setName("bin");
 		operator.setPassword("123");
 		operator.setUsername("admin");
-		
 		wareHouseServiceImpl.delete(operator, "do1");
 	}
 	
@@ -84,5 +83,13 @@ public class WareHouseServiceImplTest {
 	public void findAllByPaging(){
 		List<WareHouse> result = wareHouseServiceImpl.findAllByPaging(0, 10);
 		assertEquals(result.size(),10);
+	}
+	
+	@Test
+	public void findAllName(){
+		List<String> names = wareHouseServiceImpl.findAllName();
+		for (String name:names){
+			System.out.println(name);
+		}
 	}
 }

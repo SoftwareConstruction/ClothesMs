@@ -1,5 +1,6 @@
 package com.entity;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**实体类
@@ -15,6 +16,7 @@ public class Log {
 	
 	public Log(){
 		this.saveTime = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		this.saveTime.getTime();
 	}
 	public Admin getAdmin() {

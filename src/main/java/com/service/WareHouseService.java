@@ -11,4 +11,5 @@ public interface WareHouseService {
 	public String update(Admin operator,WareHouse wareHouse);
 	public WareHouse findWareHouseByDocuNum(String docuNum);
 	public List<WareHouse> findAllByPaging(int firstIndex,int size);
+	public List<String> findAllName();
 }

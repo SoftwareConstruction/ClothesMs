@@ -11,10 +11,10 @@
 
 		<action name="admin_*" class="com.action.AdminAction" method="{1}">
 			<result name="admin_login_success">/jsp/index/Main.jsp</result>
-			<result name="admin_login_error">/jsp/index/LoginError.jsp</result>
+			<result name="admin_login_error">/jsp/index/login.jsp</result>
 			
 			<result name="admin_changePassowrd_SUCCESS">/jsp/common/PASSWORD1001.jsp</result>
-			<result name="admin_changePassword_ERROR">/jsp/index/Error.jsp</result>
+			<result name="admin_changePassword_ERROR">/jsp/index/login.jsp</result>
 		</action>
 
 		   <!-- 超级管理员的相关操作 -->

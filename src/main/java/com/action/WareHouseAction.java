@@ -1,9 +1,11 @@
 package com.action;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -141,7 +143,20 @@ public class WareHouseAction extends ActionSupport {
 			return "wareHouse_save_error";
 		}
 	}
-
+	/**
+	 * 得到全部名字
+	 * 
+	 * @return
+	 * @throws IOException 
+	 */
+	public String getNames() throws IOException{
+		boolean result = false;
+		ServletActionContext.getResponse().getWriter().print("this is from action");
+		List<String> names = wareHouseService.findAllName();
+		ActionContext actionContext = ActionContext.getContext();
+		actionContext.put("warehouseNames", names);
+		return null;
+	}
 	public int getId() {
 		return id;
 	}

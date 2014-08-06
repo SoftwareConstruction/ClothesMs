@@ -69,7 +69,7 @@ function goto(surl){
 													<img src="image/dot1.gif" width="13" height="16">
 												</div>
 											</td>
-											<td><a href="superAdmin_list? page_num=1"  target="main" >用户管理</a>
+											<td><a href="superAdmin_list?page_num=1"  target="main" >用户管理</a>
 											</td>
 										</tr>
 										<tr>

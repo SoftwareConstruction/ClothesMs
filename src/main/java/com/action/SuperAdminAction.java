@@ -35,8 +35,6 @@ public class SuperAdminAction extends ActionSupport {
 	private String checkName;
 	//想要获得数据的页数
 	private String page_num ;
-	
-	
 	private List<Admin> admins;
 
 	public List<Admin> getAdmins() {
@@ -79,8 +77,6 @@ public class SuperAdminAction extends ActionSupport {
 	 * @Description
 	 */
 	public String add() {
-		System.out.println(username + "<hghjjhfhjfjh<");
-
 		ActionContext actionContext = ActionContext.getContext();
 		SuperAdmin superAdmin = (SuperAdmin) actionContext.getSession().get(
 				"LoginSuperAdmin");
@@ -94,7 +90,6 @@ public class SuperAdminAction extends ActionSupport {
 		String msg = adminService.add(admin, superAdmin);
 		if (msg == null) {
 			// 添加成功
-
 			List<Admin> admins = adminService.findAllByPaging(0, 15);
 			if (admins != null) {
 				actionContext.put("admins", admins);
@@ -120,21 +115,29 @@ public class SuperAdminAction extends ActionSupport {
 	public String list() {
 		ActionContext actionContext = ActionContext.getContext();
 		int account = adminService.getAccount();
-		//List<Admin> admins = adminService.findByFuzzyUsername(checkName,0,0);
-		List<Admin> admins = adminService.findAllByPaging(0, 10);
+		int pageInt = Integer.valueOf(page_num) - 1;
+		System.out.println(pageInt);
 		int account_page = PageNoUtil.getPageAccount(account);
-		
-		System.out.println("[当前页数]"+page_num);
+		if(pageInt <=0 -1){
+			pageInt = 0;
+		}else if(pageInt >= account_page - 1){
+			pageInt = account_page - 1;
+			System.out.println("pageInt-1:" + pageInt);
+		}
+		List<Admin> admins = adminService.findAllByPaging(10*pageInt, 10);
+		System.out.println("[当前页数]"+ pageInt);
 		if (admins.size()!=0) {
 			actionContext.put("admins", admins);
 			actionContext.put("accountPage", account_page);
 			actionContext.put("accountAdmin", account);
-			actionContext.put("page_num", page_num);
+			actionContext.put("page_num", pageInt);
+			System.out.println("pageInt:" + pageInt);
 			for (Admin admin : admins) {
 				System.out.println("【哈】" + admin.getUsername());
 			}
 			return "admin_list_success";
 		} else {
+			System.out.println("adminlist为空");
 			return "admin_list_error";
 		}
 	}
@@ -150,7 +153,6 @@ public class SuperAdminAction extends ActionSupport {
 		SuperAdmin superAdmin = (SuperAdmin) actionContext.getSession().get(
 				"LoginSuperAdmin");
 		List<Admin> admins = adminService.findAllByPaging(0, perPageCount);
-
 		if (admins != null) {
 			actionContext.put("admins", admins);
 			for (Admin admin : admins) {
@@ -172,7 +174,6 @@ public class SuperAdminAction extends ActionSupport {
 		ActionContext actionContext = ActionContext.getContext();
 		SuperAdmin superAdmin = (SuperAdmin) actionContext.getSession().get(
 				"LoginSuperAdmin");
-
 		System.out.println("【username】" + username);
 		String msg = adminService.delete(username, superAdmin);
 		if (msg == null) {
